@@ -3,7 +3,7 @@
 
 	class Modele_Connexion {
 
-		function __construct(argument) {
+		function __construct() {
 			
 		}
 
