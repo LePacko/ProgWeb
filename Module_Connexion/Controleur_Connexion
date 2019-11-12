@@ -1,0 +1,18 @@
+<?php 
+	
+
+	class Controleur_Connexion {
+		
+		private $Vue;
+		private $Modele;
+
+		function __construct(argument) {
+			$this->Vue = new Vue_Connexion();
+			$this->Modele = new Modele_Connexion();
+		}
+
+		
+	}
+
+
+?>
