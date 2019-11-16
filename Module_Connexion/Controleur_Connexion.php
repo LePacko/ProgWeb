@@ -21,6 +21,8 @@
 		function getModele() {
 			return $this->Modele;
 		}
+
+		
 	}
 
 

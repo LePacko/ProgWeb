@@ -34,8 +34,7 @@
 			'mail' => $mail,
 			'mdp' => $hashedPsw
 		));
-
-
+		
 	?>
 
 </body>

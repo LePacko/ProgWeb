@@ -10,8 +10,7 @@
 		function afficheFormulaireCreationCompte() {
 
 		?>
-		<form method="post" action="modele.php">
-		
+		<form method="post" action="./index.php?action=ajoutMotardBD">
 		
 		<label>Nom</label>
 		<input type="text" name="Nom"required><br>
