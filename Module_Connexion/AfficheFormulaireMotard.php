@@ -15,10 +15,19 @@
 				<label>Mail</label>
 				<input type="email" name="Mail"required><br>
 				<label>Mot de passe</label>
-				<input type="password" name="MotDePasse"required><br>
+                <input type="password" name="MotDePasse"required><br>
+                <label>Adresse</label>
+                <input type="text" name="Adresse"required><br>
+                <label>Code Postal</label>
+                <input type="text" name="CodePostal"required><br>
+                <label>Numero de téléphone></label>
+                <input type="text" name="NumeroTel"required><br>
+                <label>Permis</label>
+                <input type="file" name="Permis"><br>
+
 				<input type="submit" value="Crée mon compte">
 
 			</form>
 
 		</body>
-		</html>
+</html>

@@ -7,7 +7,7 @@
 			
 		}
 
-		function AjoutUtilisateurBasseDeDonnées($nom, $prenom, $mail, $hashedPsw) {
+		function AjoutUtilisateurBasseDeDonnées($nom, $prenom, $mail, $hashedPsw, $adresse, $codepostal, $numerotel, $permis) {
 
 			//Message de bienvenue a mettre dans une fonction
 			echo "Bonjour ".$prenom."\n";
@@ -15,7 +15,7 @@
 				
 			//Conexion à la base de donées 
 			try {
-				$connexion = new PDO('mysql:host=localhost;dbname=test;charset=utf8','root','');
+				$connexion = new PDO('mysql:host=localhost;dbname=projet;charset=utf8','root','');
 			}
 			catch(Exception $e) {
 				echo "erreur";
