@@ -10,13 +10,14 @@
 CREATE TABLE motard(
         id_motard     Int  Auto_increment  NOT NULL ,
         nom           Varchar (64) NOT NULL ,
-        prenom        Varchar (64) NOT NULL ,
+        Prenom        Varchar (64) NOT NULL ,
         adresse       Varchar (128) ,
         code_postal   Int ,
         mail          Varchar (128) NOT NULL ,
         numero_de_tel Int NOT NULL ,
         permis        Varchar (3) NOT NULL ,
-        mdp           Varchar (268) NOT NULL
+        mdp           Varchar (268) NOT NULL ,
+        imageProfile  Varchar (450)
 	,CONSTRAINT motard_PK PRIMARY KEY (id_motard)
 )ENGINE=InnoDB;
 
@@ -30,9 +31,10 @@ CREATE TABLE entreprise(
         SIRET              Int NOT NULL ,
         adresse            Varchar (128) NOT NULL ,
         code_postale       Int NOT NULL ,
-        numero_tel         Int NOT NULL ,
+        numero_tel         Int ,
         date_d_affiliation Date NOT NULL ,
-        mdp                Varchar (268) NOT NULL
+        mdp                Varchar (268) NOT NULL ,
+        mail_entreprise    Varchar (268) NOT NULL
 	,CONSTRAINT entreprise_PK PRIMARY KEY (denomination)
 )ENGINE=InnoDB;
 
@@ -135,3 +137,4 @@ CREATE TABLE Effectuer(
 	,CONSTRAINT Effectuer_session_FK FOREIGN KEY (id_session) REFERENCES session(id_session)
 	,CONSTRAINT Effectuer_motard0_FK FOREIGN KEY (id_motard) REFERENCES motard(id_motard)
 )ENGINE=InnoDB;
+
