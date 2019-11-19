@@ -101,7 +101,7 @@ CREATE TABLE modele_moto(
         marque    Varchar (64) NOT NULL ,
         modele    Varchar (64) NOT NULL ,
         cylindree Int NOT NULL ,
-        type      Int  Auto_increment  NOT NULL ,
+        type      Varchar (64) NOT NULL ,
         puissance Int NOT NULL
 	,CONSTRAINT modele_moto_PK PRIMARY KEY (marque,modele)
 )ENGINE=InnoDB;
