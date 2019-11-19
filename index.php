@@ -41,10 +41,13 @@
 				$mail = $_POST['Mail'];
 				$Mdp = $_POST['MotDePasse'];
 				$hashedPsw = crypt($Mdp);
-
+				$adresse = $_POST['Adresse'];
+				$codepostal = $_POST['CodePostal'];
+				$numerotel = $_POST['NumeroTel'];
+				$permis = $_POST['Permis'];
 				//Ajout d'un nouveau Motard dans la basse de données
 				$Module = new Module_Connexion();
-				$Module->getControleur()->getModele()->AjoutUtilisateurBasseDeDonnées($nom, $prenom, $mail, $hashedPsw);
+				$Module->getControleur()->getModele()->AjoutUtilisateurBasseDeDonnées($nom, $prenom, $mail, $hashedPsw, $adresse, $codepostal, $numerotel, $permis);
 			break;
 
 			
