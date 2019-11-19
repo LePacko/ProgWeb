@@ -22,15 +22,22 @@
 
 			case 'null': //Page d'entrée sur le site 
 				?>
-				<a href="index.php?action=choixTypeUtilisateurCrationCompte">Je crée mon compte</a><br>
-				<a href="index.php?action=choixTypeUtilisateurConnexion">Je me connecte</a>
+				<a href="index.php?action=CreationCompte">Je crée mon compte</a><br>
+				<a href="index.php?action=Connexion">Je me connecte</a>
 				<?php
 			break;
 
-			case 'choixTypeUtilisateurCrationCompte'://Choix de Type d'utilisateur pour crée un compte 
+			case 'CreationCompte'://Choix de Type d'utilisateur pour crée un compte 
 				?>
-				<a href="index.php?action=inscriptionMotard">Je suis un motard</a><br>
-				<a href="index.php?action=inscriptionGerant">Je suis un gérant de circuit</a>
+				<a href="Module_CreationCompte.php?action=Motard">Je suis un motard</a><br>
+				<a href="Module_CreationCompte.php?action=Gerant">Je suis un gérant de circuit</a>
+				<?php
+			break;
+
+			case 'Connexion'://Choix de Type d'utilisateur pour crée un compte 
+				?>
+				<a href="Module_Connexion.php?action=Motard">Je suis un motard</a><br>
+				<a href="Module_Connexion.php?action=Gerant">Je suis un gérant de circuit</a>
 				<?php
 			break;
 
