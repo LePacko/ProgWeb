@@ -34,11 +34,8 @@
 				<?php
 			break;
 
-			case 'Connexion'://Choix de Type d'utilisateur pour crée un compte 
-				?>
-				<a href="Module_Connexion.php?action=Motard">Je suis un motard</a><br>
-				<a href="Module_Connexion.php?action=Gerant">Je suis un gérant de circuit</a>
-				<?php
+			case 'Connexion'://Connexion 
+				//TODO
 			break;
 
 			case 'ajoutMotardBD':
