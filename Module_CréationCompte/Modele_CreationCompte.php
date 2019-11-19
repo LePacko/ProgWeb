@@ -1,7 +1,7 @@
 <?php 
 	
 
-	class Modele_Connexion {
+	class Modele_CreationCompte {
 
 		function __construct() {
 			

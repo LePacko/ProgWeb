@@ -1,7 +1,7 @@
 <?php 
 	
 
-	class Vue_Connexion {
+	class Vue_CreationCompte {
 
 		function __construct() {
 			

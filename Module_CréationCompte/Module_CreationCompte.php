@@ -1,13 +1,13 @@
 <?php 
 
-	require_once"./Module_Connexion/Controleur_Connexion.php";
+	require_once"./Module_Connexion/Controleur_CreationCompte.php";
 	
-	class Module_Connexion {
+	class Module_CreationCompte {
 		
 		private $Controleur;
 
 		function __construct() {
-			$this->Controleur = new Controleur_Connexion();
+			$this->Controleur = new Controleur_CreationCompte();;
 		}
 
 		function getControleur() {
