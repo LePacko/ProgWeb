@@ -33,7 +33,7 @@ CREATE TABLE entreprise(
         numero_tel         Int NOT NULL ,
         date_d_affiliation Date NOT NULL ,
         mdp                Varchar (268) NOT NULL
-	,CONSTRAINT entreprise_PK PRIMARY KEY (SIRET)
+	,CONSTRAINT entreprise_PK PRIMARY KEY (denomination)
 )ENGINE=InnoDB;
 
 
@@ -47,10 +47,10 @@ CREATE TABLE circuit(
         code_postale Int NOT NULL ,
         longueur     Int NOT NULL ,
         nom          Varchar (128) NOT NULL ,
-        SIRET        Int NOT NULL
+        denomination        Int NOT NULL
 	,CONSTRAINT circuit_PK PRIMARY KEY (id_circuit)
 
-	,CONSTRAINT circuit_entreprise_FK FOREIGN KEY (SIRET) REFERENCES entreprise(SIRET)
+	,CONSTRAINT circuit_entreprise_FK FOREIGN KEY (denomination) REFERENCES entreprise(denomination)
 )ENGINE=InnoDB;
 
 
