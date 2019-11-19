@@ -1,5 +1,6 @@
 <?php 
-	require_once"./Module_Connexion/Module_Connexion.php";
+	require_once("./Module/Module_Connexion/Module_Connexion.php");
+	require_once("./Module/Module_CreationCompte/Module_CreationCompte.php");
 ?>
 
 <!DOCTYPE html>
@@ -9,50 +10,34 @@
 	<meta charset="utf-8">
 </head>
 <body>
+ 
+	<?php
 
-	<?php 
+		$module = 'null';
 
-		$action = 'null';
-
-		if (isset($_GET['action'])) {
-			$action = $_GET['action'];
+		if (isset($_GET['module'])) {
+			$module = $_GET['module'];
 		}
 
-		switch ($action) {
+		switch ($module) {
 
 			case 'null': //Page d'entrée sur le site 
 				?>
-				<a href="index.php?action=CreationCompte">Je crée mon compte</a><br>
-				<a href="index.php?action=Connexion">Je me connecte</a>
+				<a href="index.php?module=CreationCompte">Je crée mon compte</a><br>
+				<a href="index.php?module=Connexion">Je me connecte</a>
 				<?php
 			break;
 
-			case 'CreationCompte'://Choix de Type d'utilisateur pour crée un compte 
-				?>
-				<a href="Module_CreationCompte.php?action=Motard">Je suis un motard</a><br>
-				<a href="Module_CreationCompte.php?action=Gerant">Je suis un gérant de circuit</a>
-				<?php
+			case 'CreationCompte':
+				$controleurCreationCompte= new Module_CreationCompte();
+				
 			break;
 
-			case 'Connexion'://Connexion 
-				//TODO
+			case 'Connexion': 
+				$controleurConnexion = new Module_Connexion();
 			break;
 
-			case 'ajoutMotardBD':
-				//Récupération des vaiables entrée dans le formulaire 
-				$prenom = $_POST['Prenom'];
-				$nom = $_POST['Nom'];
-				$mail = $_POST['Mail'];
-				$Mdp = $_POST['MotDePasse'];
-				$hashedPsw = crypt($Mdp);
-				$adresse = $_POST['Adresse'];
-				$codepostal = $_POST['CodePostal'];
-				$numerotel = $_POST['NumeroTel'];
-				$permis = $_POST['Permis'];
-				//Ajout d'un nouveau Motard dans la basse de données
-				$Module = new Module_Connexion();
-				$Module->getControleur()->getModele()->AjoutUtilisateurBasseDeDonnées($nom, $prenom, $mail, $hashedPsw, $adresse, $codepostal, $numerotel, $permis);
-			break;
+			
 
 			
 			//Affiche les formulaire de connexion

@@ -6,7 +6,7 @@
 		</head>
 		<body>
 		
-			<form method="post" action="./index.php?action=ajoutMotardBD">
+			<form method="post" action="./index.php?module=CreationCompte&action=ajoutMotardBD">
 			
 				<label>Nom</label>
 				<input type="text" name="Nom"required><br>
