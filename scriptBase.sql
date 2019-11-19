@@ -11,8 +11,8 @@ CREATE TABLE motard(
         id_motard     Int  Auto_increment  NOT NULL ,
         nom           Varchar (64) NOT NULL ,
         prenom        Varchar (64) NOT NULL ,
-        adresse       Varchar (128) NOT NULL ,
-        code_postal   Int NOT NULL ,
+        adresse       Varchar (128) ,
+        code_postal   Int ,
         mail          Varchar (128) NOT NULL ,
         numero_de_tel Int NOT NULL ,
         permis        Varchar (3) NOT NULL ,
@@ -26,8 +26,8 @@ CREATE TABLE motard(
 #------------------------------------------------------------
 
 CREATE TABLE entreprise(
-        SIRET              Int NOT NULL ,
         denomination       Varchar (128) NOT NULL ,
+        SIRET              Int NOT NULL ,
         adresse            Varchar (128) NOT NULL ,
         code_postale       Int NOT NULL ,
         numero_tel         Int NOT NULL ,
@@ -45,9 +45,9 @@ CREATE TABLE circuit(
         id_circuit   Int  Auto_increment  NOT NULL ,
         adresse      Varchar (128) NOT NULL ,
         code_postale Int NOT NULL ,
-        longueur     Int NOT NULL ,
+        longueur     Int ,
         nom          Varchar (128) NOT NULL ,
-        denomination        Int NOT NULL
+        denomination Varchar (128) NOT NULL
 	,CONSTRAINT circuit_PK PRIMARY KEY (id_circuit)
 
 	,CONSTRAINT circuit_entreprise_FK FOREIGN KEY (denomination) REFERENCES entreprise(denomination)
