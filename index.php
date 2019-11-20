@@ -1,5 +1,5 @@
 <?php 
-	require_once"./Module_Connexion/Module_Connexion.php";
+	//require_once"./Module_Connexion/Module_Connexion.php";
 ?>
 
 <!DOCTYPE html>
