@@ -27,8 +27,8 @@ CREATE TABLE motard(
 #------------------------------------------------------------
 
 CREATE TABLE entreprise(
-        denomination       Varchar (128) NOT NULL ,
         SIRET              Int NOT NULL ,
+        denomination       Varchar (128) NOT NULL ,
         adresse            Varchar (128) NOT NULL ,
         code_postale       Int NOT NULL ,
         numero_tel         Int ,
@@ -51,7 +51,7 @@ CREATE TABLE circuit(
         longueur      Int ,
         nom           Varchar (128) NOT NULL ,
         image_circuit Varchar (500) NOT NULL ,
-        SIRET  Varchar (128) NOT NULL
+        SIRET         Int NOT NULL
 	,CONSTRAINT circuit_PK PRIMARY KEY (id_circuit)
 
 	,CONSTRAINT circuit_entreprise_FK FOREIGN KEY (SIRET) REFERENCES entreprise(SIRET)
@@ -141,3 +141,4 @@ CREATE TABLE Effectuer(
 	,CONSTRAINT Effectuer_session_FK FOREIGN KEY (id_session) REFERENCES session(id_session)
 	,CONSTRAINT Effectuer_motard0_FK FOREIGN KEY (id_motard) REFERENCES motard(id_motard)
 )ENGINE=InnoDB;
+
