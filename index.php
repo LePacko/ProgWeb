@@ -37,18 +37,14 @@
 				$controleurConnexion = new Module_Connexion();
 			break;
 
-			
-
-			
-			//Affiche les formulaire de connexion
-			case 'inscriptionMotard': //Affiche le formulaire de création de compte pour les motards
-				$Module = new Module_Connexion();
-				$Module->getControleur()->getVue()->afficheFormulaireCreationCompte();
-			break;
 
 			case 'inscriptionGerant': //Affiche le formulaire de création de compte pour les gérants de circuits
 				$Module = new Module_Connexion();
 				//TODO
+			break;
+
+			default : 
+				echo "Error la page n'existe pas";
 			break;
 				
 		}

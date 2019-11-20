@@ -8,11 +8,11 @@
 		}
 
 		function FormulaireCreationCompteMotard() {
-			include("AfficheFormulaireMotard.php");
+			include("./Html/AfficheFormulaireMotard.html");
 		}
 
 		function PageChoixTypeUtilisateur() {
-			include("ChoixTypeUtilisateur.php");
+			include("./Html/ChoixTypeUtilisateur.html");
 		}
 
 	}

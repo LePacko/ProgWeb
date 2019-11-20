@@ -22,11 +22,15 @@
 			}
 				
 			//Ajout du nouvelle utilisateur dans le abase de donées
-			$req = $connexion->prepare('insert into motard (prenom,nom,mail,mdp) values (:nom,:prenom,:mail,:mdp)');
+			$req = $connexion->prepare('insert into motard (nom,Prenom,adresse,code_postal,mail,numero_de_tel,permis,mdp) values (:nom,:prenom,:adresse,:code_postal,:mail,:numero_de_tel,:permis,:mdp)');
 			$req->execute(array(
 				'prenom' => $prenom,
 				'nom' => $nom,
+				'adresse' => $adresse,
+				'code_postal' =>$codepostal,
 				'mail' => $mail,
+				'numero_de_tel' => $numerotel,
+				'permis' => $permis,
 				'mdp' => $hashedPsw
 			));
 		}
