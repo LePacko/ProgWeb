@@ -44,7 +44,6 @@
 						$numerotel = $_POST['NumeroTel'];
 						$permis = $_POST['Permis'];
 						//Ajout d'un nouveau Motard dans la basse de données
-						$Module = new Module_Connexion();
 						$this->Modele->AjoutUtilisateurBasseDeDonnées($nom, $prenom, $mail, $hashedPsw, $adresse, $codepostal, $numerotel, $permis);
 					break;
 				

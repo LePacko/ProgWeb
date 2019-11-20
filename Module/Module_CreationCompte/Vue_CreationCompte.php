@@ -8,7 +8,7 @@
 		}
 
 		function FormulaireCreationCompteMotard() {
-			include("AfficheFormulaireMotard.php");
+			include("./Html/AfficheFormulaireMotard.html");
 		}
 
 	}

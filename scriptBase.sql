@@ -27,15 +27,16 @@ CREATE TABLE motard(
 #------------------------------------------------------------
 
 CREATE TABLE entreprise(
-        denomination       Varchar (128) NOT NULL ,
         SIRET              Int NOT NULL ,
+        denomination       Varchar (128) NOT NULL ,
         adresse            Varchar (128) NOT NULL ,
         code_postale       Int NOT NULL ,
         numero_tel         Int ,
         date_d_affiliation Date NOT NULL ,
         mdp                Varchar (268) NOT NULL ,
-        mail_entreprise    Varchar (268) NOT NULL
-	,CONSTRAINT entreprise_PK PRIMARY KEY (denomination)
+        mail_entreprise    Varchar (268) NOT NULL ,
+        image_gerant       Varchar (500) NOT NULL
+	,CONSTRAINT entreprise_PK PRIMARY KEY (SIRET)
 )ENGINE=InnoDB;
 
 
@@ -44,15 +45,16 @@ CREATE TABLE entreprise(
 #------------------------------------------------------------
 
 CREATE TABLE circuit(
-        id_circuit   Int  Auto_increment  NOT NULL ,
-        adresse      Varchar (128) NOT NULL ,
-        code_postale Int NOT NULL ,
-        longueur     Int ,
-        nom          Varchar (128) NOT NULL ,
-        denomination Varchar (128) NOT NULL
+        id_circuit    Int  Auto_increment  NOT NULL ,
+        adresse       Varchar (128) NOT NULL ,
+        code_postale  Int NOT NULL ,
+        longueur      Int ,
+        nom           Varchar (128) NOT NULL ,
+        image_circuit Varchar (500) NOT NULL ,
+        SIRET         Int NOT NULL
 	,CONSTRAINT circuit_PK PRIMARY KEY (id_circuit)
 
-	,CONSTRAINT circuit_entreprise_FK FOREIGN KEY (denomination) REFERENCES entreprise(denomination)
+	,CONSTRAINT circuit_entreprise_FK FOREIGN KEY (SIRET) REFERENCES entreprise(SIRET)
 )ENGINE=InnoDB;
 
 
@@ -69,6 +71,7 @@ CREATE TABLE session(
         nb_participant Int NOT NULL ,
         heure_debut    Time NOT NULL ,
         heure_fin      Time NOT NULL ,
+        image          Varchar (500) NOT NULL ,
         id_circuit     Int NOT NULL
 	,CONSTRAINT session_PK PRIMARY KEY (id_session)
 
@@ -114,6 +117,7 @@ CREATE TABLE modele_moto(
 CREATE TABLE moto(
         immatriculation Varchar (10) NOT NULL ,
         annee           Date NOT NULL ,
+        image_ma_moto   Varchar (500) NOT NULL ,
         id_motard       Int NOT NULL ,
         marque          Varchar (64) ,
         modele          Varchar (64)
