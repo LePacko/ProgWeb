@@ -7,7 +7,8 @@
 		private $Controleur;
 
 		function __construct() {
-			$this->Controleur = new Controleur_Connexion();;
+			$this->Controleur = new Controleur_Connexion();
+			$this->Controleur->menu();
 		}
 
 		function getControleur() {

@@ -14,6 +14,10 @@
 			$this->Modele = new Modele_Connexion();
 		}
 
+		function menu() {
+			//TODO
+		}
+
 		function getVue() {
 			return $this->Vue;
 		}

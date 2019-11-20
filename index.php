@@ -29,7 +29,7 @@
 			break;
 
 			case 'CreationCompte':
-				$controleurCreationCompte= new Module_CreationCompte();
+				$controleurCreationCompte = new Module_CreationCompte();
 				
 			break;
 

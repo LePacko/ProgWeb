@@ -15,10 +15,18 @@
 		}
 
 		function menu() {
-			$this->Vue->PageChoixTypeUtilisateur();
+			
+			$action = 'null';
 			
 			if (isset($_GET['action'])) {
-				switch($_GET['action']){
+				$action = $_GET['action'];
+			}	
+			
+			switch($action){
+
+					case 'null' : 
+						$this->Vue->PageChoixTypeUtilisateur();
+					break;
 
 					case 'inscriptionMotard' :
 						$this->Vue->FormulaireCreationCompteMotard();
@@ -43,7 +51,7 @@
 						$Module = new Module_Connexion();
 						$this->Modele->AjoutUtilisateurBasseDeDonnées($nom, $prenom, $mail, $hashedPsw, $adresse, $codepostal, $numerotel, $permis);
 					break;
-				}
+				
 			}
 			
 
