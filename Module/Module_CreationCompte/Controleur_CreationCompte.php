@@ -24,10 +24,6 @@
 			
 			switch($action){
 
-					case 'null' : 
-						$this->Vue->PageChoixTypeUtilisateur();
-					break;
-
 					case 'inscriptionMotard' :
 						$this->Vue->FormulaireCreationCompteMotard();
 					break;

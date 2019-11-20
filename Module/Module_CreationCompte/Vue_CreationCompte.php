@@ -11,10 +11,6 @@
 			include("AfficheFormulaireMotard.php");
 		}
 
-		function PageChoixTypeUtilisateur() {
-			include("ChoixTypeUtilisateur.php");
-		}
-
 	}
 		
 ?>
