@@ -8,11 +8,7 @@
 		}
 
 		function FormulaireCreationCompteMotard() {
-			include("./Html/AfficheFormulaireMotard.html");
-		}
-
-		function PageChoixTypeUtilisateur() {
-			include("./Html/ChoixTypeUtilisateur.html");
+			include("./Html/FormulaireMotard.html");
 		}
 
 	}

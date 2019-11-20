@@ -24,10 +24,6 @@
 			
 			switch($action){
 
-					case 'null' : 
-						$this->Vue->PageChoixTypeUtilisateur();
-					break;
-
 					case 'inscriptionMotard' :
 						$this->Vue->FormulaireCreationCompteMotard();
 					break;
@@ -36,19 +32,8 @@
 						$this->Vue->FormulaireCreationCompteGerant(); // A faire
 					break;
 
-					case 'ajoutMotardBD':
-						//Récupération des vaiables entrée dans le formulaire 
-						$prenom = $_POST['Prenom'];
-						$nom = $_POST['Nom'];
-						$mail = $_POST['Mail'];
-						$Mdp = $_POST['MotDePasse'];
-						$hashedPsw = crypt($Mdp);
-						$adresse = $_POST['Adresse'];
-						$codepostal = $_POST['CodePostal'];
-						$numerotel = $_POST['NumeroTel'];
-						$permis = $_POST['Permis'];
-						//Ajout d'un nouveau Motard dans la basse de données
-						$this->Modele->AjoutUtilisateurBasseDeDonnées($nom, $prenom, $mail, $hashedPsw, $adresse, $codepostal, $numerotel, $permis);
+					case 'ajoutMotardBD'://Ajout d'un nouveau Motard dans la basse de données
+						$this->Modele->AjoutUtilisateurBaseDeDonnées();
 					break;
 				
 			}
