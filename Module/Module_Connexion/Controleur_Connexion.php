@@ -17,16 +17,7 @@
 		function menu() {
 			//TODO
 		}
-
-		function getVue() {
-			return $this->Vue;
-		}
-
-		function getModele() {
-			return $this->Modele;
-		}
-
-		
+	
 	}
 
 

@@ -10,10 +10,6 @@
 			$this->Controleur = new Controleur_CreationCompte();
 			$this->Controleur->menu();
 		}
-
-		function getControleur() {
-			return $this->Controleur;
-		} 
 	}
 
 

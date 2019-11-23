@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+		<html>
+		<head>
+			<title>Creation de compte</title>
+			<link rel="stylesheet" type="text/css" href="">
+
+		</head>
+		<body>
+		
+			<form method="post" action="./index.php?module=CreationCompte&action=ajoutGerantBD">
+			
+				<label>Denomination</label>
+				<input type="text" name="Denomination"required><br>
+				<label>Mail</label>
+				<input type="email" name="Mail"required><br>
+				<label>Mot de passe</label>
+                <input type="password" name="MotDePasse"required><br>
+                <label>Siret</label>
+                <input type="text" name="Siret" maxlength="14" minlength="14" required><br>
+                <label>Numero de téléphone</label>
+                <input type="text" name="NumeroTel"  maxlength="10" minlength="10"><br>
+                <label>Adresse</label>
+                <input type="text" name="Adresse" required><br>
+                <label>Code Postal</label>
+                <input type="text" name="CodePostal"  maxlength="5" minlength="5" required><br>
+                
+				<input type="submit" value="Crée mon compte">
+
+			</form>
+
+		</body>
+		
+</html>
