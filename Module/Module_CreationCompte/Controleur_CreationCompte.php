@@ -24,31 +24,26 @@
 			
 			switch($action){
 
-					case 'inscriptionMotard' :
-						$this->Vue->FormulaireCreationCompteMotard();
-					break;
+				case 'inscriptionMotard':// Affiche le formulaire d'inscription pour les nouveau motards
+					$this->Vue->FormulaireCreationCompteMotard(); 
+				break;
 
-					case 'inscriptionGerant' :
-						$this->Vue->FormulaireCreationCompteGerant(); // A faire
-					break;
+				case 'inscriptionGerant':// Affiche le formulaire d'inscription pour les nouveau gérants
+					$this->Vue->FormulaireCreationCompteGerant(); 
+				break;
 
-					case 'ajoutMotardBD'://Ajout d'un nouveau Motard dans la basse de données
-						$this->Modele->AjoutUtilisateurBaseDeDonnées();
-					break;
+				case 'ajoutMotardBD'://Ajout d'un nouveau Motard dans la basse de données
+					$this->Modele->AjoutUtilisateurBaseDeDonnées();
+				break;
+
+				case 'ajoutGerantBD'://Ajout d'un nouveau Gerant dans la basse de données
+					$this->Modele->AjoutGerantBaseDeDonnées();
+				break;
 				
 			}
 			
 
 		}
-		
-		function getVue() {
-			return $this->Vue;
-		}
-
-		function getModele() {
-			return $this->Modele;
-		}
-
 		
 	}
 

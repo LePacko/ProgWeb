@@ -11,9 +11,6 @@
 			$this->Controleur->menu();
 		}
 
-		function getControleur() {
-			return $this->Controleur;
-		} 
 	}
 
 

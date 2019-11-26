@@ -9,7 +9,10 @@
 
 		function FormulaireCreationCompteMotard() {
 			include("./Html/FormulaireMotard.html");
+		}
 
+		function FormulaireCreationCompteGerant() {
+			include("./Html/FormulaireGerant.html");
 		}
 
 	}
