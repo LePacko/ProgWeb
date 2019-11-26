@@ -23,11 +23,7 @@
 		switch ($module) {
 
 			case 'null': //Page d'entrée sur le site 
-				?>
-				<a href="index.php?module=CreationCompte&action=inscriptionMotard">Je suis un motard</a>  				<!--Creation compte-->
-    			<a href="index.php?module=CreationCompte&action=inscriptionGerant">Je suis un gérant de circuit</a>  	<!--Creation compte-->	
-				<a href="index.php?module=Connexion">Je me connecte</a>																<!--Connexion-->
-				<?php
+				include("./Html/index.html");
 			break;
 
 			case 'CreationCompte':
