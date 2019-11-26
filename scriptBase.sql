@@ -27,7 +27,7 @@ CREATE TABLE motard(
 #------------------------------------------------------------
 
 CREATE TABLE entreprise(
-        SIRET              Int NOT NULL ,
+        SIRET              BigInt NOT NULL ,
         denomination       Varchar (128) NOT NULL ,
         adresse            Varchar (128) NOT NULL ,
         code_postale       Int NOT NULL ,
@@ -51,7 +51,7 @@ CREATE TABLE circuit(
         longueur      Int ,
         nom           Varchar (128) NOT NULL ,
         image_circuit Varchar (500) NOT NULL ,
-        SIRET         Int NOT NULL
+        SIRET         BigInt NOT NULL
 	,CONSTRAINT circuit_PK PRIMARY KEY (id_circuit)
 
 	,CONSTRAINT circuit_entreprise_FK FOREIGN KEY (SIRET) REFERENCES entreprise(SIRET)
