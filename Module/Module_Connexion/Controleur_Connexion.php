@@ -15,7 +15,24 @@
 		}
 
 		function menu() {
-			//TODO
+			
+			$action = 'null';
+			
+			if (isset($_GET['action'])) {
+				$action = $_GET['action'];
+			}
+
+			switch($action) {
+
+				case 'null' :
+					$this->Modele->validerConnexion();
+				break;
+
+				default : 
+					echo "Vous vous trouver sur une page inexistante";
+				break;
+
+			}
 		}
 	
 	}
