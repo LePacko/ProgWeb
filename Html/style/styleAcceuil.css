@@ -1,0 +1,29 @@
+body{
+    background-color: #cccccc;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    max-width: 1920px;
+    max-height: 1080px;
+}
+
+header img{
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    max-width: 200px;
+    max-height: 200px;
+
+}
+.bulle{
+    border-radius: 5%;
+    background-color: white;
+    opacity: 90%;
+}
+.enterResponses{
+    padding: 2px;
+    background-color: grey;
+    border:solid 1px black;
+    border-radius: 5%;
+}
