@@ -32,7 +32,7 @@ if (isset($_GET['module'])) {
 		ob_start();    
 		$menu = ob_get_clean();
 
-		REQUIRE('template.php');
+		REQUIRE('Html/indexTemplate.php');
 	?>
 </body>
 </html>	

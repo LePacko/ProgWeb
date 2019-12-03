@@ -36,20 +36,38 @@
             </div>
 
             <div class=" col-md-offset-1 col-md-4">
+            <?php
+            if(!isset($_SESSION['id'])&&!isset($_SESSION['siret'])){
+                echo'
 
                 <div id="creation compte" class="bulle">
                     <h2>je crée mon compte</h2>
                     <div class="enterResponsesDiv">
-                        <a href="" class="enterResponses">Je suis motard</a>
+                        <a href="index.php?module=CreationCompte&action=inscriptionMotard" class="enterResponses">Je suis motard</a>
                     </div>
                     <div class="enterResponsesDiv">
-                        <a href="" class="enterResponses">Je suis gerant</a>
+                        <a href="index.php?module=CreationCompte&action=inscriptionGerant" class="enterResponses">Je suis gerant</a>
                     </div>
-                </div>
-
+                </div>';
+            }
+            else {
+                echo '<a href="index.php?module=Connexion&action=deconnexion" >Deconnexion</a>
+                <a href="index.php?module=Connexion&action=profil">Voir mon profil</a>';
+            }
+?>
             </div>
         </div>
     </div>
+    <section>
+        <article> 
+            <?= $menu ?>
+        </article>
+        <article>
+            <?= $module ?>
+        </article>
+    </section>
 
 </body>
 </html> 
+
+

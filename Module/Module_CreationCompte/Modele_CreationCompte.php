@@ -1,7 +1,7 @@
 <?php 
 	
 	include_once("./ConnexionBD_iut.php"); 
-	include_once("./ConnexionBD_xamp.php");
+
 
 	class Modele_CreationCompte extends ConnexionBD_iut   {
 
