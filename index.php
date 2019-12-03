@@ -1,50 +1,37 @@
-<?php 
+
+	<?php
 	require_once("./Module/Module_Connexion/Module_Connexion.php");
 	require_once("./Module/Module_CreationCompte/Module_CreationCompte.php");
 
-?>
-
-<!DOCTYPE html>
-<html>
-<head>
-	<title>MotoSession</title>
-	<meta charset="utf-8">
-</head>
-<body>
- 
-	<?php
-
-		$module = 'null';
-
-		if (isset($_GET['module'])) {
-			$module = $_GET['module'];
+		if(!isset($_SESSION['login']) && !defined('CONST_INCLUDE')){
+   	 	session_start();
+    	define('CONST_INCLUDE',NULL);/*on definit une constante pour dire que l'on passe par l'index 
+    auquel cas une alert se declenchera pour specifier que l'acces est interdit*/
 		}
+//on met en tampon tout les affichage (or template,module calculé...) qui se charge avant qu'il n'apparaissent
 
-		switch ($module) {
+		ob_start();
 
-			case 'null': //Page d'entrée sur le site 
-				?>
-				<a href="index.php?module=CreationCompte&action=inscriptionMotard">Je suis un motard</a>  				<!--Creation compte-->
-    			<a href="index.php?module=CreationCompte&action=inscriptionGerant">Je suis un gérant de circuit</a>  	<!--Creation compte-->	
-				<a href="index.php?module=Connexion">Je me connecte</a>																<!--Connexion-->
-				<?php
-			break;
-
-			case 'CreationCompte':
-				$controleurCreationCompte = new Module_CreationCompte();
-				
-			break;
-
-			case 'Connexion': 
-				$controleurConnexion = new Module_Connexion();
-			break;
-
-			default : 
-				echo "Error la page n'existe pas";
-			break;
+if (isset($_GET['module'])) {
+	switch ($_GET['module']) {
+		case 'CreationCompte':
+			$controleurCreationCompte = new Module_CreationCompte();
+		break;
+		case 'Connexion': 
+			$controleurConnexion = new Module_Connexion();
+		break;
+		default : 
+		
+		break;
 				
 		}
+	}
+		
+		$module = ob_get_clean();//on recupere l'affichage des modules
+		ob_start();    
+		$menu = ob_get_clean();
 
+		REQUIRE('template.php');
 	?>
 </body>
 </html>	
