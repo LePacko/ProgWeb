@@ -24,10 +24,28 @@
 
 			switch($action) {
 
-				case 'null' :
-					$this->Modele->validerConnexion();
+				case 'formConnexion' :
+					$this->Vue->formulaireConnexion();
 				break;
 
+				case'connexion' :
+					$login = htmlspecialchars($_POST['id']);
+					$mdp = hash('sha256', $_POST['mdp']);
+					$this -> Modele -> validerConnexion($login,$mdp);
+			break;
+					//$this->Modele->validerConnexion();
+				case'deconnexion':
+					if(isset($_SESSION['id'])){
+						unset($_SESSION['id']);
+					}
+					if(isset($_SESSION['siret'])){
+						unset($_SESSION['siret']);
+					}
+				break;
+
+				case'profil' :
+				$tab=$this->Modele->recupererDonneesProfil();
+				$this->Vue->afficherProfil($tab);
 				default : 
 					echo "Vous vous trouver sur une page inexistante";
 				break;
