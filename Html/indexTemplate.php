@@ -17,44 +17,48 @@
     <div class="container">
         <div class="row">
             <div class="col-md-offset-2 col-md-4">
+                <?php
+                    if(!isset($_SESSION['id'])&&!isset($_SESSION['siret'])){
+                        echo'
+                            <div id="connection" class="bulle">
+                                <h2>Je me connecte</h2>
+                                <a href="index.php?module=Connexion&action=formConnexion" class="enterResponses">Je me connecte</a>
+                            </div>
+                        
 
-                <div id="connection" class="bulle">
-                    <h2>Je me connecte</h2>
-                    <form action="" method="post">
-                        <div>
-                            <input type="email" id="email" name="email_co" class="enterResponses" placeholder="email">
-                        </div>
-                        <div>
-                            <input type="password" id="pswd" name="pswd_co"class="enterResponses" placeholder="mot de passe">
-                        </div>
-                        <div>
-                            <button type="submit" class="enterResponses">Connexion</button>
-                        </div>
-                    </form>
-                </div>
-
-            </div>
-
-            <div class=" col-md-offset-1 col-md-4">
-            <?php
-            if(!isset($_SESSION['id'])&&!isset($_SESSION['siret'])){
-                echo'
-
-                <div id="creation compte" class="bulle">
-                    <h2>je crée mon compte</h2>
-                    <div class="enterResponsesDiv">
-                        <a href="index.php?module=CreationCompte&action=inscriptionMotard" class="enterResponses">Je suis motard</a>
                     </div>
-                    <div class="enterResponsesDiv">
-                        <a href="index.php?module=CreationCompte&action=inscriptionGerant" class="enterResponses">Je suis gerant</a>
-                    </div>
-                </div>';
-            }
-            else {
-                echo '<a href="index.php?module=Connexion&action=deconnexion" >Deconnexion</a>
-                <a href="index.php?module=Connexion&action=profil">Voir mon profil</a>';
-            }
-?>
+
+                    <div class=" col-md-offset-1 col-md-4">
+
+
+
+                        <div id="creation compte" class="bulle">
+                            <h2>je crée mon compte</h2>
+                            <div class="enterResponsesDiv">
+                                <a href="index.php?module=CreationCompte&action=inscriptionMotard" class="enterResponses">Je suis motard</a>
+                            </div>
+                            <div class="enterResponsesDiv">
+                                <a href="index.php?module=CreationCompte&action=inscriptionGerant" class="enterResponses">Je suis gerant</a>
+                            </div>
+                        </div>';
+                    }
+                    else {
+                        if(isset($_SESSION['id'])){ 
+                            echo '<a href="index.php?module=Motard&action=acceuil">Acceuil</a>
+                            <a href="index.php?module=Motard&action=profil">Voir mon profil</a>
+                            <a href="index.php?module=Motard&action=session">Trouver Session</a>
+                            <a href="index.php?module=Motard&action=effectue">Session Effectués</a>
+                            <a href="index.php?module=Motard&action=deconnexion" >Deconnexion</a>';
+                        }
+                        if(isset($_SESSION['siret'])){ 
+                            echo '<a href="index.php?module=Connexion&action=acceuil">Acceuil</a>
+                            <a href="index.php?module=Connexion&action=profil">Voir mon profil</a>
+                            <a href="index.php?module=Connexion&action=mescircuits">Mes Circuits</a>
+                            <a href="index.php?module=Connexion&action=messessions">Mes Sessions</a>
+                            <a href="index.php?module=Connexion&action=deconnexion" >Deconnexion</a>';
+                        }
+                    }
+                ?>
             </div>
         </div>
     </div>

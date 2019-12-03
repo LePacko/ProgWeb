@@ -2,6 +2,7 @@
 	<?php
 	require_once("./Module/Module_Connexion/Module_Connexion.php");
 	require_once("./Module/Module_CreationCompte/Module_CreationCompte.php");
+	require_once("./Module/Module_Motard/Module_Motard.php");
 
 		if(!isset($_SESSION['login']) && !defined('CONST_INCLUDE')){
    	 	session_start();
@@ -20,6 +21,8 @@ if (isset($_GET['module'])) {
 		case 'Connexion': 
 			$controleurConnexion = new Module_Connexion();
 		break;
+		case 'Motard':
+			$controleurMotard = new Module_Motard();
 		default : 
 		
 		break;
