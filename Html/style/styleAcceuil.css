@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css?family=Permanent+Marker&display=swap');
+
 body{
     background-color: #cccccc;
     background-position: center center;
@@ -9,6 +11,7 @@ body{
 }
 header{
     margin-bottom: 100px;
+    margin-top: 50px;
 }
 header img{
     background-repeat: no-repeat;
@@ -16,11 +19,15 @@ header img{
     background-size: cover;
     max-width: 200px;
     max-height: 200px;
-
+    margin-top: 20px;
+}
+h1{
+    font-family: 'Permanent Marker';
+    color: white;
+    font-size: 4em;
 }
 h2{
    text-align: center;
-
 }
 .bulle{
     border-radius: 5%;
