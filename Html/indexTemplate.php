@@ -48,13 +48,13 @@
                             <a href="index.php?module=Motard&action=profil">Voir mon profil</a>
                             <a href="index.php?module=Motard&action=session">Trouver Session</a>
                             <a href="index.php?module=Motard&action=effectue">Session Effectués</a>
-                            <a href="index.php?module=Motard&action=deconnexion" >Deconnexion</a>';
+                            <a href="index.php?module=Connexion&action=deconnexion" >Deconnexion</a>';
                         }
                         if(isset($_SESSION['siret'])){ 
-                            echo '<a href="index.php?module=Connexion&action=acceuil">Acceuil</a>
-                            <a href="index.php?module=Connexion&action=profil">Voir mon profil</a>
-                            <a href="index.php?module=Connexion&action=mescircuits">Mes Circuits</a>
-                            <a href="index.php?module=Connexion&action=messessions">Mes Sessions</a>
+                            echo '<a href="index.php?module=Gerant&action=acceuil">Acceuil</a>
+                            <a href="index.php?module=Gerant&action=profil">Voir mon profil</a>
+                            <a href="index.php?module=Gerant&action=mescircuits">Mes Circuits</a>
+                            <a href="index.php?module=Gerant&action=messessions">Mes Sessions</a>
                             <a href="index.php?module=Connexion&action=deconnexion" >Deconnexion</a>';
                         }
                     }
