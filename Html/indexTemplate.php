@@ -9,72 +9,70 @@
 	<link rel="stylesheet" href="./Html/style/styleAcceuil.css" type="text/css"/>
 	<meta charset="utf-8">
 </head>
-<body class="container" style="background-image: url('./Html/img/background_acceuil.jpg');" >
-	
-		<div class="row header">
-			<img class="col-md-offset-3 col-xs-3 col-sm-3 col-md-3 col-lg-3 logo" src="./Html/img/logo.png"/>
-			<h1 class="col-xs-4 col-sm-4 col-md-4 col-lg-4 titre">MotoSession</h1>
-		</div>
 
-	
-		<div class="row">
-			<div class="col-md-offset-2 col-xs-4 col-sm-4 col-md-4 col-lg-4">
+<body style="background-image: url('./Html/img/background_acceuil.jpg');" >
+    <header class="container">
+        <div class="row">
+            <img class="logo col-md-offset-4 col-md-1" src="./Html/img/logo.png"/>
+            <h1 class="col-md-1 titre">MotoSession</h1>
+        </div>
+    </header>
+    <div class="container">
+        <div class="row">
+            <div class="col- modife deco eet module gerantmd-offset-2 col-md-4">
+                <?php
+                    if(!isset($_SESSION['id'])&&!isset($_SESSION['siret'])){
+                        echo'
+                            <div id="connection" class="bulle">
+                                <h2>Je me connecte</h2>
+                                <a href="index.php?module=Connexion&action=formConnexion" class="enterResponses">Je me connecte</a>
+                            </div>
+                        
 
-				<?php
-					if(!isset($_SESSION['id'])&&!isset($_SESSION['siret'])){
-						echo'
-							<div id="connection" class="bulle">
-								<h2>Je me connecte</h2>
-								<a href="index.php?module=Connexion&action=formConnexion" class="enterResponses">Connexion</a>
-							</div>
-						
+                    </div>
 
-					</div>
-
-					<div class="col-md-offset-1 col-xs-4 col-sm-4 col-md-4 col-lg-4">
+                    <div class=" col-md-offset-1 col-md-4">
 
 
 
-						<div id="creation compte" class="bulle">
-							<h2>Je crée mon compte</h2>
-							<div class="enterResponsesDiv">
-								<a href="index.php?module=CreationCompte&action=inscriptionMotard" class="enterResponses">Je suis motard</a>
-							</div>
-							<div class="enterResponsesDiv">
-								<a href="index.php?module=CreationCompte&action=inscriptionGerant" class="enterResponses">Je suis gerant</a>
-							</div>
-						</div>';
-					}
-					else {
-						if(isset($_SESSION['id'])){ 
-							echo '<a href="index.php?module=Motard&action=acceuil">Acceuil</a>
-							<a href="index.php?module=Motard&action=profil">Voir mon profil</a>
-							<a href="index.php?module=Motard&action=session">Trouver Session</a>
-							<a href="index.php?module=Motard&action=effectue">Session Effectués</a>
-							<a href="index.php?module=Connexion&action=deconnexion" >Deconnexion</a>';
-						}
-						if(isset($_SESSION['siret'])){ 
-							echo '<a href="index.php?module=Connexion&action=acceuil">Acceuil</a>
-							<a href="index.php?module=Connexion&action=profil">Voir mon profil</a>
-							<a href="index.php?module=Connexion&action=mescircuits">Mes Circuits</a>
-							<a href="index.php?module=Connexion&action=messessions">Mes Sessions</a>
-							<a href="index.php?module=Connexion&action=deconnexion" >Deconnexion</a>';
-						}
-					}
-				?>
-			</div>
-		</div>
-	</div>
-	<section>
-		<article> 
-			<?= $menu ?>
-		</article>
-		<article>
-			<?= $module ?>
-		</article>
-	</section>
-
-	
+                        <div id="creation compte" class="bulle">
+                            <h2>je crée mon compte</h2>
+                            <div class="enterResponsesDiv">
+                                <a href="index.php?module=CreationCompte&action=inscriptionMotard" class="enterResponses">Je suis motard</a>
+                            </div>
+                            <div class="enterResponsesDiv">
+                                <a href="index.php?module=CreationCompte&action=inscriptionGerant" class="enterResponses">Je suis gerant</a>
+                            </div>
+                        </div>';
+                    }
+                    else {
+                        if(isset($_SESSION['id'])){ 
+                            echo '<a href="index.php?module=Motard&action=acceuil">Acceuil</a>
+                            <a href="index.php?module=Motard&action=profil">Voir mon profil</a>
+                            <a href="index.php?module=Motard&action=session">Trouver Session</a>
+                            <a href="index.php?module=Motard&action=effectue">Session Effectués</a>
+                            <a href="index.php?module=Connexion&action=deconnexion" >Deconnexion</a>';
+                        }
+                        if(isset($_SESSION['siret'])){ 
+                            echo '<a href="index.php?module=Gerant&action=acceuil">Acceuil</a>
+                            <a href="index.php?module=Gerant&action=profil">Voir mon profil</a>
+                            <a href="index.php?module=Gerant&action=mescircuits">Mes Circuits</a>
+                            <a href="index.php?module=Gerant&action=messessions">Mes Sessions</a>
+                            <a href="index.php?module=Connexion&action=deconnexion" >Deconnexion</a>';
+                        }
+                    }
+                ?>
+            </div>
+        </div>
+    </div>
+    <section>
+        <article> 
+            <?= $menu ?>
+        </article>
+        <article>
+            <?= $module ?>
+        </article>
+    </section>
 
 	<script type="text/javascript"> //Animation pour le titre 
 
