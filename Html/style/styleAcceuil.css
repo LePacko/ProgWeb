@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css?family=Permanent+Marker&display=swap');
+
 body{
     background-color: #cccccc;
     background-position: center center;
@@ -7,25 +9,31 @@ body{
     max-width: 1920px;
     max-height: 1080px;
 }
-header{
+.header{
     margin-bottom: 100px;
+    margin-top: 15px;
 }
-header img{
+.header img{
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-size: cover;
-    max-width: 200px;
-    max-height: 200px;
-
+    max-width: 100px;
+    max-height: 100px;
+    margin-top: 20px;
+}
+.titre{
+    font-family: 'Permanent Marker';
+    color: white;
+    font-size: 4em;
+    text-align: center;
 }
 h2{
    text-align: center;
-
 }
 .bulle{
     border-radius: 5%;
     background-color: white;
-    opacity: 90%;
+    opacity: 20%;
     text-align: center;
 }
 .enterResponses{
