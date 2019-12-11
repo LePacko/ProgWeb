@@ -10,13 +10,14 @@
 CREATE TABLE motard(
         id_motard     Int  Auto_increment  NOT NULL ,
         nom           Varchar (64) NOT NULL ,
-        prenom        Varchar (64) NOT NULL ,
+        Prenom        Varchar (64) NOT NULL ,
         adresse       Varchar (128) ,
         code_postal   Int ,
         mail          Varchar (128) NOT NULL ,
         numero_de_tel Int NOT NULL ,
         permis        Varchar (3) NOT NULL ,
-        mdp           Varchar (268) NOT NULL
+        mdp           Varchar (268) NOT NULL ,
+        imageProfile  Varchar (450)
 	,CONSTRAINT motard_PK PRIMARY KEY (id_motard)
 )ENGINE=InnoDB;
 
@@ -26,14 +27,16 @@ CREATE TABLE motard(
 #------------------------------------------------------------
 
 CREATE TABLE entreprise(
+        SIRET              BigInt NOT NULL ,
         denomination       Varchar (128) NOT NULL ,
-        SIRET              Int NOT NULL ,
         adresse            Varchar (128) NOT NULL ,
         code_postale       Int NOT NULL ,
-        numero_tel         Int NOT NULL ,
+        numero_tel         Int ,
         date_d_affiliation Date NOT NULL ,
-        mdp                Varchar (268) NOT NULL
-	,CONSTRAINT entreprise_PK PRIMARY KEY (denomination)
+        mdp                Varchar (268) NOT NULL ,
+        mail_entreprise    Varchar (268) NOT NULL ,
+        image_gerant       Varchar (500) NOT NULL
+	,CONSTRAINT entreprise_PK PRIMARY KEY (SIRET)
 )ENGINE=InnoDB;
 
 
@@ -42,15 +45,16 @@ CREATE TABLE entreprise(
 #------------------------------------------------------------
 
 CREATE TABLE circuit(
-        id_circuit   Int  Auto_increment  NOT NULL ,
-        adresse      Varchar (128) NOT NULL ,
-        code_postale Int NOT NULL ,
-        longueur     Int ,
-        nom          Varchar (128) NOT NULL ,
-        denomination Varchar (128) NOT NULL
+        id_circuit    Int  Auto_increment  NOT NULL ,
+        adresse       Varchar (128) NOT NULL ,
+        code_postale  Int NOT NULL ,
+        longueur      Int ,
+        nom           Varchar (128) NOT NULL ,
+        image_circuit Varchar (500) NOT NULL ,
+        SIRET         BigInt NOT NULL
 	,CONSTRAINT circuit_PK PRIMARY KEY (id_circuit)
 
-	,CONSTRAINT circuit_entreprise_FK FOREIGN KEY (denomination) REFERENCES entreprise(denomination)
+	,CONSTRAINT circuit_entreprise_FK FOREIGN KEY (SIRET) REFERENCES entreprise(SIRET)
 )ENGINE=InnoDB;
 
 
@@ -67,6 +71,7 @@ CREATE TABLE session(
         nb_participant Int NOT NULL ,
         heure_debut    Time NOT NULL ,
         heure_fin      Time NOT NULL ,
+        image          Varchar (500) NOT NULL ,
         id_circuit     Int NOT NULL
 	,CONSTRAINT session_PK PRIMARY KEY (id_session)
 
@@ -99,7 +104,7 @@ CREATE TABLE modele_moto(
         marque    Varchar (64) NOT NULL ,
         modele    Varchar (64) NOT NULL ,
         cylindree Int NOT NULL ,
-        type      Int  Auto_increment  NOT NULL ,
+        type      Varchar (64) NOT NULL ,
         puissance Int NOT NULL
 	,CONSTRAINT modele_moto_PK PRIMARY KEY (marque,modele)
 )ENGINE=InnoDB;
@@ -112,6 +117,7 @@ CREATE TABLE modele_moto(
 CREATE TABLE moto(
         immatriculation Varchar (10) NOT NULL ,
         annee           Date NOT NULL ,
+        image_ma_moto   Varchar (500) NOT NULL ,
         id_motard       Int NOT NULL ,
         marque          Varchar (64) ,
         modele          Varchar (64)
@@ -135,3 +141,4 @@ CREATE TABLE Effectuer(
 	,CONSTRAINT Effectuer_session_FK FOREIGN KEY (id_session) REFERENCES session(id_session)
 	,CONSTRAINT Effectuer_motard0_FK FOREIGN KEY (id_motard) REFERENCES motard(id_motard)
 )ENGINE=InnoDB;
+

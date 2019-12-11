@@ -1,73 +1,43 @@
-<?php 
-	require_once"./Module_Connexion/Module_Connexion.php";
-?>
 
-<!DOCTYPE html>
-<html>
-<head>
-	<title>MotoSession</title>
-	<meta charset="utf-8">
-</head>
-<body>
+	<?php
+	require_once("./Module/Module_Connexion/Module_Connexion.php");
+	require_once("./Module/Module_CreationCompte/Module_CreationCompte.php");
+	require_once("./Module/Module_Motard/Module_Motard.php");
+	require_once("./Module/Module_Gerant/Module_Gerant.php");
 
-	<?php 
-
-		$action = 'null';
-
-		if (isset($_GET['action'])) {
-			$action = $_GET['action'];
+		if(!isset($_SESSION['login']) && !defined('CONST_INCLUDE')){
+   	 	session_start();
+    	define('CONST_INCLUDE',NULL);/*on definit une constante pour dire que l'on passe par l'index 
+    auquel cas une alert se declenchera pour specifier que l'acces est interdit*/
 		}
+//on met en tampon tout les affichage (or template,module calculé...) qui se charge avant qu'il n'apparaissent
 
-		switch ($action) {
+		ob_start();
 
-			case 'null': //Page d'entrée sur le site 
-				?>
-				<a href="index.php?action=CreationCompte">Je crée mon compte</a><br>
-				<a href="index.php?action=Connexion">Je me connecte</a>
-				<?php
-			break;
+if (isset($_GET['module'])) {
+	switch ($_GET['module']) {
+		case 'CreationCompte':
+			$controleurCreationCompte = new Module_CreationCompte();
+		break;
+		case 'Connexion': 
+			$controleurConnexion = new Module_Connexion();
+		break;
+		case 'Motard':
+			$controleurMotard = new Module_Motard();
+		break;
+		case 'Gerant' : 
+			$controleurGerant = new Module_Gerant();
+		break;
 
-			case 'CreationCompte'://Choix de Type d'utilisateur pour crée un compte 
-				?>
-				<a href="Module_CreationCompte.php?action=Motard">Je suis un motard</a><br>
-				<a href="Module_CreationCompte.php?action=Gerant">Je suis un gérant de circuit</a>
-				<?php
-			break;
-
-			case 'Connexion'://Connexion 
-				//TODO
-			break;
-
-			case 'ajoutMotardBD':
-				//Récupération des vaiables entrée dans le formulaire 
-				$prenom = $_POST['Prenom'];
-				$nom = $_POST['Nom'];
-				$mail = $_POST['Mail'];
-				$Mdp = $_POST['MotDePasse'];
-				$hashedPsw = crypt($Mdp);
-				$adresse = $_POST['Adresse'];
-				$codepostal = $_POST['CodePostal'];
-				$numerotel = $_POST['NumeroTel'];
-				$permis = $_POST['Permis'];
-				//Ajout d'un nouveau Motard dans la basse de données
-				$Module = new Module_Connexion();
-				$Module->getControleur()->getModele()->AjoutUtilisateurBasseDeDonnées($nom, $prenom, $mail, $hashedPsw, $adresse, $codepostal, $numerotel, $permis);
-			break;
-
-			
-			//Affiche les formulaire de connexion
-			case 'inscriptionMotard': //Affiche le formulaire de création de compte pour les motards
-				$Module = new Module_Connexion();
-				$Module->getControleur()->getVue()->afficheFormulaireCreationCompte();
-			break;
-
-			case 'inscriptionGerant': //Affiche le formulaire de création de compte pour les gérants de circuits
-				$Module = new Module_Connexion();
-				//TODO
-			break;
 				
 		}
+	}
+		
+		$module = ob_get_clean();//on recupere l'affichage des modules
+		ob_start();    
+		$menu = ob_get_clean();
 
+		REQUIRE('Html/indexTemplate.php');
 	?>
 </body>
 </html>	
