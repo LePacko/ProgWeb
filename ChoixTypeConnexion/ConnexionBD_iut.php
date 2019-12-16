@@ -2,7 +2,7 @@
 
 define('DNS', "mysql:host=database-etudiants.iut.univ-paris8.fr;dbname=dutinfopw201661");
 
-class ConnexionBD_iut {
+class Connexion {
 	protected static $connexion;
 
 	protected static function init(){

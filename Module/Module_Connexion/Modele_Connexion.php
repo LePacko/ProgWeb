@@ -1,6 +1,6 @@
 <?php 
 	
-include_once("./ConnexionBD_iut.php");
+include_once("./Connexion.php");
 	class Modele_Connexion extends Connexion {
 
 		function __construct() {

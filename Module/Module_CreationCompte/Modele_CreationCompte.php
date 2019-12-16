@@ -1,9 +1,9 @@
 <?php 
 	
-	include_once("./ConnexionBD_iut.php"); 
+	include_once("./Connexion.php"); 
 
 
-	class Modele_CreationCompte extends ConnexionBD_iut   {
+	class Modele_CreationCompte extends Connexion   {
 
 		function __construct() {
 			parent::init(); // connexion à la base de donnée 
