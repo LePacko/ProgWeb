@@ -24,7 +24,7 @@
 		}
 
 		function afficherProfil($tab)  {
-			var_dump($tab);
+			var_dump($tab);			
 		}
 		
 	}

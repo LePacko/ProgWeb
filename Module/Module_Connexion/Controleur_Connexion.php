@@ -44,8 +44,9 @@
 				break;
 
 				case'profil' :
-				$tab=$this->Modele->recupererDonneesProfil();
-				$this->Vue->afficherProfil($tab);
+					$tab=$this->Modele->recupererDonneesProfil();
+					$this->Vue->afficherProfil($tab);
+					break;
 				default : 
 					echo "Vous vous trouver sur une page inexistante";
 				break;

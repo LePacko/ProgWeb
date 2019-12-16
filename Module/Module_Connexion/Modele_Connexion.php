@@ -1,7 +1,7 @@
 <?php 
 	
 include_once("./ConnexionBD_iut.php");
-	class Modele_Connexion extends ConnexionBD_iut {
+	class Modele_Connexion extends Connexion {
 
 		function __construct() {
 			parent::init();
@@ -41,12 +41,18 @@ include_once("./ConnexionBD_iut.php");
 		}
 
 		function recupererDonneesProfil() {
-			$sql = 'SELECT id_motard,nom,prenom from motard where id_motard = :login ';
-			$req = parent::$connexion-> prepare($sql);
-			$req -> bindParam(':login', $_SESSION['id']);
-			$req -> execute();
-			$res = $req -> fetchAll();
-			return $res;
+			if(isset($_SESSION['id'])) {
+				$sql = 'SELECT id_motard,nom,prenom from motard where id_motard = :login ';
+				$req = parent::$connexion-> prepare($sql);
+				$req -> bindParam(':login', $_SESSION['id']);
+				$req -> execute();
+				$res = $req -> fetchAll();
+				return $res;
+			}
+
+			else {
+
+			}
 		}
 	}
 
