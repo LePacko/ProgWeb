@@ -1,7 +1,7 @@
 <?php 
 	
 include_once("./ConnexionBD_iut.php");
-	class Modele_Connexion extends ConnexionBD_iut {
+	class Modele_Connexion extends Connexion {
 
 		function __construct() {
 			parent::init();
