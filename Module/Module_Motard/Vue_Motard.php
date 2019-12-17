@@ -13,6 +13,10 @@
 		
 		function Circuit($tableauCircuit) {
 			
+			if(count($tableauCircuit)==6){
+				echo'Vous n avez pas de circuit <br>';
+			}
+			else{
 			$nbcircuit = count($tableauCircuit) - count($tableauCircuit[0]) . '<br>';
 			
 			for ($j = 0; $j<$nbcircuit; $j++) {
@@ -25,6 +29,7 @@
 				}
 				echo '</div>';
 			}
+		}
 		}
 	}
 		

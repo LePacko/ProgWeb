@@ -23,10 +23,20 @@
 
 			switch($action) {
 
-                case 'profil';
-                echo'bite';
-                 break;
-
+                case 'profil':
+                	echo'bite';
+				 break;
+				case 'mescircuits':
+					$tableauCircuit = $this->Modele->Circuit();
+					$this->Vue->Circuit($tableauCircuit);
+				break;
+				case 'formajout':
+					include("./Html/FormulaireAjoutCircuit.html");
+				break;
+				case 'ajoutCircuit':
+					$this->Modele->ajoutCircuit();
+					echo'lol je fais ca';
+				break;
 			}
 			
 		}
