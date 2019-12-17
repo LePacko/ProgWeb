@@ -18,17 +18,16 @@
 			}
 			else{
 			$nbcircuit = count($tableauCircuit) - count($tableauCircuit[0]) . '<br>';
-			// for($i = 0; $i<	count($tableauCircuit); $i++) {
-			// 	echo $tableauCircuit[0][0];
-			// }
-
+			
 			for ($j = 0; $j<$nbcircuit; $j++) {
+				echo '<div class = circuit>';
 				$tab = $tableauCircuit[$j];
-				foreach($tab as $i => $value) {
-					echo $value . ' ';
-					
+				foreach($tab as $i => $value) {	
+					echo '<p>';
+					echo $value ;
+					echo '</p>';					
 				}
-				echo '<br>';
+				echo '</div>';
 			}
 		}
 		}
