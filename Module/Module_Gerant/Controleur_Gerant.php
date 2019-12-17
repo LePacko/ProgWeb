@@ -27,7 +27,8 @@
                 	echo'bite';
 				 break;
 				case 'mescircuits':
-					
+					$tableauCircuit = $this->Modele->Circuit();
+					$this->Vue->Circuit($tableauCircuit);
 				break;
 				case 'formajout':
 					include("./Html/FormulaireAjoutCircuit.html");
