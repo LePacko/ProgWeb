@@ -23,9 +23,14 @@
 
 			switch($action) {
 
-                case 'profil';
-                echo'bite';
-                 break;
+                case 'profil':
+                	echo'bite';
+				break;
+				 
+				case 'session':
+					$tableauCircuit = $this->Modele->Circuit();
+					$this->Vue->Circuit($tableauCircuit);
+				break;
 
 			}
 			
