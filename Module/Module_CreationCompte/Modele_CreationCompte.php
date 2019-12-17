@@ -38,7 +38,6 @@
 		}
 
 		function AjoutGerantBaseDeDonnées() {
-
 			//Récupération des vaiables entrée dans le formulaire 
 			$denomination = $_POST['Denomination'];
 			$mail = $_POST['Mail'];		
@@ -47,6 +46,7 @@
 			$adresse = $_POST['Adresse'];
 			$codepostal = $_POST['CodePostal'];
 			$numerotel = $_POST['NumeroTel'];
+
 			//Ajout du nouvelle utilisateur dans le abase de donées
 			$req = parent::$connexion->prepare('INSERT INTO entreprise (SIRET,denomination,adresse,code_postale,numero_tel,mdp,mail_entreprise) values (:siret,:denomination,:adresse,:codepostale,:numerotel,:mdp,:mail)');
 			$req->execute(array(
@@ -60,6 +60,10 @@
 			));
 
 		}
+
+			
+
+		
 
 	}
 

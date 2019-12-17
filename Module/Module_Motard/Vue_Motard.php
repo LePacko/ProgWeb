@@ -10,8 +10,17 @@
 		function formulaireMotard () {
 			echo '';
 		}	
+
+		function formulaireAjoutMoto(){
+			include("./Html/FormulaireAjoutMotoMotard.html");
+		}
+
+		function afficherProfil() {
+			echo '<a href="index.php?module=Motard&action=formulaireAjoutMoto">Ajouter une moto</a>';
+			echo '<a href="index.php?module=Motard&action=mesMotos">Mes Motos</a>';
+		}
 		
-		function Circuit($tableauCircuit) {
+		function afficherCircuit($tableauCircuit) {
 			
 			if(count($tableauCircuit)==6){
 				echo'Vous n avez pas de circuit <br>';

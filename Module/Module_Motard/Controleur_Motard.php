@@ -23,15 +23,22 @@
 
 			switch($action) {
 
-                case 'profil':
-                	echo'bite';
+                case 'voirProfil':
+					$this->Vue->afficherProfil();
 				break;
 				 
-				case 'session':
-					$tableauCircuit = $this->Modele->Circuit();
-					$this->Vue->Circuit($tableauCircuit);
+				case 'trouverSession':
+					$tableauCircuit = $this->Modele->afficherCircuit();
+					$this->Vue->afficherCircuit($tableauCircuit);
 				break;
 
+				case 'formulaireAjoutMoto':
+				$this->Vue->formulaireAjoutMoto();
+				break;	
+
+				case 'ajoutMoto':
+				$this->Modele->ajoutMoto();
+				break;
 			}
 			
 		}
