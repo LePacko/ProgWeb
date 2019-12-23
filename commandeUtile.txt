@@ -1,0 +1,1 @@
+var_dump($save->errorInfo()); // permet d'afficher l'erreur d'une requette qui ne s'execute pas (exemple : un insert)

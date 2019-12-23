@@ -47,10 +47,10 @@
                     
                     }
                     else {
-                        if(isset($_SESSION['id'])){ 
+                        if(isset($_SESSION['id'])){       // si il s'agit d'un motard qui est connecté 
                             include ("./Html/NavMotard.html");
                         }
-                        if(isset($_SESSION['siret'])){ 
+                        if(isset($_SESSION['siret'])){      // si il s'agit d'un gérant de circuit
                             include ("./Html/NavGerant.html");
                         }
                     }

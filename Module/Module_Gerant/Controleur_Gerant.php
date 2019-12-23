@@ -37,6 +37,17 @@
 					$this->Modele->ajoutCircuit();
 					echo'lol je fais ca';
 				break;
+				case 'messessions':
+					$tableauSession = $this->Modele->Session();
+					$this->Vue->Session($tableauSession);
+				break;
+				case 'formajoutSession':
+					include("./Html/FormulaireAjoutSession.html");
+				break;
+				case 'ajoutSession':
+					$this->Modele->ajoutSession();
+					echo'lol je fais ca';
+				break;
 			}
 			
 		}

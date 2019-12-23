@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+		<html>
+		<head>
+			<title>Creation de compte</title>
+			<link rel="stylesheet" type="text/css" href="">
+		</head>
+		<body>
+		
+			<form method="post" action="./index.php?module=Gerant&action=ajoutSession">
+			
+				<label>date</label>
+				<input type="text" name="date"required><br>
+				<label>nombre de place</label>
+				<input type="number" name="nb_place"required><br>
+				<label>tarif</label>
+                <input type="number" name="tarif"required> <label>€</label><br>
+                <label>status</label>
+                <input type="text" name="status"><br> 
+				<label>heure debut</label>
+				<input type="number" name="heure_debut"required><br>
+				<label>heure fin</label>
+                <input type="number" name="heure_fin"required><br>
+                <label> circuit</label>
+                <input type="number" name="id_circuit"required><br>
+                
+				<input type="submit" value="Ajout Session">
+
+			</form>
+
+		</body>

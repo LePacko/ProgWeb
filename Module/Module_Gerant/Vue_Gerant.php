@@ -39,6 +39,31 @@
 		}
 			echo'<a href="./index.php?module=Gerant&action=formajout"> ajout un circuit</a>';
 		}	
+
+		function Session($tableauSession){
+			if(count($tableauSession)==8){
+				echo'Vous n avez pas de circuit <br>';
+			 }
+			 else{
+				$valeurValide=true;
+				$nbsession = count($tableauSession) - count($tableauSession[0]) . '<br>';
+				// for($i = 0; $i<	count($tableauCircuit); $i++) {
+				// 	echo $tableauCircuit[0][0];
+				// }
+				for ($j = 0; $j<$nbsession; $j++) {
+					$tab = $tableauSession[$j];
+						$valeurValide=false;
+						foreach($tab as $i => $value) {
+									echo $value . ' ';
+						}
+					echo '<br>';
+					}
+				if($valeurValide){
+					echo'Vous n avez pas de circuit <br>';
+				}
+		}
+		echo'<a href="./index.php?module=Gerant&action=formajoutSession"> ajout un session</a>';
+		}
 	}
 		
 ?>
