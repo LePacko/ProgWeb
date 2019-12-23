@@ -8,7 +8,7 @@ include_once("./Connexion.php");
 			
 		}
 
-		function Circuit() {
+		function ListeCircuit() {
 
 			$req = parent::$connexion->prepare('select * from circuit');
 			$req -> execute();

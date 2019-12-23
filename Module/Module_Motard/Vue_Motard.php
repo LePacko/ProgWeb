@@ -20,7 +20,7 @@
 			echo '<a href="index.php?module=Motard&action=mesMotos">Mes Motos</a>';
 		}
 		
-		function afficherCircuit($tableauCircuit) {
+		function ListeCircuit($tableauCircuit) {
 			
 			if(count($tableauCircuit)==6){
 				echo'Vous n avez pas de circuit <br>';
@@ -36,6 +36,7 @@
 					echo $value ;
 					echo '</p>';					
 				}
+				echo '<a href="index.php?module=Motard&action=Circuit">';
 				echo '</div>';
 			}
 		}

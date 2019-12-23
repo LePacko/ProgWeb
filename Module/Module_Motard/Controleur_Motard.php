@@ -28,8 +28,8 @@
 				break;
 				 
 				case 'trouverSession':
-					$tableauCircuit = $this->Modele->Circuit();
-					$this->Vue->afficherCircuit($tableauCircuit);
+					$tableauCircuit = $this->Modele->ListeCircuit();
+					$this->Vue->ListeCircuit($tableauCircuit);
 				break;
 
 				case 'effectue':
