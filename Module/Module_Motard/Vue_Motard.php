@@ -26,7 +26,7 @@
 				echo'Vous n avez pas de circuit <br>';
 			}
 			else{
-			$nbcircuit = count($tableauCircuit) - count($tableauCircuit[0]) . '<br>';
+			$nbcircuit = 1 + count($tableauCircuit) - count($tableauCircuit[0]) . '<br>';
 			
 			for ($j = 0; $j<$nbcircuit; $j++) {
 				echo '<div class = circuit>';
@@ -37,7 +37,9 @@
 					echo '</p>';					
 				}
 				$IdCircuit = $tab[6];
-				echo '<a href="index.php?module=Motard&action=Circuits&IdCircuit=$IdCircuit">Choisir ce circuit</a>';
+				?>
+				<a href="index.php?module=Motard&action=Circuit&IdCircuit=<?php echo $IdCircuit; ?>">Choisir ce circuit</a>
+				<?php
 				echo '</div>';
 			}
 		}

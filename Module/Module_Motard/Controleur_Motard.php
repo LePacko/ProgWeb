@@ -46,11 +46,13 @@
 				$this->Modele->ajoutMoto();
 				break;
 
+				case 'Circuit' :
+					$this->Modele->Circuit();
+				break;
 			}
 			
 		}
 	
 	}
-
 
 ?>
