@@ -31,6 +31,26 @@
 			}
 		}
 		}
+
+		function SessionEffectuer($sessioneffectuer) {
+
+			if(count($sessioneffectuer)==2){
+				echo'Vous n avez pas effectuer de session <br>';
+			}
+			else{
+			$nbsession = count($sessioneffectuer) - count($sessioneffectuer[0]) . '<br>';}
+			
+			for ($j = 0; $j<$nbsession; $j++) {
+				echo '<div class = sessioneffectuer>';
+				$tab = $sessioneffectuer[$j];
+				foreach($tab as $i => $value) {	
+					echo '<p>';
+					echo $value ;
+					echo '</p>';					
+				}
+				echo '</div>';
+			}
+		}
 	}
 		
 ?>

@@ -32,6 +32,11 @@
 					$this->Vue->Circuit($tableauCircuit);
 				break;
 
+				case 'effectue':
+					$sessioneffectuer = $this->Modele->SessionEffectuer();
+					$this->Vue->SessionEffectuer($sessioneffectuer);
+				break;
+
 			}
 			
 		}

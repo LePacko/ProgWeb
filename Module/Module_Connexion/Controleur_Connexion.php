@@ -32,7 +32,7 @@
 					$login = htmlspecialchars($_POST['id']);
 					$mdp = hash('sha256', $_POST['mdp']);
 					$this -> Modele -> validerConnexion($login,$mdp);
-			break;
+				break;
 					//$this->Modele->validerConnexion();
 				case'deconnexion':
 					if(isset($_SESSION['id'])){

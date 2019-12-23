@@ -10,7 +10,8 @@ include_once("./Connexion.php");
 
 		function Circuit() {
 
-			$req = parent::$connexion->query('select * from circuit');
+			$req = parent::$connexion->prepare('select * from circuit');
+			$req -> execute();
 			$res = array (
 				"nom"  => array(),
 				"adresse" => array(),
@@ -32,8 +33,37 @@ include_once("./Connexion.php");
 				
 				$i ++;
 			}
+			
+			$req->closeCursor();
 
 			return $res;			
+		}
+
+		function SessionEffectuer() {
+
+			$id = $_SESSION['id'];
+
+			$req = parent::$connexion->prepare('select * from effectuer where id_motard = '.$_SESSION['id']);
+			$req->execute();
+
+			$res = array(
+				"session" => array(),
+				"tempTour"=> array()
+			);
+
+			$i=0;
+			while ($donne = $req->fetch()) {
+
+				$res[$i][0] = $donne['id_session'];
+				$res[$i][1] = $donne['temps_tour'];				
+				$i ++;
+			}
+
+			$req->closeCursor();
+
+			return $res;
+			
+
 		}
 
 

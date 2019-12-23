@@ -20,7 +20,7 @@
                 echo '<a href="index.php?module=Connexion&action=deconnexion" >Deconnexion</a>
                 <a href="index.php?module=Connexion&action=profil">Voir mon profil</a>';
             }
-                    ?>
+        ?>
 
     </nav>
 
