@@ -39,15 +39,17 @@ include_once("./Connexion.php");
 			$date = $_POST['date'];		
 			$nb_place = $_POST['nb_place'];
 			$tarif = $_POST['tarif'];
+			$status = $_POST['status'];
 			$heure_debut =$_POST['heure_debut'];
 			$heure_fin=$_POST['heure_fin'];
 			$id_circuit=$_POST['id_circuit'];
 			//Ajout du nouvelle utilisateur dans le abase de donées
-			$req = parent::$connexion->prepare('INSERT INTO session (date,nb_place,tarif,heure_debut,heure_fin,id_circuit) values (:date,:nb_place,:tarif,:heure_debut,:heure_fin,:id_circuit)');
+			$req = parent::$connexion->prepare('INSERT INTO session (date,nb_place,tarif,status,heure_debut,heure_fin,id_circuit) values (:date,:nb_place,:tarif,:status,:heure_debut,:heure_fin,:id_circuit)');
 			$req->execute(array(
 				'date' => $date,
 				'nb_place' => $nb_place,
 				'tarif' => $tarif,
+				'status' => $status,
 				'heure_debut' => $heure_debut,
 				'heure_fin' => $heure_fin,
 				'id_circuit' =>$id_circuit
