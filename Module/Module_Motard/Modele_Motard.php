@@ -30,6 +30,7 @@ include_once("./Connexion.php");
 				$res[$i][3] = $donne['longueur'];
 				$res[$i][4] = $donne['image_circuit'];
 				$res[$i][5] = $donne['SIRET'];
+				$res[$i][6] = $donne['id_circuit'];
 				
 				$i ++;
 			}
@@ -69,7 +70,7 @@ include_once("./Connexion.php");
 
 		function ajoutMoto () {
 
-			//Récupération des vaiables entrée dans le formulaire 
+			//Rï¿½cupï¿½ration des vaiables entrï¿½e dans le formulaire 
 			$immatriculation = $_POST['Immat'];
 			$annee = (int)$_POST['Annee'];	
 			$marque = $_POST['Marque'];
@@ -84,7 +85,7 @@ include_once("./Connexion.php");
 			$testImmat = $req3-> fetch();
 
 			if(isset($testImmat[0])){
-				echo"L'immatriculation est déjà utilisée par un autre motard";
+				echo"L'immatriculation est dï¿½jï¿½ utilisï¿½e par un autre motard";
 				
 			}
 			
@@ -103,17 +104,17 @@ include_once("./Connexion.php");
 				}
 			
 				else {
-				//Ajout de la nouvelle moto dans le abase de donées
+				//Ajout de la nouvelle moto dans le abase de donï¿½es
 				$req = parent::$connexion->prepare('INSERT INTO moto (immatriculation,annee,id_motard,marque,modele) values (:immat,:annee,:id_motard,:marque,:modele)');
 				$req->execute(array(
 				'immat'=> $immatriculation,
-				'id_motard'=> $id_motard,  // qui correspond à l'id du motard connecté
+				'id_motard'=> $id_motard,  // qui correspond ï¿½ l'id du motard connectï¿½
 				'marque'=> $marque,
 				'annee'=> $annee,
 				'modele'=> $modele		
 								
 				));
-				echo "Moto ajoutée avec succèes";
+				echo "Moto ajoutï¿½e avec succï¿½es";
 				}
 			}
 

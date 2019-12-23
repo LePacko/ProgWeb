@@ -31,12 +31,13 @@
 			for ($j = 0; $j<$nbcircuit; $j++) {
 				echo '<div class = circuit>';
 				$tab = $tableauCircuit[$j];
-				foreach($tab as $i => $value) {	
+				for($i = 0; $i<count($tab)-1; $i++) {	
 					echo '<p>';
-					echo $value ;
+					echo $tab[$i] ;
 					echo '</p>';					
 				}
-				echo '<a href="index.php?module=Motard&action=Circuit">';
+				$IdCircuit = $tab[6];
+				echo '<a href="index.php?module=Motard&action=Circuits&IdCircuit=$IdCircuit">Choisir ce circuit</a>';
 				echo '</div>';
 			}
 		}
