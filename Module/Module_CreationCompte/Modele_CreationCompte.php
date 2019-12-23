@@ -60,7 +60,7 @@
 				'mdp'=> $mdp,
 				'mail'=> $mail								
 			));
-
+			var_dump($req->errorInfo());
 		}
 
 			

@@ -39,7 +39,6 @@ include_once("./Connexion.php");
 			return $res;			
 		}
 
-<<<<<<< HEAD
 		function SessionEffectuer() {
 
 			$id = $_SESSION['id'];
@@ -67,9 +66,8 @@ include_once("./Connexion.php");
 
 		}
 
-=======
+
 		function ajoutMoto () {
->>>>>>> aea91eea01b2160ae8c3f48c3780e3d5d8d5a884
 
 			//Récupération des vaiables entrée dans le formulaire 
 			$immatriculation = $_POST['Immat'];
