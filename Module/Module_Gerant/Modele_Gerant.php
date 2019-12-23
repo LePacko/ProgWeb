@@ -64,7 +64,8 @@ include_once("./Connexion.php");
 				"codePostale" => array(),
 				"longeur" => array(),
 				"imageCircuit" => array(),
-				"siret" => array()
+				"siret" => array(),
+				"id_circuit"=>array()
 			);
 
 			$i =0;
@@ -76,6 +77,7 @@ include_once("./Connexion.php");
 				$res[$i][3] = $donne['longueur'];
 				$res[$i][4] = $donne['image_circuit'];
 				$res[$i][5] = $donne['SIRET'];
+				$res[$i][6] = $donne['id_circuit'];
 				
 				$i ++;
 			}

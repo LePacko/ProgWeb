@@ -114,7 +114,7 @@ include_once("./Connexion.php");
 				'modele'=> $modele		
 								
 				));
-				echo "Moto ajout�e avec succ�es";
+				echo "Moto ajoutée avec succées";
 				}
 			}
 
