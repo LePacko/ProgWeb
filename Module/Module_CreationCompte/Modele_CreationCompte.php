@@ -46,15 +46,17 @@
 			$adresse = $_POST['Adresse'];
 			$codepostal = $_POST['CodePostal'];
 			$numerotel = $_POST['NumeroTel'];
+			$date_d_affiliation= date('Y-m-d');
 
 			//Ajout du nouvelle utilisateur dans le abase de donées
-			$req = parent::$connexion->prepare('INSERT INTO entreprise (SIRET,denomination,adresse,code_postale,numero_tel,mdp,mail_entreprise) values (:siret,:denomination,:adresse,:codepostale,:numerotel,:mdp,:mail)');
+			$req = parent::$connexion->prepare('INSERT INTO entreprise (SIRET,denomination,adresse,code_postale,numero_tel,date_d_affiliation,mdp,mail_entreprise) values (:siret,:denomination,:adresse,:codepostale,:numerotel,:date_d_affiliation,:mdp,:mail)');
 			$req->execute(array(
 				'siret'=> $siret,
 				'denomination'=> $denomination,
 				'adresse'=> $adresse,
 				'codepostale'=> $codepostal,
-				'numerotel'=> $numerotel,				
+				'numerotel'=> $numerotel,	
+				'date_d_affiliation'=>$date_d_affiliation,			
 				'mdp'=> $mdp,
 				'mail'=> $mail								
 			));
