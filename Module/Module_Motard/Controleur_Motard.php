@@ -32,13 +32,11 @@
 					$this->Vue->afficherCircuit($tableauCircuit);
 				break;
 
-<<<<<<< HEAD
 				case 'effectue':
 					$sessioneffectuer = $this->Modele->SessionEffectuer();
 					$this->Vue->SessionEffectuer($sessioneffectuer);
 				break;
 
-=======
 				case 'formulaireAjoutMoto':
 				$this->Vue->formulaireAjoutMoto();
 				break;	
@@ -46,7 +44,6 @@
 				case 'ajoutMoto':
 				$this->Modele->ajoutMoto();
 				break;
->>>>>>> aea91eea01b2160ae8c3f48c3780e3d5d8d5a884
 			}
 			
 		}
