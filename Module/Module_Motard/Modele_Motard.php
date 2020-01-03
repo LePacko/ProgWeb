@@ -69,67 +69,86 @@ include_once("./FonctionsUtiles.php");
 		}
 
 		function recupererMoto() {
-
-		$sql2 = 'SELECT * from moto where id_motard = $_SESSION[id]';
-			$req2 = parent::$connexion -> prepare($sql2);
-			$req2 -> execute();
-			$testModeleExistant = $req2-> fetchAll();
+		$id_motard=$_SESSION['id'];
+		$requete = "SELECT * from moto where id_motard ='$id_motard'";
+		$resultat = parent::$connexion->query($requete);
 		
-		return $testModeleExistant;
+		return $resultat;
+		}
+
+		function supprimerMoto () {
+		
+			if(isset($_POST['id']) && $_POST['id']!='') {
+				$immatriculation = $_POST['id'];  
+				echo $immatriculation;
+				$requete = "delete from moto where immatriculation ='$immatriculation'";
+				$resultat = parent::$connexion->query($requete);
+				
+
+			}
+		
+			header('location:index.php?module=Motard&action=mesMotos');
+			
 		}
 
 		function ajoutMoto () {
+			$resultat = $this->recupererMoto();
+			$tab = $resultat->fetchAll();
 
-			//Récupération des vaiables entrée dans le formulaire 
-			$immatriculation = $_POST['Immat'];
-			$annee = (int)$_POST['Annee'];	
-			$marque = $_POST['Marque'];
-			$modele= $_POST['Modele'];
-			$id_motard=(int)$_SESSION['id'];
+			if(count($tab)<3) { // le nombre maximum de moto a été fixé a 3 mais peut evoluer.
+
+				//Récupération des vaiables entrée dans le formulaire 
+				$immatriculation = $_POST['Immat'];
+				$annee = (int)$_POST['Annee'];	
+				$marque = $_POST['Marque'];
+				$modele= $_POST['Modele'];
+				$id_motard=(int)$_SESSION['id'];
 			
-			// on teste si l'immatriculation de la moto que l'utilisateur souhaite ajouter est disponible
-			$sql = 'SELECT * from moto where immatriculation like :immat';
-			$req3 = parent::$connexion -> prepare($sql);
-			$req3 -> bindParam(':immat', $immatriculation);
-			$req3 -> execute();
-			$testImmat = $req3-> fetch();
+				// on teste si l'immatriculation de la moto que l'utilisateur souhaite ajouter est disponible
+				$sql = 'SELECT * from moto where immatriculation like :immat';
+				$req3 = parent::$connexion -> prepare($sql);
+				$req3 -> bindParam(':immat', $immatriculation);
+				$req3 -> execute();
+				$testImmat = $req3-> fetch();
 
-			if(isset($testImmat[0])){
-				FonctionsUtiles::msgBox("La plaque d\'immatriculation renseignee est deja utilise par un autre motard");
-				FonctionsUtiles::redirectionFormulaireAjoutMoto();
-			}
-			
-			else {
-			// on teste si la moto que l'utilisateur souhaite ajouter existe bien dans la bd (marque et modele)
-			$sql2 = 'SELECT * from modele_moto where modele like :modele and marque like :marque';
-			$req2 = parent::$connexion -> prepare($sql2);
-			$req2 -> bindParam(':modele', $modele);
-			$req2 -> bindParam(':marque', $marque);
-			$req2 -> execute();
-			$testModeleExistant = $req2-> fetch();
-
-				if(!isset($testModeleExistant[0])){
-					FonctionsUtiles::msgBox("La moto n\'existe pas dans notre BD");
+				if(isset($testImmat[0])){
+					FonctionsUtiles::msgBox("La plaque d\'immatriculation renseignee est deja utilise par un autre motard");
 					FonctionsUtiles::redirectionFormulaireAjoutMoto();
-					
 				}
 			
 				else {
-				//Ajout de la nouvelle moto dans le abase de donées
-				$req = parent::$connexion->prepare('INSERT INTO moto (immatriculation,annee,id_motard,marque,modele) values (:immat,:annee,:id_motard,:marque,:modele)');
-				$req->execute(array(
-				'immat'=> $immatriculation,
-				'id_motard'=> $id_motard,  // qui correspond à l'id du motard connecté
-				'marque'=> $marque,
-				'annee'=> $annee,
-				'modele'=> $modele		
+				// on teste si la moto que l'utilisateur souhaite ajouter existe bien dans la bd (marque et modele)
+				$sql2 = 'SELECT * from modele_moto where modele like :modele and marque like :marque';
+				$req2 = parent::$connexion -> prepare($sql2);
+				$req2 -> bindParam(':modele', $modele);
+				$req2 -> bindParam(':marque', $marque);
+				$req2 -> execute();
+				$testModeleExistant = $req2-> fetch();
+
+					if(!isset($testModeleExistant[0])){
+						FonctionsUtiles::msgBox("La moto n\'existe pas dans notre BD");
+						FonctionsUtiles::redirectionFormulaireAjoutMoto();
+					
+					}
+			
+					else {
+					//Ajout de la nouvelle moto dans le abase de donées
+					$req = parent::$connexion->prepare('INSERT INTO moto (immatriculation,annee,id_motard,marque,modele) values (:immat,:annee,:id_motard,:marque,:modele)');
+					$req->execute(array(
+					'immat'=> $immatriculation,
+					'id_motard'=> $id_motard,  // qui correspond à l'id du motard connecté
+					'marque'=> $marque,
+					'annee'=> $annee,
+					'modele'=> $modele		
 								
-				));
-				FonctionsUtiles::msgBox("La moto a ete ajoutee avec succes");
-				FonctionsUtiles::redirectionFormulaireAjoutMoto();
+					));
+					FonctionsUtiles::msgBox("La moto a ete ajoutee avec succes");
+					FonctionsUtiles::redirectionFormulaireAjoutMoto();
+					}
 				}
 			}
 
+			else{FonctionsUtiles::msgBox("vous avez atteint le nombre maximum de moto");}
 		}
 
 		function Circuit() {
