@@ -19,6 +19,12 @@
 			echo '<a href="index.php?module=Motard&action=formulaireAjoutMoto">Ajouter une moto</a>';
 			echo '<a href="index.php?module=Motard&action=mesMotos">Mes Motos</a>';
 		}
+
+		function afficherMesMotos($tableauCircuit) {
+			
+				
+		}
+		
 		
 		function afficherCircuit($tableauCircuit) {
 			
@@ -38,8 +44,9 @@
 				}
 				echo '</div>';
 			}
+			}
 		}
-		}
+		
 
 		function SessionEffectuer($sessioneffectuer) {
 

@@ -1,6 +1,7 @@
 <?php 
 	
 include_once("./Connexion.php");
+include_once("./FonctionsUtiles.php");
 	class Modele_Motard extends Connexion {
 
 		function __construct() {
@@ -66,6 +67,15 @@ include_once("./Connexion.php");
 
 		}
 
+		function recupererMoto() {
+
+		$sql2 = 'SELECT * from moto where id_motard = $_SESSION[id]';
+			$req2 = parent::$connexion -> prepare($sql2);
+			$req2 -> execute();
+			$testModeleExistant = $req2-> fetchAll();
+		
+		return $testModeleExistant;
+		}
 
 		function ajoutMoto () {
 
@@ -84,12 +94,12 @@ include_once("./Connexion.php");
 			$testImmat = $req3-> fetch();
 
 			if(isset($testImmat[0])){
-				echo"L'immatriculation est déjà utilisée par un autre motard";
-				
+				FonctionsUtiles::msgBox("La plaque d\'immatriculation renseignee est deja utilise par un autre motard");
+				FonctionsUtiles::redirectionFormulaireAjoutMoto();
 			}
 			
 			else {
-			// on teste si la moto que l'utilisateur souhaite ajouter existe bien dans la bd
+			// on teste si la moto que l'utilisateur souhaite ajouter existe bien dans la bd (marque et modele)
 			$sql2 = 'SELECT * from modele_moto where modele like :modele and marque like :marque';
 			$req2 = parent::$connexion -> prepare($sql2);
 			$req2 -> bindParam(':modele', $modele);
@@ -98,7 +108,8 @@ include_once("./Connexion.php");
 			$testModeleExistant = $req2-> fetch();
 
 				if(!isset($testModeleExistant[0])){
-					echo'La moto n\'existe pas dans notre BD';
+					FonctionsUtiles::msgBox("La moto n\'existe pas dans notre BD");
+					FonctionsUtiles::redirectionFormulaireAjoutMoto();
 					
 				}
 			
@@ -113,7 +124,8 @@ include_once("./Connexion.php");
 				'modele'=> $modele		
 								
 				));
-				echo "Moto ajoutée avec succèes";
+				FonctionsUtiles::msgBox("La moto a ete ajoutee avec succes");
+				FonctionsUtiles::redirectionFormulaireAjoutMoto();
 				}
 			}
 

@@ -46,6 +46,10 @@
 				$this->Modele->ajoutMoto();
 				break;
 
+				case'mesMotos':
+				$this->Vue->afficherMesMotos($this->Modele->recupererMoto());
+				break;
+
 			}
 			
 		}
