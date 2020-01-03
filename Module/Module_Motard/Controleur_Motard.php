@@ -28,10 +28,9 @@
 				break;
 				 
 				case 'trouverSession':
-					$tableauCircuit = $this->Modele->afficherCircuit();
-					$this->Vue->afficherCircuit($tableauCircuit);
+					$tableauCircuit = $this->Modele->ListeCircuit();
+					$this->Vue->ListeCircuit($tableauCircuit);
 				break;
-
 
 				case 'effectue':
 					$sessioneffectuer = $this->Modele->SessionEffectuer();
@@ -50,6 +49,9 @@
 				$this->Vue->afficherMesMotos($this->Modele->recupererMoto());
 				break;
 
+				case 'Circuit' :
+					$this->Modele->Circuit();
+				break;
 			}
 			
 		}

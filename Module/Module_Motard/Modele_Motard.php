@@ -9,7 +9,7 @@ include_once("./FonctionsUtiles.php");
 			
 		}
 
-		function Circuit() {
+		function ListeCircuit() {
 
 			$req = parent::$connexion->prepare('select * from circuit');
 			$req -> execute();
@@ -31,6 +31,7 @@ include_once("./FonctionsUtiles.php");
 				$res[$i][3] = $donne['longueur'];
 				$res[$i][4] = $donne['image_circuit'];
 				$res[$i][5] = $donne['SIRET'];
+				$res[$i][6] = $donne['id_circuit'];
 				
 				$i ++;
 			}
@@ -128,6 +129,63 @@ include_once("./FonctionsUtiles.php");
 				FonctionsUtiles::redirectionFormulaireAjoutMoto();
 				}
 			}
+
+		}
+
+		function Circuit() {
+
+			//Recupération des informations concernant le circuit
+			$IdCircuit = $_GET['IdCircuit'];
+			$reqCircuit = parent::$connexion->prepare('select * from circuit where id_circuit = '.$IdCircuit);
+			$reqCircuit->execute();
+
+			//Recupération date et heure actuel 
+			$annee = date("Y");
+			$mois = date("m");
+			$jour = date ("d");
+			$date_actuel = date("Y-m-d");
+			echo $date_actuel."<br>";
+			$heure = date("G");
+			$minute = date("i");
+
+			  
+			$res = array(//Initialisation du tableau 
+				"id_session" => array(),
+				"nbplace" => array()
+			);
+
+			//Recuperation des sessions a venir et insertion dans le tableau res sur ce circuit pas le meme jour 
+			$req1 = 'select * from session where date > '.'"'.$date_actuel.'"
+			and id_circuit= '.$IdCircuit;
+			$reqSession = parent::$connexion->prepare($req1);
+			$reqSession->execute();
+
+			$i=0;
+			while ($donne = $reqSession->fetch()) {
+
+				$res[$i][0] = $donne['id_session'];
+				$res[$i][1] = $donne['nb_place'];		
+				$i ++;
+			}
+
+			//Recuperation des sessions a venir et insertion dans le tableau res sur ce circuit le meme jopur mais plus tard 
+			$req2 = 'select * from session where date = '.'"'.$date_actuel.'"
+			and id_circuit = '.$IdCircuit.' and heure_debut >'.$heure;
+			$reqSession = parent::$connexion->prepare($req2);
+			$reqSession->execute();
+
+			$i=0;
+			while ($donne = $reqSession->fetch()) {
+
+				$res[$i][0] = $donne['id_session'];
+				$res[$i][1] = $donne['nb_place'];		
+				$i ++;
+			}
+
+			return $res;
+
+
+
 
 		}
 	}

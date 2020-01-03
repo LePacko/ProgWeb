@@ -59,7 +59,7 @@
 					echo '<br>';
 					}
 				if($valeurValide){
-					echo'Vous n avez pas de circuit <br>';
+					echo'Vous n avez pas de Session <br>';
 				}
 		}
 		echo'<a href="./index.php?module=Gerant&action=formajoutSession"> ajout un session</a>';

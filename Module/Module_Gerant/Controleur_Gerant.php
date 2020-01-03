@@ -42,7 +42,7 @@
 					$this->Vue->Session($tableauSession);
 				break;
 				case 'formajoutSession':
-					include("./Html/FormulaireAjoutSession.html");
+					include("./Html/FormulaireAjoutSession.php");
 				break;
 				case 'ajoutSession':
 					$this->Modele->ajoutSession();
