@@ -167,6 +167,9 @@
 			else {
 				echo 'Il est impossible de réserver cette session car elle est complète';
 			}
+
+			FonctionsUtiles::RetourPagePrecedente();
+
 		}
 	}
 

@@ -45,6 +45,7 @@ include_once("./FonctionsUtiles.php");
 		function SessionEffectuer() {
 
 			$id = $_SESSION['id'];
+			echo $id;
 
 			$req = parent::$connexion->prepare('select * from effectuer where id_motard = '.$_SESSION['id']);
 			$req->execute();
@@ -237,5 +238,7 @@ include_once("./FonctionsUtiles.php");
 			
 			
 		}
+
+		
 	}
 ?>

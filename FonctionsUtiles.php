@@ -17,4 +17,8 @@ Class FonctionsUtiles {
 	public static function redirectionFormulaireAjoutMoto () {
 		echo '<META http-equiv="refresh" content="0; URL=index.php?module=Motard&action=formulaireAjoutMoto">';
 	}
+
+	public static function RetourPagePrecedente() {
+		?><a href="<?php echo $_SERVER['HTTP_REFERER']; ?>">Retour</a><?php
+	}
 }

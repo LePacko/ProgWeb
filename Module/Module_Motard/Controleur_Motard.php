@@ -32,7 +32,7 @@
 					$this->Vue->ListeCircuit($tableauCircuit);
 				break;
 
-				case 'effectue':
+				case 'SessionEffectue':
 					$sessioneffectuer = $this->Modele->SessionEffectuer();
 					$this->Vue->SessionEffectuer($sessioneffectuer);
 				break;
@@ -66,6 +66,8 @@
 					$placedisponible = $this->Modele->ReserverSession();
 					$this->Vue->ReserverSession($placedisponible);
 				break;
+
+				
 			}
 			
 		}
