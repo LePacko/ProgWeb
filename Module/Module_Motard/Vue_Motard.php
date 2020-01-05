@@ -1,6 +1,6 @@
 <?php 
 	
-
+	include_once("./FonctionsUtiles.php");
 	class Vue_Motard {
 
 		function __construct() {			
@@ -18,6 +18,72 @@
 			echo '<a href="index.php?module=Motard&action=formulaireAjoutMoto">Ajouter une moto</a>';
 			echo '<a href="index.php?module=Motard&action=mesMotos">Mes Motos</a>';
 		}
+
+		function afficherMesMotos($tableauMotos) {
+		
+			if ($row=$tableauMotos->fetch()) {
+				
+				echo "<table class=\"tab_recup\">
+				<tr>
+					<th>Immatriculation</th>
+					<th>Annee</th>
+					<th>Marque</th>
+					<th>Modele</th>
+					<th>Supprimer</th>
+				</tr>";
+
+				do {
+					 
+					$immat= $row[0]; $annee = $row[1]; $id_motard= $row[3]; $marque = $row[4];$modele = $row[5];
+					echo "<tr>\n
+			   
+					<td>$immat</td>
+					<td>$annee</td>\n
+					<td>$marque</td>\n
+					<td>$modele</td>\n
+
+					<td>
+					<form method=\"post\" action=\"index.php?module=Motard&action=supprimerMoto\">
+					<input type=\"hidden\" name=\"id\" id=\"id\" value=\"".$immat."\">
+					<input type=\"image\" src=\"./Html/img/del.png\" width=\"30\" height=\"30\" alt=\"supprimer\" name=\"del_img\">
+					</form>
+					</td>\n	
+			  
+					</tr>\n";
+				}while($row = $tableauMotos->fetch());
+				echo "</table>";
+			}
+
+			else { 
+			FonctionsUtiles::msgBox("Vous n\' avez pas encore ajoute de motos");
+			echo '
+				Voulez-vous ajouter une moto ?<br />
+				<form method="post" action="index.php?module=Motard&action=formulaireAjoutMoto"> 
+				<input type="submit" name="Ajouter" id="Ajouter" value="OUI">
+				</form>
+				<form method="post" action="index.php?module=Motard&action=voirProfil">
+				<input type="submit" name="PasAjouter" id="PasAjouter" value="NON">
+				</form>
+				'; 
+				// si oui on redirige vers le formulaire d'ajout d'une moto sinon on reviens a "mon profil"
+			}
+					
+		}
+
+		function avertissementSupression() {
+						// si id a ete poste :
+			if(isset($_POST['id']) && $_POST['id']!='')
+			{
+				echo '
+				Voulez-vous vraiment SUPPRIMER cet enregistrement ?<br />
+				<form method="post" action="index.php?module=Motard&action=suppressionMotoOk">
+				<input type="hidden" name="id" id="id" value="'.$_POST['id'].'">
+				<input type="submit" name="Supprimer" id="Supprimer" value="Supprimer">
+				</form>
+				';
+			}
+		}
+		
 		
 		function ListeCircuit($tableauCircuit) {
 			
@@ -43,6 +109,7 @@
 			}
 			}
 		}
+		
 
 		function SessionEffectuer($sessioneffectuer) {
 

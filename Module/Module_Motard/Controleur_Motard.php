@@ -45,6 +45,18 @@
 				$this->Modele->ajoutMoto();
 				break;
 
+				case'mesMotos':
+				$this->Vue->afficherMesMotos($this->Modele->recupererMoto());
+				break;
+
+				case 'supprimerMoto':
+				$this->Vue->avertissementSupression();
+				break;
+
+				case 'suppressionMotoOk':
+				$this->Modele->supprimerMoto();
+				break;
+
 				case 'Circuit' :
 					$sessions = $this->Modele->Circuit();
 					$this->Vue->Circuit($sessions);
@@ -59,5 +71,6 @@
 		}
 	
 	}
+
 
 ?>

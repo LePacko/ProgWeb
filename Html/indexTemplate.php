@@ -21,7 +21,7 @@
         <div class="row">
             <div class="col- modife deco eet module gerantmd-offset-2 col-md-4">
                 <?php
-                    if(!isset($_SESSION['id'])&&!isset($_SESSION['siret'])){
+                    if(!isset($_SESSION['id'])&&!isset($_SESSION['siret'])){ // si personne n'est connecté
                         echo'
                             <div id="connection" class="bulle">
                                 <h2>Je me connecte</h2>
