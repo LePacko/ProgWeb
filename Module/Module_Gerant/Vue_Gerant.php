@@ -43,8 +43,8 @@
 		function Session($tableauSession){
 			if(count($tableauSession)==8){
 				echo'Vous n avez pas de circuit <br>';
-			 }
-			 else{
+			}
+			else{
 				$valeurValide=true;
 				$nbsession = count($tableauSession) - count($tableauSession[0]) . '<br>';
 				// for($i = 0; $i<	count($tableauCircuit); $i++) {

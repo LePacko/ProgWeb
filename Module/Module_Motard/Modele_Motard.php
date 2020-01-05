@@ -1,6 +1,7 @@
 <?php 
 	
 include_once("./Connexion.php");
+
 	class Modele_Motard extends Connexion {
 
 		function __construct() {
@@ -66,7 +67,6 @@ include_once("./Connexion.php");
 			
 
 		}
-
 
 		function ajoutMoto () {
 
@@ -172,9 +172,38 @@ include_once("./Connexion.php");
 
 			return $res;
 
+		}
 
+		function ReserverSession() {
 
+			$IdSession = $_GET['IdSession'];
+			$reqSession = parent::$connexion->prepare('select * from session where id_session = '.$IdSession);
+			$reqSession->execute();
 
+			$res = array(//Initialisation du tableau 
+				"nb_participant" => array(),
+				"nb_place" => array()
+			);
+
+			$i=0;
+			while ($donne = $reqSession->fetch()) {
+
+				$res[$i][0] = $donne['nb_participant'];
+				$res[$i][1] = $donne['nb_place'];		
+				$i ++;
+			}
+
+			//Vérifie qu'il reste des places 
+			if($res[0][0]>=$res[0][1]) {
+				return 0;
+			}else {
+				echo $IdSession;
+				$reqIcremente = parent::$connexion->query('update session set nb_participant = '.$res[0][0].' + 1 where id_session = '.$IdSession); 
+				// $reqIcremente->execute();
+				return 1;
+			} 
+			
+			
 		}
 	}
 ?>

@@ -3,8 +3,7 @@
 
 	class Vue_Motard {
 
-		function __construct() {
-			
+		function __construct() {			
 		}
 
 		function formulaireMotard () {
@@ -42,7 +41,7 @@
 				<?php
 				echo '</div>';
 			}
-		}
+			}
 		}
 
 		function SessionEffectuer($sessioneffectuer) {
@@ -50,8 +49,9 @@
 			if(count($sessioneffectuer)==2){
 				echo'Vous n avez pas effectuer de session <br>';
 			}
-			else{
-			$nbsession = count($sessioneffectuer) - count($sessioneffectuer[0]) . '<br>';}
+			else {
+				
+			$nbsession = count($sessioneffectuer) - count($sessioneffectuer[0]) . '<br>';
 			
 			for ($j = 0; $j<$nbsession; $j++) {
 				echo '<div class = sessioneffectuer>';
@@ -63,7 +63,45 @@
 				}
 				echo '</div>';
 			}
+
+			}
+		}
+
+		function Circuit($sessions) {
+
+			if (count($sessions)==2) {
+				echo'Il n\' y\'a pas de session disponible sur ce circuit <br>';
+			}
+			else {
+			$nbsession = count($sessions) - count($sessions[0]) . '<br>';
+			
+				for ($j = 0; $j<$nbsession; $j++) {
+					echo '<div class = sessioneffectuer>';
+					$tab = $sessions[$j];
+					foreach($tab as $i => $value) {	
+						echo '<p>';
+						echo $value ;
+						echo '</p>';
+					}					
+				}
+				$IdSession = $tab[0];
+				?>
+				<a href="index.php?module=Motard&action=ReserverSession&IdSession=<?php echo $IdSession; ?>">Reserver cette session</a>
+				<?php
+				echo '</div>';
+			}
+		}
+
+		function ReserverSession($placedisponible) {
+			
+			if ($placedisponible==1){
+				echo 'Votre réservation a bien été effectué';
+			}
+			else {
+				echo 'Il est impossible de réserver cette session car elle est complète';
+			}
 		}
 	}
+
 		
 ?>

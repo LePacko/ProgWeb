@@ -46,7 +46,13 @@
 				break;
 
 				case 'Circuit' :
-					$this->Modele->Circuit();
+					$sessions = $this->Modele->Circuit();
+					$this->Vue->Circuit($sessions);
+				break;
+
+				case 'ReserverSession' :
+					$placedisponible = $this->Modele->ReserverSession();
+					$this->Vue->ReserverSession($placedisponible);
 				break;
 			}
 			
