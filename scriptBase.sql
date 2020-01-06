@@ -129,16 +129,16 @@ CREATE TABLE moto(
 
 
 #------------------------------------------------------------
-# Table: Effectuer
+# Table: Reserver
 #------------------------------------------------------------
 
-CREATE TABLE Effectuer(
+CREATE TABLE Reserver(
         id_session Int NOT NULL ,
         id_motard  Int NOT NULL ,
         temps_tour Int NOT NULL
-	,CONSTRAINT Effectuer_PK PRIMARY KEY (id_session,id_motard)
+	,CONSTRAINT Reserver_PK PRIMARY KEY (id_session,id_motard)
 
-	,CONSTRAINT Effectuer_session_FK FOREIGN KEY (id_session) REFERENCES session(id_session)
-	,CONSTRAINT Effectuer_motard0_FK FOREIGN KEY (id_motard) REFERENCES motard(id_motard)
+	,CONSTRAINT Reserver_session_FK FOREIGN KEY (id_session) REFERENCES session(id_session)
+	,CONSTRAINT Reserver_motard0_FK FOREIGN KEY (id_motard) REFERENCES motard(id_motard)
 )ENGINE=InnoDB;
 

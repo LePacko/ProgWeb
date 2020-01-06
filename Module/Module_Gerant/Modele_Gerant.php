@@ -39,17 +39,15 @@ include_once("./Connexion.php");
 			$date = $_POST['date'];		
 			$nb_place = $_POST['nb_place'];
 			$tarif = $_POST['tarif'];
-			$status = $_POST['status'];
 			$heure_debut =$_POST['heure_debut'];
 			$heure_fin=$_POST['heure_fin'];
 			$id_circuit=$_POST['id_circuit'];
 			//Ajout du nouvelle utilisateur dans le abase de donées
-			$req = parent::$connexion->prepare('INSERT INTO session (date,nb_place,tarif,status,heure_debut,heure_fin,id_circuit) values (:date,:nb_place,:tarif,:status,:heure_debut,:heure_fin,:id_circuit)');
+			$req = parent::$connexion->prepare('INSERT INTO session (date,nb_place,tarif,heure_debut,heure_fin,id_circuit) values (:date,:nb_place,:tarif,:heure_debut,:heure_fin,:id_circuit)');
 			$req->execute(array(
 				'date' => $date,
 				'nb_place' => $nb_place,
 				'tarif' => $tarif,
-				'status' => $status,
 				'heure_debut' => $heure_debut,
 				'heure_fin' => $heure_fin,
 				'id_circuit' =>$id_circuit
@@ -59,7 +57,7 @@ include_once("./Connexion.php");
 
 		function Circuit() {
 
-			$req = parent::$connexion->query('select * from circuit');
+			$req = parent::$connexion->query('select * from circuit where circuit.siret='.$_SESSION['siret']);
 			$res = array (
 				"nom"  => array(),
 				"adresse" => array(),
@@ -89,12 +87,11 @@ include_once("./Connexion.php");
 
 		function Session(){
 
-			$req = parent::$connexion->query('select * from session inner join circuit where session.id_circuit=circuit.id_circuit ');
+			$req = parent::$connexion->query('select * from session inner join circuit where  circuit.siret='.$_SESSION['siret'].' and session.id_circuit=circuit.id_circuit ');
 			$res = array (
 				"date"  => array(),
 				"nb_place" => array(),
 				"tarif" => array(),
-				"status" => array(),
 				"nb_participant" => array(),
 				"heure_debut" => array(),
 				"heure_fin"  => array(),
@@ -107,7 +104,6 @@ include_once("./Connexion.php");
 				$res[$i][0] = $donne['date'];
 				$res[$i][1] = $donne['nb_place'];
 				$res[$i][2] = $donne['tarif'];
-				$res[$i][3] = $donne['status'];
 				$res[$i][4] = $donne['nb_participant'];
 				$res[$i][5] = $donne['heure_debut'];
 				$res[$i][6] = $donne['heure_fin'];

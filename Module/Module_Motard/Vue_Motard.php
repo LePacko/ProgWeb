@@ -111,18 +111,18 @@
 		}
 		
 
-		function SessionEffectuer($sessioneffectuer) {
+		function SessionReserver($sessionReserver) {
 
-			if(count($sessioneffectuer)==2){
-				echo'Vous n avez pas effectuer de session <br>';
+			if(count($sessionReserver)==2){
+				echo'Vous n avez pas Reserver de session <br>';
 			}
 			else {
 				
-			$nbsession = count($sessioneffectuer) - count($sessioneffectuer[0]) . '<br>';
+			$nbsession = count($sessionReserver) - count($sessionReserver[0]) . '<br>';
 			
 			for ($j = 0; $j<$nbsession; $j++) {
-				echo '<div class = sessioneffectuer>';
-				$tab = $sessioneffectuer[$j];
+				echo '<div class = sessionReserver>';
+				$tab = $sessionReserver[$j];
 				foreach($tab as $i => $value) {	
 					echo '<p>';
 					echo $value ;
@@ -143,7 +143,7 @@
 			$nbsession = count($sessions) - count($sessions[0]) . '<br>';
 			
 				for ($j = 0; $j<$nbsession; $j++) {
-					echo '<div class = sessioneffectuer>';
+					echo '<div class = sessionReserver>';
 					$tab = $sessions[$j];
 					foreach($tab as $i => $value) {	
 						echo '<p>';

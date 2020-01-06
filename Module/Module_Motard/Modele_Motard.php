@@ -42,12 +42,12 @@ include_once("./FonctionsUtiles.php");
 			return $res;			
 		}
 
-		function SessionEffectuer() {
+		function SessionReserver() {
 
 			$id = $_SESSION['id'];
 			echo $id;
 
-			$req = parent::$connexion->prepare('select * from effectuer where id_motard = '.$_SESSION['id']);
+			$req = parent::$connexion->prepare('select * from Reserver where id_motard = '.$_SESSION['id']);
 			$req->execute();
 
 			$res = array(

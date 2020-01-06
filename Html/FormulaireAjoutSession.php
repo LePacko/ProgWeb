@@ -22,8 +22,6 @@
 				<input type="number" name="nb_place"required><br>
 				<label>tarif</label>
                 <input type="number" name="tarif"required> <label>€</label><br>
-                <label>status</label>
-                <input type="text" name="status"><br> 
 				<label>heure debut</label>
 								<div class='input-group date' id='datetimepicker3'>
 									<input type='text' class="form-control" name="heure_debut"required/>
@@ -38,7 +36,7 @@
 								});
 							});
 						</script>   
-				<label>durée</label>
+				<label>heure de fin</label>
 								<div class='input-group date' id='datetimepicker'>
 									<input type='text' class="form-control" name="heure_fin"required/>
 									<span class="input-group-addon">
