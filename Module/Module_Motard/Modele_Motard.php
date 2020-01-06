@@ -42,7 +42,7 @@ include_once("./FonctionsUtiles.php");
 			return $res;			
 		}
 
-		function SessionEffectuer() {
+		function SessionReserver() {
 
 			$id = $_SESSION['session_motard'];
 			echo $id;
