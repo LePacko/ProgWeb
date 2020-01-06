@@ -47,7 +47,7 @@ include_once("./FonctionsUtiles.php");
 			$id = $_SESSION['session_motard'];
 			echo $id;
 
-			$req = parent::$connexion->prepare('select * from effectuer where id_motard = '.$_SESSION['session_motard']);
+			$req = parent::$connexion->prepare('select * from reserver where id_motard = '.$_SESSION['session_motard']);
 			$req->execute();
 
 			$res = array(

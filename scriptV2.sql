@@ -62,16 +62,16 @@ CREATE TABLE IF NOT EXISTS `circuit` (
 -- --------------------------------------------------------
 
 --
--- Structure de la table `effectuer`
+-- Structure de la table `Reserver`
 --
 
-DROP TABLE IF EXISTS `effectuer`;
-CREATE TABLE IF NOT EXISTS `effectuer` (
+DROP TABLE IF EXISTS `Reserver`;
+CREATE TABLE IF NOT EXISTS `Reserver` (
   `id_session` int(11) NOT NULL,
   `id_motard` int(11) NOT NULL,
   `temps_tour` int(11) NOT NULL,
   PRIMARY KEY (`id_session`,`id_motard`),
-  KEY `Effectuer_motard0_FK` (`id_motard`)
+  KEY `Reserver_motard0_FK` (`id_motard`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -185,7 +185,6 @@ CREATE TABLE IF NOT EXISTS `session` (
   `date` date NOT NULL,
   `nb_place` int(11) NOT NULL,
   `tarif` int(11) NOT NULL,
-  `status` varchar(50) NOT NULL,
   `nb_participant` int(11) NOT NULL,
   `heure_debut` time NOT NULL,
   `heure_fin` time NOT NULL,
@@ -213,11 +212,11 @@ ALTER TABLE `circuit`
   ADD CONSTRAINT `circuit_entreprise_FK` FOREIGN KEY (`SIRET`) REFERENCES `entreprise` (`SIRET`);
 
 --
--- Contraintes pour la table `effectuer`
+-- Contraintes pour la table `Reserver`
 --
-ALTER TABLE `effectuer`
-  ADD CONSTRAINT `Effectuer_motard0_FK` FOREIGN KEY (`id_motard`) REFERENCES `motard` (`id_motard`),
-  ADD CONSTRAINT `Effectuer_session_FK` FOREIGN KEY (`id_session`) REFERENCES `session` (`id_session`);
+ALTER TABLE `Reserver`
+  ADD CONSTRAINT `Reserver_motard0_FK` FOREIGN KEY (`id_motard`) REFERENCES `motard` (`id_motard`),
+  ADD CONSTRAINT `Reserver_session_FK` FOREIGN KEY (`id_session`) REFERENCES `session` (`id_session`);
 
 --
 -- Contraintes pour la table `moto`

@@ -33,8 +33,8 @@
 				break;
 
 				case 'SessionEffectue':
-					$sessioneffectuer = $this->Modele->SessionEffectuer();
-					$this->Vue->SessionEffectuer($sessioneffectuer);
+					$sessionReserver = $this->Modele->SessionReserver();
+					$this->Vue->SessionReserver($sessionReserver);
 				break;
 
 				case 'formulaireAjoutMoto':
