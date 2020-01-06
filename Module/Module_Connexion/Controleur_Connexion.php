@@ -32,14 +32,14 @@
 					$login = htmlspecialchars($_POST['id']);
 					$mdp = hash('sha256', $_POST['mdp']);
 					$this -> Modele -> validerConnexion($login,$mdp);
-			break;
+				break;
 					//$this->Modele->validerConnexion();
 				case'deconnexion':
-					if(isset($_SESSION['id'])){
-						unset($_SESSION['id']);
+					if(isset($_SESSION['session_motard'])){
+						unset($_SESSION['session_motard']);
 					}
-					if(isset($_SESSION['siret'])){
-						unset($_SESSION['siret']);
+					if(isset($_SESSION['session_gerant'])){
+						unset($_SESSION['session_gerant']);
 					}
 				break;
 

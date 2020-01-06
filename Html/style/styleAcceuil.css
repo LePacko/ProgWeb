@@ -33,7 +33,7 @@ h2{
 .bulle{
     border-radius: 5%;
     background-color: white;
-    opacity: 20%;
+    opacity: 0,2;
     text-align: center;
 }
 .enterResponses{
@@ -49,3 +49,4 @@ h2{
     margin: 2px;
     padding: 2px;
 }
+

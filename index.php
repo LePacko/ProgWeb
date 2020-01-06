@@ -37,7 +37,13 @@ if (isset($_GET['module'])) {
 		ob_start();    
 		$menu = ob_get_clean();
 
-		REQUIRE('Html/indexTemplate.php');
+		if(!isset($_SESSION['session_motard'])&&!isset($_SESSION['session_gerant'])){
+			REQUIRE('Html/template/indexTemplateAvantConnexion.php');
+		}
+
+		else {
+			include('./Html/template/IndexTemplateApresConnexion.php');
+		}
 	?>
 </body>
 </html>	

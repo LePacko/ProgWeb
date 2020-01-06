@@ -23,10 +23,51 @@
 
 			switch($action) {
 
-                case 'profil';
-                echo'bite';
-                 break;
+                case 'voirProfil':
+					$this->Vue->afficherProfil();
+				break;
+				 
+				case 'trouverSession':
+					$tableauCircuit = $this->Modele->ListeCircuit();
+					$this->Vue->ListeCircuit($tableauCircuit);
+				break;
 
+				case 'SessionEffectue':
+					$sessionReserver = $this->Modele->SessionReserver();
+					$this->Vue->SessionReserver($sessionReserver);
+				break;
+
+				case 'formulaireAjoutMoto':
+				$this->Vue->formulaireAjoutMoto();
+				break;	
+
+				case 'ajoutMoto':
+				$this->Modele->ajoutMoto();
+				break;
+
+				case'mesMotos':
+				$this->Vue->afficherMesMotos($this->Modele->recupererMoto());
+				break;
+
+				case 'supprimerMoto':
+				$this->Vue->avertissementSupression();
+				break;
+
+				case 'suppressionMotoOk':
+				$this->Modele->supprimerMoto();
+				break;
+
+				case 'Circuit' :
+					$sessions = $this->Modele->Circuit();
+					$this->Vue->Circuit($sessions);
+				break;
+
+				case 'ReserverSession' :
+					$placedisponible = $this->Modele->ReserverSession();
+					$this->Vue->ReserverSession($placedisponible);
+				break;
+
+				
 			}
 			
 		}

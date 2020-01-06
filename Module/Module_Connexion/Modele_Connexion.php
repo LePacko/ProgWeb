@@ -1,7 +1,7 @@
 <?php 
 	
-include_once("./ConnexionBD_iut.php");
-	class Modele_Connexion extends ConnexionBD_iut {
+include_once("./Connexion.php");
+	class Modele_Connexion extends Connexion {
 
 		function __construct() {
 			parent::init();
@@ -15,7 +15,7 @@ include_once("./ConnexionBD_iut.php");
 			$req -> bindParam(':mdp', $mdp);
 			$req -> execute();
 			$res = $req -> fetch();
-			//$_SESSION["id"] = $res[0];
+			//$_SESSION['session_motard'] = $res[0];
 			if(!isset($res[0])){
 				$sql2 = 'SELECT SIRET from entreprise where mail_entreprise like :login and mdp like :mdp';
 				$req2 = parent::$connexion -> prepare($sql2);
@@ -29,22 +29,22 @@ include_once("./ConnexionBD_iut.php");
 				}
 				else {
 					echo "je suis co";
-					$_SESSION["siret"] = $res2[0];
+					$_SESSION['session_gerant'] = $res2[0];
 				}
 			}
 			else{
 				echo "je suis co";
-				$_SESSION["id"] = $res[0];
+				$_SESSION['session_motard'] = $res[0];
 			}
 
 			
 		}
 
 		function recupererDonneesProfil() {
-			if(isset($_SESSION['id'])) {
+			if(isset($_SESSION['session_motard'])) {
 				$sql = 'SELECT id_motard,nom,prenom from motard where id_motard = :login ';
 				$req = parent::$connexion-> prepare($sql);
-				$req -> bindParam(':login', $_SESSION['id']);
+				$req -> bindParam(':login', $_SESSION['session_motard']);
 				$req -> execute();
 				$res = $req -> fetchAll();
 				return $res;

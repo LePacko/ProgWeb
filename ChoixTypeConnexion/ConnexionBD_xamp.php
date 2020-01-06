@@ -1,6 +1,6 @@
 <?php
 define('DNS_xamp', "mysql:host=localhost;dbname=projet;charset=utf8");
-class ConnexionBD_xamp {
+class Connexion {
 	protected static $connexion;
 
 	protected static function init(){
