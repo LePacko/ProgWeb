@@ -17,7 +17,7 @@ include_once("./Connexion.php");
 			$longueur = $_POST['longueur'];
 			$nom = $_POST['nom'];
 			$image_circuit =null;
-			$siret=$_SESSION['siret'];
+			$siret=$_SESSION['session_gerant'];
 			//Ajout du nouvelle utilisateur dans le abase de donées
 			$req = parent::$connexion->prepare('INSERT INTO circuit (adresse,code_postale,longueur,nom,Siret) values (:adresse,:code_postale,:longueur,:nom,:SIRET)');
 			$req->execute(array(

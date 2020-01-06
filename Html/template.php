@@ -10,7 +10,7 @@
 
     <nav>
         <?php
-            if(!isset($_SESSION['id'])&&!isset($_SESSION['siret'])){
+            if(!isset($_SESSION['session_motard'])&&!isset($_SESSION['session_gerant'])){
                echo'<a href="index.php?module=CreationCompte&action=inscriptionMotard">Je suis un motard</a>                <!--Creation compte-->
                 <a href="index.php?module=CreationCompte&action=inscriptionGerant">Je suis un gérant de circuit</a>     <!--Creation compte-->  
                 <a href="index.php?module=Connexion&action=formConnexion">Je me connecte</a>';

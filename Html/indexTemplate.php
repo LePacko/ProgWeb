@@ -21,7 +21,7 @@
         <div class="row">
             <div class="col- modife deco eet module gerantmd-offset-2 col-md-4">
                 <?php
-                    if(!isset($_SESSION['id'])&&!isset($_SESSION['siret'])){ // si personne n'est connecté
+                    if(!isset($_SESSION['session_motard'])&&!isset($_SESSION['session_gerant'])){ // si personne n'est connecté
                         echo'
                             <div id="connection" class="bulle">
                                 <h2>Je me connecte</h2>
@@ -47,10 +47,10 @@
                     
                     }
                     else {
-                        if(isset($_SESSION['id'])){       // si il s'agit d'un motard qui est connecté 
+                        if(isset($_SESSION['session_motard'])){       // si il s'agit d'un motard qui est connecté 
                             include ("./Html/NavMotard.html");
                         }
-                        if(isset($_SESSION['siret'])){      // si il s'agit d'un gérant de circuit
+                        if(isset($_SESSION['session_gerant'])){      // si il s'agit d'un gérant de circuit
                             include ("./Html/NavGerant.html");
                         }
                     }
