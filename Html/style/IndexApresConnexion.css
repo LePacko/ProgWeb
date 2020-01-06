@@ -1,0 +1,62 @@
+
+.body {
+	background-color: #1c4587ff;
+}
+
+img {
+	max-width: 100px;
+	max-height: 100px;
+}
+
+.Nav{
+	margin-top: 4%;
+}
+
+.LogoTitre {
+	margin-top: 2%;
+}
+
+
+.TitreSite, .NavTitre{
+	color: #e06666;
+}
+
+.NavTitre {
+	font-size: 1.2em;
+	text-align: center;
+	padding: 0.5em;
+	margin-right: 1.5em;
+}
+
+.NavTitre:hover {
+	border: 1px solid;
+	border-color: #e06666;
+	color: #e06666;
+	text-decoration: none;
+}
+
+.TitreSite{
+	font-size: 1.5em;
+}
+
+#courbe {
+	stroke: #e06666;
+    stroke-width:3;
+    stroke-dasharray: 20;
+    fill:none;
+    animation: dash 1s linear;
+   
+}
+
+.svg {
+	z-index: -1;
+	position: absolute;
+	top: 0%;
+	left: 0%;
+}
+
+@keyframes dash{
+	to {
+		stroke-dashoffset: -200;
+	}
+}

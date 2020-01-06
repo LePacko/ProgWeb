@@ -1,14 +1,19 @@
 <?php
-define('DNS_xamp', "mysql:host=localhost;dbname=projet;charset=utf8");
+
+define('DNS', "mysql:host=database-etudiants.iut.univ-paris8.fr;dbname=dutinfopw201661");
+
 class Connexion {
 	protected static $connexion;
 
 	protected static function init(){
-		 $user ="root";
-       $password="";
+	
+		 $user ="dutinfopw201661";
+       $password="pyvyparu";
 		try{
-			self::$connexion = new PDO(DNS_xamp, $user, $password);
+			self::$connexion = new PDO(DNS, $user, $password);
 
+			
+		
 		}catch (PDOException $e) {
     		print "Erreur !: " . $e->getMessage() . "<br/>";
     		die();
