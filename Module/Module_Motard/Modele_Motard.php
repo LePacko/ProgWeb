@@ -44,10 +44,10 @@ include_once("./FonctionsUtiles.php");
 
 		function SessionReserver() {
 
-			$id = $_SESSION['id'];
+			$id = $_SESSION['session_motard'];
 			echo $id;
 
-			$req = parent::$connexion->prepare('select * from Reserver where id_motard = '.$_SESSION['id']);
+			$req = parent::$connexion->prepare('select * from reserver where id_motard = '.$_SESSION['session_motard']);
 			$req->execute();
 
 			$res = array(
@@ -71,7 +71,7 @@ include_once("./FonctionsUtiles.php");
 		}
 
 		function recupererMoto() {
-			$id_motard=$_SESSION['id'];
+			$id_motard=$_SESSION['session_motard'];
 			$requete = "SELECT * from moto where id_motard ='$id_motard'";
 			$resultat = parent::$connexion->query($requete);
 			
@@ -104,7 +104,7 @@ include_once("./FonctionsUtiles.php");
 				$annee = (int)$_POST['Annee'];	
 				$marque = $_POST['Marque'];
 				$modele= $_POST['Modele'];
-				$id_motard=(int)$_SESSION['id'];
+				$id_motard=(int)$_SESSION['session_motard'];
 			
 				// on teste si l'immatriculation de la moto que l'utilisateur souhaite ajouter est disponible
 				$sql = 'SELECT * from moto where immatriculation like :immat';

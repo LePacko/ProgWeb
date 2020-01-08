@@ -37,12 +37,12 @@ if (isset($_GET['module'])) {
 		ob_start();    
 		$menu = ob_get_clean();
 
-		if(!isset($_SESSION['id'])&&!isset($_SESSION['siret'])){
-			REQUIRE('Html/indexTemplate.php');
+		if(!isset($_SESSION['session_motard'])&&!isset($_SESSION['session_gerant'])){
+			REQUIRE('Html/template/indexTemplateAvantConnexion.php');
 		}
 
 		else {
-			include('./Html/IndexApresConnexion.php');
+			include('./Html/template/IndexTemplateApresConnexion.php');
 		}
 	?>
 </body>

@@ -17,7 +17,7 @@ include_once("./Connexion.php");
 			$longueur = $_POST['longueur'];
 			$nom = $_POST['nom'];
 			$image_circuit =null;
-			$siret=$_SESSION['siret'];
+			$siret=$_SESSION['session_gerant'];
 			//Ajout du nouvelle utilisateur dans le abase de donées
 			$req = parent::$connexion->prepare('INSERT INTO circuit (adresse,code_postale,longueur,nom,Siret) values (:adresse,:code_postale,:longueur,:nom,:SIRET)');
 			$req->execute(array(
@@ -57,7 +57,7 @@ include_once("./Connexion.php");
 
 		function Circuit() {
 
-			$req = parent::$connexion->query('select * from circuit where circuit.siret='.$_SESSION['siret']);
+			$req = parent::$connexion->query('select * from circuit where circuit.siret='.$_SESSION['session_gerant']);
 			$res = array (
 				"nom"  => array(),
 				"adresse" => array(),
@@ -87,7 +87,7 @@ include_once("./Connexion.php");
 
 		function Session(){
 
-			$req = parent::$connexion->query('select * from session inner join circuit where  circuit.siret='.$_SESSION['siret'].' and session.id_circuit=circuit.id_circuit ');
+			$req = parent::$connexion->query('select * from session inner join circuit where  circuit.siret='.$_SESSION['session_gerant'].' and session.id_circuit=circuit.id_circuit ');
 			$res = array (
 				"date"  => array(),
 				"nb_place" => array(),

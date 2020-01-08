@@ -23,7 +23,7 @@
 				// }
 				for ($j = 0; $j<$nbcircuit; $j++) {
 					$tab = $tableauCircuit[$j];
-					if($tab[5]==$_SESSION['siret']){
+					if($tab[5]==$_SESSION['session_gerant']){
 						$valeurValide=false;
 						foreach($tab as $i => $value) {
 								if($i!=5)

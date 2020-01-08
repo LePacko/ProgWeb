@@ -63,7 +63,7 @@
 						// }
 						for ($j = 0; $j<$nbcircuit; $j++) {
 							$tab = $tableauCircuit[$j];
-							if($tab[5]==$_SESSION['siret']){
+							if($tab[5]==$_SESSION['session_gerant']){
 								echo "\t",'<option value="', $tab[6] ,'"', '' ,'>', $tab[0] ,'</option>',"\n";
 							}
 						}

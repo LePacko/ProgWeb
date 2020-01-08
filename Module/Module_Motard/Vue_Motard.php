@@ -23,14 +23,14 @@
 		
 			if ($row=$tableauMotos->fetch()) {
 				
-				echo "<table class=\"tab_recup\">
+				echo '<table class="tab_recup">
 				<tr>
 					<th>Immatriculation</th>
 					<th>Annee</th>
 					<th>Marque</th>
 					<th>Modele</th>
 					<th>Supprimer</th>
-				</tr>";
+				</tr>';
 
 				do {
 					 

@@ -60,3 +60,33 @@ img {
 		stroke-dashoffset: -200;
 	}
 }
+
+/* css pour la partie mes motos */
+form {
+	display: inline;
+}
+
+.tab_recup {
+	border-collapse: separate;
+	border: 1px solid #000;
+	text-align: center;
+	margin: auto;
+	background-color: rgb(0, 0, 255);
+	background-color: rgba(0, 0, 255, 0.5);
+	margin-top: 200px;
+}
+
+td {
+	border: 1px solid #000;
+	padding: 10px;
+	color: rgb( 10, 9, 12 );
+	font-weight: bold;
+	
+}
+
+th {
+	border: 1px solid #000;
+	color: rgb(255, 200, 0);
+	padding:10px;
+}
+
