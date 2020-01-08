@@ -42,7 +42,7 @@
 
 		function Session($tableauSession){
 			if(count($tableauSession)==8){
-				echo'Vous n avez pas de circuit <br>';
+				echo'Vous n avez pas de session <br>';
 			}
 			else{
 				$valeurValide=true;
