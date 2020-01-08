@@ -8,7 +8,32 @@
 
 		function __construct() {
 			$this->Controleur = new Controleur_CreationCompte();
-			$this->Controleur->menu();
+			
+			$action = 'null';
+			
+			if (isset($_GET['action'])) {
+				$action = $_GET['action'];
+			}	
+			
+			switch($action){
+
+				case 'inscriptionMotard':// Affiche le formulaire d'inscription pour les nouveau motards
+					$this->Controleur->inscriptionMotard(); 
+				break;
+
+				case 'inscriptionGerant':// Affiche le formulaire d'inscription pour les nouveau gérants
+					$this->Controleur->inscriptionGerant(); 
+				break;
+
+				case 'ajoutMotardBD'://Ajout d'un nouveau Motard dans la basse de données
+					$this->Controleur->ajoutMotardBD(); 
+				break;
+
+				case 'ajoutGerantBD'://Ajout d'un nouveau Gerant dans la basse de données
+					$this->Controleur->ajoutGerantBD(); 
+				break;
+				
+			}
 		}
 	}
 

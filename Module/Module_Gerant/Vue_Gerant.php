@@ -37,7 +37,7 @@
 					echo'Vous n avez pas de circuit <br>';
 				}
 		}
-			echo'<a href="./index.php?module=Gerant&action=formajout"> ajout un circuit</a>';
+			echo'<a href="./index.php?module=Gerant&action=formulaireAjoutCircuit"> ajout un circuit</a>';
 		}	
 
 		function Session($tableauSession){

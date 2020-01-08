@@ -14,62 +14,49 @@
 			$this->Modele = new Modele_Motard();
 		}
 
-		function menu() {
-			$action = 'null';
-			
-			if (isset($_GET['action'])) {
-				$action = $_GET['action'];
-			}
 
-			switch($action) {
-
-                case 'voirProfil':
-					$this->Vue->afficherProfil();
-				break;
+        function voirProfil () {
+			$this->Vue->afficherProfil();
+		}
 				 
-				case 'trouverSession':
-					$tableauCircuit = $this->Modele->ListeCircuit();
-					$this->Vue->ListeCircuit($tableauCircuit);
-				break;
+		function trouverSession () {
+			$tableauCircuit = $this->Modele->ListeCircuit();
+			$this->Vue->ListeCircuit($tableauCircuit);
+		}
 
-				case 'SessionEffectue':
-					$sessionReserver = $this->Modele->SessionReserver();
-					$this->Vue->SessionReserver($sessionReserver);
-				break;
+		function SessionEffectue() {
+			$sessionReserver = $this->Modele->SessionReserver();
+			$this->Vue->SessionReserver($sessionReserver);
+		}
 
-				case 'formulaireAjoutMoto':
-				$this->Vue->formulaireAjoutMoto();
-				break;	
+		function formulaireAjoutMoto () {
+		$this->Vue->formulaireAjoutMoto();
+		}
 
-				case 'ajoutMoto':
-				$this->Modele->ajoutMoto();
-				break;
+		function ajoutMoto (){
+		$this->Modele->ajoutMoto();
+		}
 
-				case'mesMotos':
-				$this->Vue->afficherMesMotos($this->Modele->recupererMoto());
-				break;
+		function mesMotos (){
+		$this->Vue->afficherMesMotos($this->Modele->recupererMoto());
+		}
 
-				case 'supprimerMoto':
-				$this->Vue->avertissementSupression();
-				break;
+		function supprimerMoto () {
+		$this->Vue->avertissementSupression();
+		}
 
-				case 'suppressionMotoOk':
-				$this->Modele->supprimerMoto();
-				break;
+		function suppressionMotoOk (){
+		$this->Modele->supprimerMoto();
+		}
 
-				case 'Circuit' :
-					$sessions = $this->Modele->Circuit();
-					$this->Vue->Circuit($sessions);
-				break;
+		function Circuit () {   
+			$sessions = $this->Modele->Circuit();
+			$this->Vue->Circuit($sessions);
+		}
 
-				case 'ReserverSession' :
-					$placedisponible = $this->Modele->ReserverSession();
-					$this->Vue->ReserverSession($placedisponible);
-				break;
-
-				
-			}
-			
+		function ReserverSession () {
+			$placedisponible = $this->Modele->ReserverSession();
+			$this->Vue->ReserverSession($placedisponible);
 		}
 	
 	}

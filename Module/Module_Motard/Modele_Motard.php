@@ -10,6 +10,15 @@ include_once("./FonctionsUtiles.php");
 			
 		}
 
+		public function recupererMarqueMoto() {
+			$requete = "SELECT DISTINCT marque from modele_moto";
+			$resultat = parent::$connexion->query($requete);
+			
+
+
+			return $resultat;
+		}
+
 		function ListeCircuit() {
 
 			$req = parent::$connexion->prepare('select * from circuit');

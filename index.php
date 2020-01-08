@@ -17,16 +17,16 @@
 if (isset($_GET['module'])) {
 	switch ($_GET['module']) {
 		case 'CreationCompte':
-			$controleurCreationCompte = new Module_CreationCompte();
+			$moduleCreationCompte = new Module_CreationCompte();
 		break;
 		case 'Connexion': 
-			$controleurConnexion = new Module_Connexion();
+			$moduleConnexion = new Module_Connexion();
 		break;
 		case 'Motard':
-			$controleurMotard = new Module_Motard();
+			$moduleMotard = new Module_Motard();
 		break;
 		case 'Gerant' : 
-			$controleurGerant = new Module_Gerant();
+			$moduleGerant = new Module_Gerant();
 		break;
 
 				

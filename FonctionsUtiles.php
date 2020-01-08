@@ -21,4 +21,15 @@ Class FonctionsUtiles {
 	public static function RetourPagePrecedente() {
 		?><a href="<?php echo $_SERVER['HTTP_REFERER']; ?>">Retour</a><?php
 	}
+
+	/*<?php
+				$resultat=$this->Modele->recupererMarqueMoto();
+				while ($donnees = $reponse->fetch()) {
+?>
+           <option value="<?php echo $donnees['marque']; ?>"> ></option>
+<?php
+}
+ 
+?>*/
+
 }

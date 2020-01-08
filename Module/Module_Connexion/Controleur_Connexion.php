@@ -14,45 +14,31 @@
 			$this->Modele = new Modele_Connexion();
 		}
 
-		function menu() {
-			
-			$action = 'null';
-			
-			if (isset($_GET['action'])) {
-				$action = $_GET['action'];
+
+		function formConnexion () {
+			$this->Vue->formulaireConnexion();
+		}
+
+		function connexion () {
+			$login = htmlspecialchars($_POST['id']);
+			$mdp = hash('sha256', $_POST['mdp']);
+			$this -> Modele -> validerConnexion($login,$mdp);
+		}
+					
+		function deconnexion() {
+			if(isset($_SESSION['session_motard'])){
+				unset($_SESSION['session_motard']);
 			}
-
-			switch($action) {
-
-				case 'formConnexion' :
-					$this->Vue->formulaireConnexion();
-				break;
-
-				case'connexion' :
-					$login = htmlspecialchars($_POST['id']);
-					$mdp = hash('sha256', $_POST['mdp']);
-					$this -> Modele -> validerConnexion($login,$mdp);
-				break;
-					//$this->Modele->validerConnexion();
-				case'deconnexion':
-					if(isset($_SESSION['session_motard'])){
-						unset($_SESSION['session_motard']);
-					}
-					if(isset($_SESSION['session_gerant'])){
-						unset($_SESSION['session_gerant']);
-					}
-				break;
-
-				case'profil' :
-					$tab=$this->Modele->recupererDonneesProfil();
-					$this->Vue->afficherProfil($tab);
-					break;
-				default : 
-					echo "Vous vous trouver sur une page inexistante";
-				break;
-
+			if(isset($_SESSION['session_gerant'])){
+				unset($_SESSION['session_gerant']);
 			}
 		}
+
+		function profil() {
+			$tab=$this->Modele->recupererDonneesProfil();
+			$this->Vue->afficherProfil($tab);
+		}
+		
 	
 	}
 

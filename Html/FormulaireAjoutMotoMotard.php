@@ -13,8 +13,10 @@
 				<input type="text" name="Immat"required><br>
 				<label>Annee</label>
 				<input type="text" name="Annee"required><br>
-				<label>Marque</label>
-				<input type="text" name="Marque"required><br>
+
+				<label for="marque">Dans quel pays habitez-vous ?</label><br />
+				<select name="marque" id="marque">
+				</select>
 				<label>Modele</label>
 				<input type="text" name="Modele"required><br>
 				

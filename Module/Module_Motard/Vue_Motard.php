@@ -11,7 +11,7 @@
 		}	
 
 		function formulaireAjoutMoto(){
-			include("./Html/FormulaireAjoutMotoMotard.html");
+			include("./Html/FormulaireAjoutMotoMotard.php");
 		}
 
 		function afficherProfil() {
