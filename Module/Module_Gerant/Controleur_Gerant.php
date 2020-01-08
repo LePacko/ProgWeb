@@ -38,10 +38,10 @@
 		function ajoutSession() {
 			$this->Modele->ajoutSession();
 		}
-		
-			
-		
-	
+		function PageSession () {
+					$info=$this->Modele->recupereSession();
+					$this->Vue->InfoSession($info);
+		}
 	}
 
 

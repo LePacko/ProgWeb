@@ -1,6 +1,7 @@
 <?php 
 	
 include_once("./Connexion.php");
+include_once("./FonctionsUtiles.php");
 
 	class Modele_Gerant extends Connexion {
 
@@ -31,8 +32,46 @@ include_once("./Connexion.php");
 			
 		}
 
+		function sessionValide($date,$heure_debut,$heure_fin,$id_circuit){
+			//test si deux sessions ne se chevauche pas avant de continuer
+			$req = parent::$connexion->query('select * from session inner join circuit where  circuit.siret='.$_SESSION['session_gerant'].' and session.id_circuit=circuit.id_circuit and '.$id_circuit.'=session.id_circuit');
+			$res = array (
+				"date"  => array(),
+				"heure_debut" => array(),
+				"heure_fin"  => array(),
+			);
+			$heuredeb=strtotime($heure_debut);
+			$heurefin=strtotime($heure_fin);
+			while ($donne = $req->fetch()) {
+				$heuredebbase=strtotime($donne["heure_debut"]);
+				$heurefinbase=strtotime($donne["heure_fin"]);
+
+				if($donne["date"]==$date){
+
+					if($heuredeb>=$heuredebbase &&$heuredeb<$heurefinbase){
+						FonctionsUtiles::msgBox("heure de debut non valide, elle chevauche une autre sessions");
+						FonctionsUtiles::redirectionPage("index.php?module=Gerant&action=formajoutSession");
+						return 0 ;
+						
+					}
+					if($heurefin>$heuredebbase && $heurefin<$heurefinbase){
+						FonctionsUtiles::msgBox("heure de fin non valide, elle chevauche une autre sessions");
+						FonctionsUtiles::redirectionPage("index.php?module=Gerant&action=formajoutSession");
+						return 0;
+					}
+					if($heuredeb<$heuredebbase && $heurefin>$heurefinbase){
+						FonctionsUtiles::msgBox("heure de fin et de debut non valide, elle chevauche une autre sessions");
+						FonctionsUtiles::redirectionPage("index.php?module=Gerant&action=formajoutSession");
+						return 0;
+					}
+				}
+			}
+			return 1 ;
+
+		}
 
 		function AjoutSession() {
+			
 
 			//Récupération des vaiables entrée dans le formulaire 
 			
@@ -42,7 +81,9 @@ include_once("./Connexion.php");
 			$heure_debut =$_POST['heure_debut'];
 			$heure_fin=$_POST['heure_fin'];
 			$id_circuit=$_POST['id_circuit'];
+			$valide=$this->sessionValide($date,$heure_debut,$heure_fin,$id_circuit);
 			//Ajout du nouvelle utilisateur dans le abase de donées
+			if($valide==1){
 			$req = parent::$connexion->prepare('INSERT INTO session (date,nb_place,tarif,heure_debut,heure_fin,id_circuit) values (:date,:nb_place,:tarif,:heure_debut,:heure_fin,:id_circuit)');
 			$req->execute(array(
 				'date' => $date,
@@ -52,6 +93,7 @@ include_once("./Connexion.php");
 				'heure_fin' => $heure_fin,
 				'id_circuit' =>$id_circuit
 			));
+		}
 
 		}
 
@@ -95,7 +137,8 @@ include_once("./Connexion.php");
 				"nb_participant" => array(),
 				"heure_debut" => array(),
 				"heure_fin"  => array(),
-				"id_circuit" => array(),
+				"nom" => array(),
+				"id_session"=>array(),
 			);
 
 			$i =0;
@@ -107,14 +150,32 @@ include_once("./Connexion.php");
 				$res[$i][4] = $donne['nb_participant'];
 				$res[$i][5] = $donne['heure_debut'];
 				$res[$i][6] = $donne['heure_fin'];
-				$res[$i][7] = $donne['id_circuit'];
+				$res[$i][7] = $donne['nom'];
+				$res[$i][8] = $donne['id_session'];
 				$i ++;
 			}
 
 			return $res;
 
 		}
+		function recupereSession(){
+			$req = parent::$connexion->query('select * from session inner join circuit where  id_session='.$_GET['idSession'].' and session.id_circuit=circuit.id_circuit ');
+			$i =0;
+			while ($donne = $req->fetch()) {
 
+				$res[$i][0] = $donne['date'];
+				$res[$i][1] = $donne['nb_place'];
+				$res[$i][2] = $donne['tarif'];
+				$res[$i][4] = $donne['nb_participant'];
+				$res[$i][5] = $donne['heure_debut'];
+				$res[$i][6] = $donne['heure_fin'];
+				$res[$i][7] = $donne['nom'];
+				$res[$i][8] = $donne['id_session'];
+				$i ++;
+			}
+
+			return $res;
+		}
 		
 
 	}

@@ -45,6 +45,9 @@
 					$this->Controleur->ajoutSession();
 				break;
 
+				case 'PageSession':
+					$this->Controleur->PageSession();
+				break;
 				
 			}
 		}
