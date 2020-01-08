@@ -138,6 +138,7 @@ include_once("./FonctionsUtiles.php");
 				"heure_debut" => array(),
 				"heure_fin"  => array(),
 				"nom" => array(),
+				"id_session"=>array(),
 			);
 
 			$i =0;
@@ -150,13 +151,31 @@ include_once("./FonctionsUtiles.php");
 				$res[$i][5] = $donne['heure_debut'];
 				$res[$i][6] = $donne['heure_fin'];
 				$res[$i][7] = $donne['nom'];
+				$res[$i][8] = $donne['id_session'];
 				$i ++;
 			}
 
 			return $res;
 
 		}
+		function recupereSession(){
+			$req = parent::$connexion->query('select * from session inner join circuit where  id_session='.$_GET['idSession'].' and session.id_circuit=circuit.id_circuit ');
+			$i =0;
+			while ($donne = $req->fetch()) {
 
+				$res[$i][0] = $donne['date'];
+				$res[$i][1] = $donne['nb_place'];
+				$res[$i][2] = $donne['tarif'];
+				$res[$i][4] = $donne['nb_participant'];
+				$res[$i][5] = $donne['heure_debut'];
+				$res[$i][6] = $donne['heure_fin'];
+				$res[$i][7] = $donne['nom'];
+				$res[$i][8] = $donne['id_session'];
+				$i ++;
+			}
+
+			return $res;
+		}
 		
 
 	}

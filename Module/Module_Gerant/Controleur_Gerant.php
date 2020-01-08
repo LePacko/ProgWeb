@@ -48,6 +48,10 @@
 					$this->Modele->ajoutSession();
 					echo'lol je fais ca';
 				break;
+				case 'PageSession':
+					$info=$this->Modele->recupereSession();
+					$this->Vue->InfoSession($info);
+				break;
 			}
 			
 		}
