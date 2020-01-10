@@ -1,3 +1,6 @@
+
+
+
 <?php 
 	
 	include_once("./FonctionsUtiles.php");
@@ -86,15 +89,15 @@
 		
 		
 		function ListeCircuit($tableauCircuit) {
-			
+
 			if(count($tableauCircuit)==6){
-				echo'Vous n avez pas de circuit <br>';
+				echo'Il n\'existe aucun Circuit <br>';
 			}
 			else{
 			$nbcircuit = 1 + count($tableauCircuit) - count($tableauCircuit[0]) . '<br>';
 			
 			for ($j = 0; $j<$nbcircuit; $j++) {
-				echo '<div class = circuit>';
+				echo '<div class = "circuit" id='.$j.'>';
 				$tab = $tableauCircuit[$j];
 				for($i = 0; $i<count($tab)-1; $i++) {	
 					echo '<p>';
@@ -102,12 +105,18 @@
 					echo '</p>';					
 				}
 				$IdCircuit = $tab[6];
+				
+				
 				?>
-				<a href="index.php?module=Motard&action=Circuit&IdCircuit=<?php echo $IdCircuit; ?>">Choisir ce circuit</a>
+				<a href="index.php?module=Motard&action=Circuit&IdCircuit=".$IdCircuit>Choisir ce circuit</a>
 				<?php
 				echo '</div>';
+				
 			}
+			echo '<div id="circuitcourant"></div>';
+			echo '<button onclick="changecircuit()">Changer Circuit</button>';
 			}
+
 		}
 		
 
@@ -143,7 +152,7 @@
 			$nbsession = count($sessions) - count($sessions[0]) . '<br>';
 			
 				for ($j = 0; $j<$nbsession; $j++) {
-					echo '<div class = sessionReserver>';
+					echo '<div>';
 					$tab = $sessions[$j];
 					foreach($tab as $i => $value) {	
 						echo '<p>';
@@ -153,10 +162,14 @@
 				}
 				$IdSession = $tab[0];
 				?>
-				<a href="index.php?module=Motard&action=ReserverSession&IdSession=<?php echo $IdSession; ?>">Reserver cette session</a>
+				<a href="index.php?module=Motard&action=ReserverSession&IdSession=".$IdSession>Reserver cette session</a>
 				<?php
 				echo '</div>';
+				
+
 			}
+
+			
 		}
 
 		function ReserverSession($placedisponible) {
@@ -180,3 +193,4 @@
 
 		
 ?>
+

@@ -3,6 +3,33 @@
 	background-color: #1c4587ff;
 }
 
+section {
+	margin-top: 10%;
+	margin-left: 30%;
+	width: 40%;
+	color: white;
+}
+
+section a {
+	text-decoration: none;
+	color: white;
+	border: solid 1px white;
+	border-radius: 5%;
+	padding: 2%;
+	margin-bottom: 1500px;
+}
+
+section a:hover {
+
+	border: solid 1px #e06666;
+	color: white;
+	text-decoration: none;
+}
+
+#circuitcourant {
+	translate: 20% 20%;
+}
+
 img {
 	max-width: 100px;
 	max-height: 100px;
