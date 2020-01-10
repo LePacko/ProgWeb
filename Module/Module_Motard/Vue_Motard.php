@@ -164,6 +164,11 @@
 			if ($placedisponible==1){
 				echo 'Votre réservation a bien été effectué';
 			}
+
+			else if ($placedisponible==2) {
+				echo 'Vous avez deja réserver une session pour le même jour';
+			}
+
 			else {
 				echo 'Il est impossible de réserver cette session car elle est complète';
 			}

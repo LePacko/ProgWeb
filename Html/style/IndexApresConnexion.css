@@ -44,7 +44,7 @@ img {
     stroke-width:3;
     stroke-dasharray: 20;
     fill:none;
-    animation: dash 1s linear;
+    animation: dash 1s linear forwards;
    
 }
 
@@ -60,6 +60,7 @@ img {
 		stroke-dashoffset: -200;
 	}
 }
+
 
 /* css pour la partie mes motos */
 form {

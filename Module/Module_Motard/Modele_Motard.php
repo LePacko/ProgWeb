@@ -224,16 +224,51 @@ include_once("./FonctionsUtiles.php");
 
 			$res = array(//Initialisation du tableau 
 				"nb_participant" => array(),
-				"nb_place" => array()
+				"nb_place" => array(),
+				"date" => array(),
+                "heure_debut" => array(),
+                "heure_fin" => array()
 			);
 
 			$i=0;
 			while ($donne = $reqSession->fetch()) {
 
 				$res[$i][0] = $donne['nb_participant'];
-				$res[$i][1] = $donne['nb_place'];		
+				$res[$i][1] = $donne['nb_place'];
+				$res[$i][2] = $donne['date'];
+                $res[$i][3] = $donne['heure_debut'];
+                $res[$i][4] = $donne['heure_fin']; 
+						
 				$i ++;
 			}
+
+			$reqSessionMotard = parent::$connexion->prepare('select date,heure_debut,heure_fin from session natural join reserver where id_motard =' .$_SESSION['session_motard']);
+            $reqSessionMotard->execute();
+
+            $resSessionMotard = array( 
+                "date" => array(),
+                "heure_debut" => array(),
+                "heure_fin" => array()
+            );
+
+            $i=0;
+            while ($donne = $reqSessionMotard->fetch()) {
+
+                $resSessionMotard[$i][0] = $donne['date'];
+                $resSessionMotard[$i][1] = $donne['heure_debut'];
+                $resSessionMotard[$i][2] = $donne['heure_fin']; 
+                
+                // echo $resSessionMotard[$i][0].'<br>';
+                
+
+                if (strcmp($resSessionMotard[$i][0],$res[0][2])==0) {
+                    return 2;
+                }
+                
+                $i ++;
+                
+            }
+
 
 			//Vérifie qu'il reste des places 
 			if($res[0][0]>=$res[0][1]) {
@@ -241,7 +276,7 @@ include_once("./FonctionsUtiles.php");
 			}else {
 				echo $IdSession;
 				$reqIcremente = parent::$connexion->query('update session set nb_participant = '.$res[0][0].' + 1 where id_session = '.$IdSession); 
-				// $reqIcremente->execute();
+				$reqReserve = parent::$connexion->query('insert into reserver (id_session,id_motard) values ('.$IdSession.','.$_SESSION['session_motard'].')');
 				return 1;
 			} 
 			
