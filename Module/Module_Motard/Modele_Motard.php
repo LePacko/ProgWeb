@@ -54,7 +54,7 @@ include_once("./FonctionsUtiles.php");
 		function SessionReserver() {
 
 			$id = $_SESSION['session_motard'];
-			echo $id;
+			
 
 			$req = parent::$connexion->prepare('select * from reserver where id_motard = '.$_SESSION['session_motard']);
 			$req->execute();

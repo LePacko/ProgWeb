@@ -87,18 +87,7 @@
 	<script type="text/javascript" src="./Html/AnimationJs/FonduAnimation.js"></script>
 	<script type="text/javascript" src="./Html/AnimationJS/TitreAnimation.js"></script>
 	
-	<script type="text/javascript"> 
-
-		function changecircuit() {
-
-		
-		var nom = document.getElementById('2').textContent;
-		document.getElementById('circuitcourant').textContent = nom;
-		
-			
-		}
-
-	</script>
+	
 
 
 

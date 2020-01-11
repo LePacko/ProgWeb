@@ -115,6 +115,8 @@
 				<button id="bouttonprecedent">Precedent</button>
 				<button id="bouttonsuivant">Suivant</button>
 			</div>
+
+			<a href="index.php?module=Motard&action=Circuit&IdCircuit=<?php echo $tableauCircuit[$_GET['tour']][6] ?>">Voir les sessions pour ce circuit</a>
 			
 			
 			
@@ -152,28 +154,6 @@
 				});
 				
     		</script><?php
-
-			
-			// for ($j = 0; $j<$nbcircuit; $j++) {
-			// 	echo '<div class = "circuit" id='.$j.'>';
-			// 	$tab = $tableauCircuit[$j];
-			// 	for($i = 0; $i<count($tab)-1; $i++) {	
-			// 		echo '<p>';
-			// 		echo $tab[$i] ;
-			// 		echo '</p>';					
-			// 	}
-			// 	$IdCircuit = $tab[6];
-				
-				
-			 	
-			// 	echo '</div>';
-				
-			// }
-			// echo '<div id="circuitcourant"></div>';
-			// echo '<button onclick="changecircuit()">Changer Circuit</button>';
-			// }
-
-
 
 		}
 		
@@ -216,13 +196,15 @@
 						echo '<p>';
 						echo $value ;
 						echo '</p>';
-					}					
-				}
+					}	
 				$IdSession = $tab[0];
+				echo $IdSession;
 				?>
-				<a href="index.php?module=Motard&action=ReserverSession&IdSession=".$IdSession>Reserver cette session</a>
-				<?php
-				echo '</div>';
+				<a href="index.php?module=Motard&action=ReserverSession&IdSession=<?php echo $IdSession ?>">Reserver cette session</a>
+				<?php	
+				echo '</div>';			
+				}
+				
 				
 
 			}
