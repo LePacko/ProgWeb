@@ -3,8 +3,11 @@
 
 <?php 
 	
+
 	include_once("./FonctionsUtiles.php");
 	class Vue_Motard {
+
+		
 
 		function __construct() {			
 		}
@@ -133,28 +136,63 @@
 				echo'Il n\'existe aucun Circuit <br>';
 			}
 			else{
-			$nbcircuit = 1 + count($tableauCircuit) - count($tableauCircuit[0]) . '<br>';
+			$nbcircuit = 1 + count($tableauCircuit) - count($tableauCircuit[0]);
+			}
 			
-			for ($j = 0; $j<$nbcircuit; $j++) {
-				echo '<div class = "circuit" id='.$j.'>';
-				$tab = $tableauCircuit[$j];
-				for($i = 0; $i<count($tab)-1; $i++) {	
-					echo '<p>';
-					echo $tab[$i] ;
-					echo '</p>';					
-				}
-				$IdCircuit = $tab[6];
+			
+			
+
+			?>
+			
+			<div>
+				<h1 id="nomCourant"><?php echo $tableauCircuit[$_GET['tour']][0] ?></h1>
+				<p id="adresseCourant"><?php echo "Adresse: ".$tableauCircuit[$_GET['tour']][1] ?></p>
+				<p id="tourkmCourant"><?php echo "Km au tour: ".$tableauCircuit[$_GET['tour']][3] ?></p>
+			</div>
+
+			<div>
+				<button id="bouttonprecedent">Precedent</button>
+				<button id="bouttonsuivant">Suivant</button>
+			</div>
+
+			<a href="index.php?module=Motard&action=Circuit&IdCircuit=<?php echo $tableauCircuit[$_GET['tour']][6] ?>">Voir les sessions pour ce circuit</a>
+			
+			
+			
+
+			<script>
 				
+				$(document).ready(function(){
+					
+					
+
+					$('#bouttonsuivant').on('click', function(){
+						var nbcircuit = <?php echo $nbcircuit; ?>;
+						var tour = <?php echo $_GET['tour'] ?>;
+						
+						if(tour == nbcircuit-1) 
+							toursuivant = 0;
+						else toursuivant = tour+1;
+						
+						document.location.href="index.php?module=Motard&action=trouverSession&tour="+toursuivant;
+						
+					});
+			
+					$('#bouttonprecedent').on('click', function() {
+						
+						var nbcircuit = <?php echo $nbcircuit; ?>;
+						var tour = <?php echo $_GET['tour'] ?>;
+						
+						if(tour == 0) 
+							toursuivant = nbcircuit-1;
+						else toursuivant = tour-1;
+						
+						document.location.href="index.php?module=Motard&action=trouverSession&tour="+toursuivant;
+
+					});
+				});
 				
-				?>
-				<a href="index.php?module=Motard&action=Circuit&IdCircuit=".$IdCircuit>Choisir ce circuit</a>
-				<?php
-				echo '</div>';
-				
-			}
-			echo '<div id="circuitcourant"></div>';
-			echo '<button onclick="changecircuit()">Changer Circuit</button>';
-			}
+    		</script><?php
 
 		}
 		
@@ -197,13 +235,15 @@
 						echo '<p>';
 						echo $value ;
 						echo '</p>';
-					}					
-				}
+					}	
 				$IdSession = $tab[0];
+				echo $IdSession;
 				?>
-				<a href="index.php?module=Motard&action=ReserverSession&IdSession=".$IdSession>Reserver cette session</a>
-				<?php
-				echo '</div>';
+				<a href="index.php?module=Motard&action=ReserverSession&IdSession=<?php echo $IdSession ?>">Reserver cette session</a>
+				<?php	
+				echo '</div>';			
+				}
+				
 				
 
 			}
@@ -229,7 +269,7 @@
 
 		}
 	}
-
-		
+	
+	
 ?>
 
