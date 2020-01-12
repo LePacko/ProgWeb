@@ -13,8 +13,45 @@
 			echo '';
 		}	
 
-		function formulaireAjoutMoto(){
-			include("./Html/FormulaireAjoutMotoMotard.php");
+		function formulaireAjoutMoto($marqueMoto){
+			//include("./Html/FormulaireAjoutMotoMotard.php");
+			echo '<form id ="formulaireAjoutMoto" method="post" action="./index.php?module=Motard&action=ajoutMoto">
+			
+				<label>Immatriculation</label>
+				<input type="text" name="Immat"required><br>
+				<label>Annee</label>
+				<input type="text" name="Annee"required><br>
+
+				<label for="marque">Marque</label>';
+				
+				//$resultat=$marqueMoto;
+				
+				echo'<select name="Marque" id="marque">';
+
+				
+				while ($donnees = $marqueMoto->fetch()) {
+				
+				echo '<option id="marqueSelectionee" value="'.$donnees[0].'">'.$donnees[0].'</option>';		
+				}
+				echo '</select><br>';
+				
+				echo'<script>
+
+				function afficher() {
+				var saisie =document.getElementById("marqueSelectionee").value;
+				return saisie ;
+				}
+				
+				</script>';
+
+				echo '<script>afficher();</script>';
+				
+				echo'
+				<label>Modele</label>
+				<input type="text" name="Modele"required><br>				
+				<input type="submit" value="Ajouter cette moto">
+
+			</form>';
 		}
 
 		function afficherProfil() {
@@ -81,7 +118,9 @@
 				Voulez-vous vraiment SUPPRIMER cet enregistrement ?<br />
 				<form method="post" action="index.php?module=Motard&action=suppressionMotoOk">
 				<input type="hidden" name="id" id="id" value="'.$_POST['id'].'">
-				<input type="submit" name="Supprimer" id="Supprimer" value="Supprimer">
+				<input class="avertissementSupression" type="submit" name="Supprimer" id="Supprimer" value="Supprimer">
+				<a class="avertissementSupression" href="index.php?module=Motard&action=mesMotos" > <input type="button" onclick="window.location.href=this.parentNode.href.value" value="Annuler" /></a>
+
 				</form>
 				';
 			}

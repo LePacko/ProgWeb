@@ -30,7 +30,7 @@
 		}
 
 		function formulaireAjoutMoto () {
-		$this->Vue->formulaireAjoutMoto();
+		$this->Vue->formulaireAjoutMoto($this->Modele->recupererMarqueMoto());
 		}
 
 		function ajoutMoto (){

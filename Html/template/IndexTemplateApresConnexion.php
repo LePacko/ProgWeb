@@ -3,11 +3,12 @@
 <head>
 	<title></title>
 	<meta charset="utf-8">
+	<link rel="stylesheet" href="./Html/style/styleApresConnexion.css" type="text/css"/>
 	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
 	<script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/2.0.2/anime.min.js"></script>
-	<link rel="stylesheet" href="./Html/style/IndexApresConnexion.css" type="text/css"/>
+	
 </head>
 <svg viewBox="0 0 1200 700" xmlns="http://www.w3.org/2000/svg"
   version="1.1" class="svg">

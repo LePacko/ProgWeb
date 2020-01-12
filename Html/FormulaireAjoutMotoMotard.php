@@ -14,12 +14,23 @@
 				<label>Annee</label>
 				<input type="text" name="Annee"required><br>
 
-				<label for="marque">Dans quel pays habitez-vous ?</label><br />
-				<select name="marque" id="marque">
-				</select>
-				<label>Modele</label>
-				<input type="text" name="Modele"required><br>
+				<label for="marque">Marque</label><br />
+				<?php
+				$resultat=$this->Modele->recupererMarqueMoto();
+				echo'<select name="marque" id="marque">',"\n";
+
+				var_dump($resultat->errorInfo());
+				while ($donnees = $reponse->fetch()) {
+				echo "\t",'<option value="', $donnees['marque'] ,'"', '' ,'>','</option>',"\n";			
+				}
+				echo '</select>',"\n";
+				?>
 				
+				
+				
+					
+				<label>Modele</label>
+				<input type="text" name="Modele"required><br>				
 				<input type="submit" value="Ajouter cette moto">
 
 			</form>
