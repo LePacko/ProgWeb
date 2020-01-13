@@ -9,6 +9,33 @@ include_once("./FonctionsUtiles.php");
 			parent::init();
 			
 		}
+		function profil(){
+			$req = parent::$connexion->query('select * from entreprise where entreprise.siret='.$_SESSION['session_gerant']);
+			$res = array (
+				"SIRET"  => array(),
+				"denomination" => array(),
+				"adresse" => array(),
+				"code_postale" => array(),
+				"numero_tel" => array(),
+				"date_d_affiliation" => array(),
+				"mail_entreprise" => array()
+
+			);
+			$i =0;
+			while ($donne = $req->fetch()) {
+
+				$res[$i][0] = $donne['SIRET'];
+				$res[$i][1] = $donne['denomination'];
+				$res[$i][2] = $donne['adresse'];
+				$res[$i][3] = $donne['code_postale'];
+				$res[$i][4] = $donne['numero_tel'];
+				$res[$i][5] = $donne['date_d_affiliation'];
+				$res[$i][6] = $donne['mail_entreprise'];
+				$i ++;
+			}
+			return $res;
+
+		}
 		function AjoutCircuit() {
 
 			//Récupération des vaiables entrée dans le formulaire 
@@ -158,6 +185,7 @@ include_once("./FonctionsUtiles.php");
 			return $res;
 
 		}
+		
 		function recupereSession(){
 			$req = parent::$connexion->query('select * from session inner join circuit where  id_session='.$_GET['idSession'].' and session.id_circuit=circuit.id_circuit ');
 			$i =0;
@@ -166,17 +194,57 @@ include_once("./FonctionsUtiles.php");
 				$res[$i][0] = $donne['date'];
 				$res[$i][1] = $donne['nb_place'];
 				$res[$i][2] = $donne['tarif'];
+				
 				$res[$i][4] = $donne['nb_participant'];
 				$res[$i][5] = $donne['heure_debut'];
 				$res[$i][6] = $donne['heure_fin'];
 				$res[$i][7] = $donne['nom'];
 				$res[$i][8] = $donne['id_session'];
+				if($donne['date']<date('Y-m-d')){
+					$res[$i][3]="Terminée";
+				}
+				else{
+					$res[$i][3]="a venir";
+				}
 				$i ++;
 			}
 
 			return $res;
 		}
 		
+		function recupereCircuit(){
+			$req = parent::$connexion->query('select * from circuit where id_circuit='.$_GET['idCircuit']);
+			$i =0;
+			while ($donne = $req->fetch()) {
+
+				$res[$i][0] = $donne['nom'];
+				$res[$i][1] = $donne['adresse'];
+				$res[$i][2] = $donne['code_postale'];
+				$res[$i][3] = $donne['longueur'];
+				$res[$i][4] = $donne['id_circuit'];
+				$i ++;
+			}
+
+			return $res;
+		}
+		function modifieValide(){
+			$Denomination = $_POST['Denomination'];		
+			$CodePostal = $_POST['CodePostal'];
+			$Mail = $_POST['Mail'];
+			$NumeroTel = $_POST['NumeroTel'];
+			$Adresse = $_POST['Adresse'];
+			$req = parent::$connexion->prepare('UPDATE entreprise set denomination=:Denomination,adresse=:Adresse,code_postale=:CodePostal,numero_tel=:NumeroTel,mail_entreprise=:Mail  where entreprise.siret='.$_SESSION['session_gerant']);
+			$req->execute(array(
+				'Adresse' => $Adresse,
+				'CodePostal' => $CodePostal,
+				'Denomination' => $Denomination,
+				'Mail' =>$Mail,
+				'NumeroTel' => $NumeroTel
+			));
+			FonctionsUtiles::redirectionPage("index.php?module=Gerant&action=profil");
+		}
+		
+
 
 	}
 

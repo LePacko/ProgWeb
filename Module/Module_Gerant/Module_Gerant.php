@@ -48,7 +48,16 @@
 				case 'PageSession':
 					$this->Controleur->PageSession();
 				break;
-				
+				case 'PageCircuit':
+					$this->Controleur->PageCircuit();
+				break;
+				case 'modifieProfil':
+					$this->Controleur->modifieProfil();
+				break;
+				case 'modifieValide':
+					$this->Controleur->modifieValide();
+				break;
+
 			}
 		}
 

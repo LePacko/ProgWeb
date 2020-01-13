@@ -14,7 +14,8 @@
 			$this->Modele = new Modele_Gerant();
 		}
 		function profil () {
-			echo'profil';
+			$info=$this->Modele->profil();
+			$this->Vue->afficheProfil($info);
 		}
 
 		function mescircuits() {
@@ -41,6 +42,20 @@
 		function PageSession () {
 					$info=$this->Modele->recupereSession();
 					$this->Vue->InfoSession($info);
+		}
+		function PageCircuit () {
+			$info=$this->Modele->recupereCircuit();
+			$this->Vue->InfoCircuit($info);
+		}
+		function modifieProfil(){
+			$info=$this->Modele->profil();
+			$this->Vue->modifieProfil($info);
+
+		}
+		function modifieValide(){
+			$info=$this->Modele->modifieValide();
+			$this->Vue->modifieProfil($info);
+
 		}
 	}
 
