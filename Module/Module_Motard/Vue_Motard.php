@@ -170,7 +170,7 @@
 						var nbcircuit = <?php echo $nbcircuit; ?>;
 						var tour = <?php echo $_GET['tour'] ?>;
 						
-						if(tour == nbcircuit-1) 
+						if(tour == nbcircuit-2) 
 							toursuivant = 0;
 						else toursuivant = tour+1;
 						
@@ -182,9 +182,10 @@
 						
 						var nbcircuit = <?php echo $nbcircuit; ?>;
 						var tour = <?php echo $_GET['tour'] ?>;
+						alert(nbcircuit);
 						
 						if(tour == 0) 
-							toursuivant = nbcircuit-1;
+							toursuivant = nbcircuit-2;
 						else toursuivant = tour-1;
 						
 						document.location.href="index.php?module=Motard&action=trouverSession&tour="+toursuivant;
@@ -266,6 +267,34 @@
 			}
 
 			FonctionsUtiles::RetourPagePrecedente();
+
+		}
+
+		function Avis($avis) {
+
+			// echo count($avis);
+
+			if(count($avis)==5){
+				echo' Il n\'ya aucun avis pour ce circuit';
+			}
+			else {
+				
+			$nbavis = count($avis) - count($avis[0]);
+			
+			for ($j = 0; $j<$nbavis; $j++) {
+				echo '<div class = avis>';
+				$tab = $avis[$j];
+				foreach($tab as $i => $value) {	
+					
+					if($i!=2) {
+					echo '<p>';
+					echo $value ;
+					echo '</p>';}					
+				}
+				echo '</div>';
+			}
+
+			}
 
 		}
 	}

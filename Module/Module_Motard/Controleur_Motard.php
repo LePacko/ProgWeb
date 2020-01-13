@@ -22,6 +22,9 @@
 		function trouverSession () {
 			$tableauCircuit = $this->Modele->ListeCircuit();
 			$this->Vue->ListeCircuit($tableauCircuit);
+
+			$avis = $this->Modele->Avis($tableauCircuit);
+			$this->Vue->Avis($avis);
 		}
 
 		function SessionEffectue() {
@@ -51,13 +54,19 @@
 
 		function Circuit () {   
 			$sessions = $this->Modele->Circuit();
+			
 			$this->Vue->Circuit($sessions);
+			
 		}
 
 		function ReserverSession () {
 			$placedisponible = $this->Modele->ReserverSession();
 			$this->Vue->ReserverSession($placedisponible);
+			
+			
 		}
+
+		
 	
 	}
 
