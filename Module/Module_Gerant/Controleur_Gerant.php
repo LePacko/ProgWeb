@@ -38,6 +38,8 @@
 		
 		function ajoutSession() {
 			$this->Modele->ajoutSession();
+			FonctionsUtiles::redirectionPage("index.php?module=Gerant&action=messessions");
+
 		}
 		function PageSession () {
 			$info=$this->Modele->recupereSession();

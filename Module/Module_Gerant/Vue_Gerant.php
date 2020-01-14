@@ -84,7 +84,9 @@
 			echo 'heure de debut: '.$tab[5].'<br>';
 			echo 'heure de fin: '.$tab[6].'<br>';
 			echo 'nom du circuit: '.$tab[7].'<br>';
+			if($tab[0]>date('Y-m-d')){
 			echo'<a href="./index.php?module=Gerant&action=modifieSession&idSession='.$_GET['idSession'].'"> modifier </a>';
+			}
 			FonctionsUtiles::RetourPagePrecedente();
 
 		}
