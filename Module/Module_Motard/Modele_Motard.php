@@ -309,13 +309,26 @@ include_once("./FonctionsUtiles.php");
 				$i ++;
 			}
 
-			
-
-			
-
 			return $res; 
 
 		}
 		
+		function EnvoyerAvis() {
+
+			$note = $_POST['note'];
+			$commentaire = $_POST['commentaire'];
+			$id_motard = $_SESSION['session_motard'];
+			$tour = $_GET['tour'];
+			
+			$req= parent::$connexion->prepare('select id_circuit from circuit limit '.$tour.',1');
+			$req -> execute();
+			$donne= $req->fetch();
+			$id_circuit = $donne['id_circuit'];
+			
+			$reqEnvoyerAvis= parent::$connexion->query('insert into avis (note,commentaire,id_motard,id_circuit) values ("'.$note.'","'.$commentaire.'","'.$id_motard.'","'.$id_circuit.'")');
+			
+			
+
+		}
 	}
 ?>

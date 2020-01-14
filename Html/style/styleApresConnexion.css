@@ -27,8 +27,28 @@ section a:hover {
 	text-decoration: none;
 }
 
-#circuitcourant {
-	translate: 20% 20%;
+.inlineblock{
+	display: inline-block;
+}
+
+.circuit {
+	margin-bottom: 3em;
+	text-align: center;
+	/* animation: fondu 2s linear forwards; */
+}
+
+.circuitcourant {
+	margin-left: 2em;
+	margin-right: 2em;
+
+}
+
+
+#bouttonsuivant, #bouttonprecedent {
+	background-color: transparent;
+	border: transparent;
+	font-size: 5em;
+	color: white;
 }
 
 img {
@@ -86,6 +106,12 @@ img {
 @keyframes dash{
 	to {
 		stroke-dashoffset: -200;
+	}
+}
+
+@keyframes fondu {
+	from {
+		opacity: 0;
 	}
 }
 

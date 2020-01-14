@@ -66,6 +66,12 @@
 			
 		}
 
+		function EnvoyerAvis () {
+			$estenvoyer = $this->Modele->EnvoyerAvis();
+			$this->Vue->EnvoyerAvis($estenvoyer);
+			
+		} 
+
 		
 	
 	}
