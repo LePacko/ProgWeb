@@ -14,7 +14,7 @@
 				<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
 				<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.7.14/css/bootstrap-datetimepicker.min.css">
 
-			<form method="post" action="./index.php?module=Gerant&action=ajoutSession">
+			<form method="post" action="./index.php?module=Gerant&action=messessions">
 			
 				<label>date</label>
 				<input type="date" name="date"required value="<?php echo date('Y-m-d'); ?>" min="<?php echo date('Y-m-d'); ?>"><br>

@@ -40,8 +40,8 @@
 			$this->Modele->ajoutSession();
 		}
 		function PageSession () {
-					$info=$this->Modele->recupereSession();
-					$this->Vue->InfoSession($info);
+			$info=$this->Modele->recupereSession();
+			$this->Vue->InfoSession($info);
 		}
 		function PageCircuit () {
 			$info=$this->Modele->recupereCircuit();
@@ -53,9 +53,23 @@
 
 		}
 		function modifieValide(){
-			$info=$this->Modele->modifieValide();
-			$this->Vue->modifieProfil($info);
+			$this->Modele->modifieValide();
+		}
+		function modifieCircuit(){
+			$info=$this->Modele->recupereCircuit();
+			$this->Vue->modifieCircuit($info);
 
+		}
+		function modifieValideCircuit(){
+			$this->Modele->modifieValideCircuit();
+		}
+		function modifieSession(){
+			$info=$this->Modele->recupereSession();
+			$this->Vue->modifieSession($info);
+
+		}
+		function modifieValideSession(){
+			$this->Modele->modifieValideSession();
 		}
 	}
 
