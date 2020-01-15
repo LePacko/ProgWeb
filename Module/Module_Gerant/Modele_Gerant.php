@@ -9,6 +9,9 @@ include_once("./FonctionsUtiles.php");
 			parent::init();
 			
 		}
+		function acceuil(){
+			
+		}
 		function profil(){
 			$req = parent::$connexion->query('select * from entreprise where entreprise.siret='.$_SESSION['session_gerant']);
 			$res = array (

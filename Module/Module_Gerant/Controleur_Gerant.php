@@ -13,6 +13,9 @@
 			$this->Vue = new Vue_Gerant();
 			$this->Modele = new Modele_Gerant();
 		}
+		function acceuil(){
+			$info=$this->Model->acceuil();
+		}
 		function profil () {
 			$info=$this->Modele->profil();
 			$this->Vue->afficheProfil($info);
@@ -27,6 +30,8 @@
 		}
 		function ajoutCircuit () {
 			$this->Modele->ajoutCircuit();
+			FonctionsUtiles::redirectionPage("index.php?module=Gerant&action=mescircuits");
+
 		}
 		function messessions() {
 			$tableauSession = $this->Modele->Session();
