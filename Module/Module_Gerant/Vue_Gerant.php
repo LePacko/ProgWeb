@@ -30,7 +30,7 @@
 					$tab = $tableauCircuit[$j];
 					if($tab[5]==$_SESSION['session_gerant']){
 						$valeurValide=false;
-						echo'<a href="./index.php?module=Gerant&action=PageCircuit&idCircuit='.$tab[6].'">';
+						echo'<a id=session href="./index.php?module=Gerant&action=PageCircuit&idCircuit='.$tab[6].'">';
 						foreach($tab as $i => $value) {
 								if($i!=5)
 									echo $value . ' ';
@@ -60,7 +60,7 @@
 				for ($j = 0; $j<$nbsession; $j++) {
 					$tab = $tableauSession[$j];
 						$valeurValide=false;
-						echo'<a href="./index.php?module=Gerant&action=PageSession&idSession='.$tab[8].'">';
+						echo'<a id="session" href="./index.php?module=Gerant&action=PageSession&idSession='.$tab[8].'">';
 						foreach($tab as $i => $value) {
 							
 									echo $value . ' ';
@@ -88,14 +88,20 @@
 			echo 'nombre de participant: '.$tab[4].'<br>';
 			echo 'heure de debut: '.$tab[5].'<br>';
 			echo 'heure de fin: '.$tab[6].'<br>';
-			echo 'nom du circuit: '.$tab[7].'<br>';
+			echo 'nom du circuit: '.$tab[7].'<br><br>';
 			if($tab[0]>date('Y-m-d')){
 			echo'<a href="./index.php?module=Gerant&action=modifieSession&idSession='.$_GET['idSession'].'"> modifier </a>';
 			}
 
-			echo '<br>';
+			echo '<br><br> <span>MOTARD qui as reserver la session</span><br>';
 			if(isset($tabInfo)){
-				echo 'nom motard: '.$tabInfo[0].'<br>';
+				foreach($infoMotard as $i => $value) {
+					echo ' motard: '.$value[0];
+					echo ' '.$value[1].'<br>';
+				}
+			}
+			else{
+				echo '<span> aucun motard ne l\'as encore reserve</span><br><br>';
 			}
 
 			FonctionsUtiles::RetourPagePrecedente();

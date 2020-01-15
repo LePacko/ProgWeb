@@ -162,5 +162,11 @@ form {
 	border: hidden;
 	color:black;
 }
+#session{
+	border:hidden;
+}
+#session:hover{
+	color:white;
+}
 
 
