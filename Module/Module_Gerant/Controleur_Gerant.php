@@ -14,7 +14,7 @@
 			$this->Modele = new Modele_Gerant();
 		}
 		function acceuil(){
-			$info=$this->Model->acceuil();
+			$info=$this->Modele->acceuil();
 		}
 		function profil () {
 			$info=$this->Modele->profil();
@@ -48,7 +48,8 @@
 		}
 		function PageSession () {
 			$info=$this->Modele->recupereSession();
-			$this->Vue->InfoSession($info);
+			$infoMotard=$this->Modele->recupereInfoMotard();
+			$this->Vue->InfoSession($info,$infoMotard);
 		}
 		function PageCircuit () {
 			$info=$this->Modele->recupereCircuit();
