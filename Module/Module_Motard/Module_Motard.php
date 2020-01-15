@@ -57,6 +57,10 @@
 					$this->Controleur->ReserverSession();
 				break;
 
+				case 'EnvoyerAvis' : 
+					$this->Controleur->EnvoyerAvis();
+				break;
+
 			}
 		}
 	}

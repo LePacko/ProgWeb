@@ -7,8 +7,6 @@
 	include_once("./FonctionsUtiles.php");
 	class Vue_Motard {
 
-		
-
 		function __construct() {			
 		}
 
@@ -128,8 +126,7 @@
 				';
 			}
 		}
-		
-		
+				
 		function ListeCircuit($tableauCircuit) {
 
 			if(count($tableauCircuit)==6){
@@ -143,21 +140,27 @@
 			
 
 			?>
-			
-			<div>
-				<h1 id="nomCourant"><?php echo $tableauCircuit[$_GET['tour']][0] ?></h1>
-				<p id="adresseCourant"><?php echo "Adresse: ".$tableauCircuit[$_GET['tour']][1] ?></p>
-				<p id="tourkmCourant"><?php echo "Km au tour: ".$tableauCircuit[$_GET['tour']][3] ?></p>
-			</div>
 
-			<div>
-				<button id="bouttonprecedent">Precedent</button>
-				<button id="bouttonsuivant">Suivant</button>
-			</div>
+			<div class="circuit">
 
-			<a href="index.php?module=Motard&action=Circuit&IdCircuit=<?php echo $tableauCircuit[$_GET['tour']][6] ?>">Voir les sessions pour ce circuit</a>
-			
-			
+				<div class="inlineblock">
+					<button id="bouttonprecedent"><</button>
+				</div>
+				
+				<div class="inlineblock circuitcourant"> 
+					<h1 id="nomCourant"><?php echo $tableauCircuit[$_GET['tour']][0] ?></h1>
+					<p id="adresseCourant"><?php echo "Adresse: ".$tableauCircuit[$_GET['tour']][1] ?></p>
+					<p id="tourkmCourant"><?php echo "Km au tour: ".$tableauCircuit[$_GET['tour']][3] ?></p>
+				</div>
+
+				<div class="inlineblock">
+					<button id="bouttonsuivant">></button>
+				</div>
+
+				<div>
+					<a href="index.php?module=Motard&action=Circuit&IdCircuit=<?php echo $tableauCircuit[$_GET['tour']][6] ?>">Voir les sessions pour ce circuit</a>
+				</div>
+			</div>
 			
 
 			<script>
@@ -170,12 +173,12 @@
 						var nbcircuit = <?php echo $nbcircuit; ?>;
 						var tour = <?php echo $_GET['tour'] ?>;
 						
-						if(tour == nbcircuit-1) 
+						if(tour == nbcircuit-2) 
 							toursuivant = 0;
 						else toursuivant = tour+1;
 						
 						document.location.href="index.php?module=Motard&action=trouverSession&tour="+toursuivant;
-						
+						elem.style.color = 'black';
 					});
 			
 					$('#bouttonprecedent').on('click', function() {
@@ -183,8 +186,9 @@
 						var nbcircuit = <?php echo $nbcircuit; ?>;
 						var tour = <?php echo $_GET['tour'] ?>;
 						
+						
 						if(tour == 0) 
-							toursuivant = nbcircuit-1;
+							toursuivant = nbcircuit-2;
 						else toursuivant = tour-1;
 						
 						document.location.href="index.php?module=Motard&action=trouverSession&tour="+toursuivant;
@@ -196,7 +200,6 @@
 
 		}
 		
-
 		function SessionReserver($sessionReserver) {
 
 			if(count($sessionReserver)==2){
@@ -267,6 +270,54 @@
 
 			FonctionsUtiles::RetourPagePrecedente();
 
+		}
+
+		function Avis($avis) {
+
+			echo '<div class= avis>';
+
+			if(count($avis)==5){
+				echo' Il n\'ya aucun avis pour ce circuit ajouter en un ';
+			}
+			else {
+				
+			$nbavis = count($avis) - count($avis[0]);
+			
+			for ($j = 0; $j<$nbavis; $j++) {
+				echo '<div class = avis>';
+				$tab = $avis[$j];
+				foreach($tab as $i => $value) {	
+					
+					if($i!=2) {
+					echo '<p>';
+					echo $value ;
+					echo '</p>';}					
+				}
+				echo '</div>';
+			}
+
+			
+			
+
+			}
+
+			echo '	<div>
+						<form action="index.php?module=Motard&action=EnvoyerAvis&tour='.$_GET['tour'].'" method="post">
+							<label>Note/5: </label>
+							<input type="texte" id="note" name="note"/>
+							<label>Commentaire: </label>
+							<input type="texte" id="commentaire" name="commentaire"/>
+							<button type="submit">Envoyer mon avis</button>
+					</div>
+				</div>
+			
+			';
+
+		}
+
+		function EnvoyerAvis($estenvoyer) {
+
+			echo '<h2>Merci pour votre Avis</h2>';
 		}
 	}
 	

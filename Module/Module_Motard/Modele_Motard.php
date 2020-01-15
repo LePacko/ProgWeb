@@ -29,7 +29,8 @@ include_once("./FonctionsUtiles.php");
 				"codePostale" => array(),
 				"longeur" => array(),
 				"imageCircuit" => array(),
-				"siret" => array()
+				"siret" => array(),
+				"id_circuit"=> array()
 			);
 
 			$i =0;
@@ -288,6 +289,51 @@ include_once("./FonctionsUtiles.php");
 			
 		}
 
+		function Avis($tableauCircuit) {
+
+			$IdCircuit = $tableauCircuit[$_GET['tour']][6];
+			$reqSession = parent::$connexion->prepare('select note, commentaire, id_circuit, nom,prenom from avis natural join motard where id_circuit='.$IdCircuit);
+			$reqSession->execute();
+
+			$res = array(//Initialisation du tableau 
+				"note" => array(),
+				"commentaire" => array(),
+				"id_circuit" => array(),
+                "Nom Motard" => array(),
+				"Prenom Motard"=>array()
+			);
+
+			$i=0;
+			while ($donne = $reqSession->fetch()) {
+
+				$res[$i][0] = $donne['note'];
+				$res[$i][1] = $donne['commentaire'];
+				$res[$i][2] = $donne['id_circuit'];
+				$res[$i][3] = $donne['nom'];
+				$res[$i][4] = $donne['prenom'];
+				$i ++;
+			}
+
+			return $res; 
+
+		}
 		
+		function EnvoyerAvis() {
+
+			$note = $_POST['note'];
+			$commentaire = $_POST['commentaire'];
+			$id_motard = $_SESSION['session_motard'];
+			$tour = $_GET['tour'];
+			
+			$req= parent::$connexion->prepare('select id_circuit from circuit limit '.$tour.',1');
+			$req -> execute();
+			$donne= $req->fetch();
+			$id_circuit = $donne['id_circuit'];
+			
+			$reqEnvoyerAvis= parent::$connexion->query('insert into avis (note,commentaire,id_motard,id_circuit) values ("'.$note.'","'.$commentaire.'","'.$id_motard.'","'.$id_circuit.'")');
+			
+			
+
+		}
 	}
 ?>

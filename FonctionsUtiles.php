@@ -13,6 +13,9 @@ Class FonctionsUtiles {
 	public static function redirectionPage ($url) {
 		echo '<META http-equiv="refresh" content="2; URL='.$url.'">';
 	}
+	public static function redirectionPageDelai ($url) {
+		echo '<META http-equiv="refresh" content="2; URL='.$url.'">';
+	}
 
 	public static function redirectionFormulaireAjoutMoto () {
 		echo '<META http-equiv="refresh" content="2; URL=index.php?module=Motard&action=formulaireAjoutMoto">';

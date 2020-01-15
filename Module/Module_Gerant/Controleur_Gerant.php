@@ -14,7 +14,8 @@
 			$this->Modele = new Modele_Gerant();
 		}
 		function profil () {
-			echo'profil';
+			$info=$this->Modele->profil();
+			$this->Vue->afficheProfil($info);
 		}
 
 		function mescircuits() {
@@ -37,10 +38,40 @@
 		
 		function ajoutSession() {
 			$this->Modele->ajoutSession();
+			FonctionsUtiles::redirectionPage("index.php?module=Gerant&action=messessions");
+
 		}
 		function PageSession () {
-					$info=$this->Modele->recupereSession();
-					$this->Vue->InfoSession($info);
+			$info=$this->Modele->recupereSession();
+			$this->Vue->InfoSession($info);
+		}
+		function PageCircuit () {
+			$info=$this->Modele->recupereCircuit();
+			$this->Vue->InfoCircuit($info);
+		}
+		function modifieProfil(){
+			$info=$this->Modele->profil();
+			$this->Vue->modifieProfil($info);
+
+		}
+		function modifieValide(){
+			$this->Modele->modifieValide();
+		}
+		function modifieCircuit(){
+			$info=$this->Modele->recupereCircuit();
+			$this->Vue->modifieCircuit($info);
+
+		}
+		function modifieValideCircuit(){
+			$this->Modele->modifieValideCircuit();
+		}
+		function modifieSession(){
+			$info=$this->Modele->recupereSession();
+			$this->Vue->modifieSession($info);
+
+		}
+		function modifieValideSession(){
+			$this->Modele->modifieValideSession();
 		}
 	}
 

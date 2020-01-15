@@ -7,13 +7,13 @@ section {
 	margin-top: 10%;
 	margin-left: 30%;
 	width: 40%;
-	color:white;
+	color: #e06666;
 	
 }
 
 section a {
 	text-decoration: none;
-	color: white;
+	color:#e06666;
 	border: solid 1px white;
 	border-radius: 5%;
 	padding: 2%;
@@ -23,12 +23,32 @@ section a {
 section a:hover {
 
 	border: solid 1px #e06666;
-	color: white;
+	color: #e06666;
 	text-decoration: none;
 }
 
-#circuitcourant {
-	translate: 20% 20%;
+.inlineblock{
+	display: inline-block;
+}
+
+.circuit {
+	margin-bottom: 3em;
+	text-align: center;
+	/* animation: fondu 2s linear forwards; */
+}
+
+.circuitcourant {
+	margin-left: 2em;
+	margin-right: 2em;
+
+}
+
+
+#bouttonsuivant, #bouttonprecedent {
+	background-color: transparent;
+	border: transparent;
+	font-size: 5em;
+	color: white;
 }
 
 img {
@@ -86,6 +106,12 @@ img {
 @keyframes dash{
 	to {
 		stroke-dashoffset: -200;
+	}
+}
+
+@keyframes fondu {
+	from {
+		opacity: 0;
 	}
 }
 
