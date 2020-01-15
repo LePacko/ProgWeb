@@ -153,13 +153,18 @@ include_once("./FonctionsUtiles.php");
 					'modele'=> $modele		
 								
 					));
-					FonctionsUtiles::msgBox("La moto a ete ajoutee avec succes");
 					FonctionsUtiles::redirectionFormulaireAjoutMoto();
+					FonctionsUtiles::msgBox("La moto a ete ajoutee avec succes");
+					
 					}
 				}
 			}
 
-			else{FonctionsUtiles::msgBox("vous avez atteint le nombre maximum de moto");}
+			else{
+			FonctionsUtiles::msgBox("vous avez atteint le nombre maximum de moto");
+			FonctionsUtiles::redirectionPage("index.php?module=Motard&action=mesMotos");
+			}
+
 		}
 
 		function Circuit() {

@@ -2,7 +2,7 @@
 	
 	require_once("./Module/Module_Connexion/Modele_Connexion.php");
 	require_once("./Module/Module_Connexion/Vue_Connexion.php");
-
+	include_once("./FonctionsUtiles.php");
 
 	class Controleur_Connexion {
 		
@@ -22,7 +22,29 @@
 		function connexion () {
 			$login = htmlspecialchars($_POST['id']);
 			$mdp = hash('sha256', $_POST['mdp']);
-			$this -> Modele -> validerConnexion($login,$mdp);
+			$resultatMotard = $this->Modele->testerConnexionMotard($login,$mdp); // contenant l'id du motard qui souhaite se connecter si le login et le mdp sont correct
+			/*on teste d'abord si la personne souhaitant se connecter est un motard en recherchant dans la table
+			motard si une adresse mail correspond au login de l'utilisateur qui essaye de se connecter, si ce n'est pas le cas
+			on teste si il s'agit d'un gerant de circuit */
+
+			if(!isset($resultatMotard[0])) { 
+				$resultatGerant = $this->Modele->testerConnexionGerant($login,$mdp);
+				if (!isset($resultatGerant[0])){
+				// si encore une fois il n'y a rien dans le resultat de la requete c'est donc qu'il n'y a pas de correspondance entre le login et le mot de passe saisie dans la bd
+					FonctionsUtiles::msgBox("identifiant ou mot de passe incorrect");
+				}
+				else { 
+				// sinon il s'agit d'un gerant de circuit est on affecte à une variable de session le numero siret du gerant qui est une cle unique
+					echo "je suis co";
+					$_SESSION['session_gerant'] = $resultatGerant[0];
+				}
+			}
+
+			else {
+				// si on entre dans ce else c'est que le resultat de la premiere requete a retourne quelquechose donc il s'agit d'un motard bien present dans la bd
+				echo "je suis co";
+				$_SESSION['session_motard'] = $resultatMotard[0];
+			}
 		}
 					
 		function deconnexion() {

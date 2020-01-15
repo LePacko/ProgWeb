@@ -5,6 +5,7 @@
 	require_once("./Module/Module_Motard/Module_Motard.php");
 	require_once("./Module/Module_Gerant/Module_Gerant.php");
 
+	
 		if(!isset($_SESSION['login']) && !defined('CONST_INCLUDE')){
    	 	session_start();
     	define('CONST_INCLUDE',NULL);/*on definit une constante pour dire que l'on passe par l'index 
