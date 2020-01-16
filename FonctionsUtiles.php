@@ -22,7 +22,7 @@ Class FonctionsUtiles {
 	}
 
 	public static function RetourPagePrecedente() {
-		?><a href="<?php echo $_SERVER['HTTP_REFERER']; ?>">Retour</a><?php
+		?><a class='bouttonretour' href="<?php echo $_SERVER['HTTP_REFERER']; ?>">Retour</a><?php
 	}
 
 	/*<?php

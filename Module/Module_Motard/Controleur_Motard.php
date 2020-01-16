@@ -27,9 +27,14 @@
 			$this->Vue->Avis($avis);
 		}
 
-		function SessionEffectue() {
+		function SessionReserver() {
 			$sessionReserver = $this->Modele->SessionReserver();
 			$this->Vue->SessionReserver($sessionReserver);
+		}
+
+		function SessionEffectuer() {
+			$sessionEffectuer = $this->Modele->SessionEffectuer();
+			$this->Vue->SessionEffectuer($sessionEffectuer);
 		}
 
 		function formulaireAjoutMoto () {

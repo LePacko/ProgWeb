@@ -25,8 +25,12 @@
 					$this->Controleur->trouverSession();
 				break;
 
-				case 'SessionEffectue':
-					$this->Controleur->SessionEffectue();
+				case 'SessionReserver':
+					$this->Controleur->SessionReserver();
+				break;
+
+				case 'SessionEffectuer': 
+					$this->Controleur->SessionEffectuer();
 				break;
 
 				case 'formulaireAjoutMoto':

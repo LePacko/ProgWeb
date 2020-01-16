@@ -18,32 +18,22 @@
 </svg>
 <body class="body">
 
-	<div class="container">
-		<div class="row">
+	
 
-				<div class="col-lg-12 HautPage">
-				<div class="row">
+				<div class= "HautPage">
+				
 
-						<div class="col-lg-2 LogoTitre">
-						<div class="row">
+						<div class="LogoTitre inlineblock">
+						
 
-							<div class="col-lg-12">
-							<div class="row">
-								<img src="./Html/img/casque.png">
-							</div>
-							</div>
-
-							<!-- <div class="col-lg-12">
-							<div class="row">
-								<h1 class="TitreSite">Moto Session</h1>
-							</div>
-							</div> -->
 							
-						</div>
+								<img src="./Html/img/casque.png">
+							
+						
 						</div>
 
-						<div class="col-lg-10 Nav">
-						<div class="row">
+						<div class="Nav">
+						
 						<?php
 
 	                        if(isset($_SESSION['session_motard'])){       // si il s'agit d'un motard qui est connecté 
@@ -56,14 +46,14 @@
                    		
                 		?>
 
-						</div>
+						
 						</div>
 
 						
-				</div>
+				
 				</div>
 		
-		</div>	
+			
 	</div>	
 
 

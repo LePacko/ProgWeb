@@ -57,27 +57,59 @@ include_once("./FonctionsUtiles.php");
 			$id = $_SESSION['session_motard'];
 			
 
-			$req = parent::$connexion->prepare('select * from reserver where id_motard = '.$_SESSION['session_motard']);
+			$req = parent::$connexion->prepare('select temps_tour, nom, date from reserver natural join session natural join circuit WHERE id_motard = '.$id.' and temps_tour = 0');
 			$req->execute();
 
 			$res = array(
 				"session" => array(),
-				"tempTour"=> array()
+				"tempTour"=> array(),
+				"nomCircuit"=> array()
 			);
 
 			$i=0;
 			while ($donne = $req->fetch()) {
 
-				$res[$i][0] = $donne['id_session'];
-				$res[$i][1] = $donne['temps_tour'];				
+				$res[$i][0] = $donne['nom'];
+				$res[$i][1] = $donne['date'];	
+				$res[$i][2] = $donne['temps_tour'];			
 				$i ++;
 			}
+
 
 			$req->closeCursor();
 
 			return $res;
 			
 
+		}
+
+		function SessionEffectuer() {
+
+			$id = $_SESSION['session_motard'];
+			
+			$req = parent::$connexion->prepare('select temps_tour, nom, date from reserver natural join session natural join circuit WHERE id_motard = '.$id.' and temps_tour != 0');
+			$req->execute();
+
+			$res = array(
+				"session" => array(),
+				"tempTour"=> array(),
+				"nomCircuit"=> array()
+			);
+
+			$i=0;
+			while ($donne = $req->fetch()) {
+
+				$res[$i][0] = $donne['nom'];
+				$res[$i][1] = $donne['date'];	
+				$res[$i][2] = $donne['temps_tour'];			
+				$i ++;
+			}
+
+
+			$req->closeCursor();
+
+			return $res;
+			
 		}
 
 		function recupererMoto() {
@@ -172,26 +204,27 @@ include_once("./FonctionsUtiles.php");
 
 			//Recup�ration des informations concernant le circuit
 			$IdCircuit = $_GET['IdCircuit'];
-			$reqCircuit = parent::$connexion->prepare('select * from circuit where id_circuit = '.$IdCircuit);
-			$reqCircuit->execute();
+			
 
 			//Recup�ration date et heure actuel 
 			$annee = date("Y");
 			$mois = date("m");
 			$jour = date ("d");
 			$date_actuel = date("Y-m-d");
-			echo $date_actuel."<br>";
+			
 			$heure = date("G");
 			$minute = date("i");
 
 			  
 			$res = array(//Initialisation du tableau 
-				"id_session" => array(),
-				"nbplace" => array()
+				"date" => array(),
+				"heure_debut" => array(),
+				"heure_fin" => array(),
+				"nb_place" => array()
 			);
 
 			//Recuperation des sessions a venir et insertion dans le tableau res sur ce circuit pas le meme jour 
-			$req1 = 'select * from session where date > '.'"'.$date_actuel.'"
+			$req1 = 'select date, heure_debut, heure_fin, nb_place from session where date > '.'"'.$date_actuel.'"
 			and id_circuit= '.$IdCircuit;
 			$reqSession = parent::$connexion->prepare($req1);
 			$reqSession->execute();
@@ -199,13 +232,15 @@ include_once("./FonctionsUtiles.php");
 			$i=0;
 			while ($donne = $reqSession->fetch()) {
 
-				$res[$i][0] = $donne['id_session'];
-				$res[$i][1] = $donne['nb_place'];		
+				$res[$i][0] = $donne['date'];
+				$res[$i][1] = $donne['heure_debut'];
+				$res[$i][2] = $donne['heure_fin'];
+				$res[$i][3] = $donne['nb_place'];		
 				$i ++;
 			}
 
 			//Recuperation des sessions a venir et insertion dans le tableau res sur ce circuit le meme jopur mais plus tard 
-			$req2 = 'select * from session where date = '.'"'.$date_actuel.'"
+			$req2 = 'select  date, heure_debut, heure_fin, nb_place from session where date = '.'"'.$date_actuel.'"
 			and id_circuit = '.$IdCircuit.' and heure_debut >'.$heure;
 			$reqSession = parent::$connexion->prepare($req2);
 			$reqSession->execute();
@@ -213,8 +248,10 @@ include_once("./FonctionsUtiles.php");
 			$i=0;
 			while ($donne = $reqSession->fetch()) {
 
-				$res[$i][0] = $donne['id_session'];
-				$res[$i][1] = $donne['nb_place'];		
+				$res[$i][0] = $donne['date'];
+				$res[$i][1] = $donne['heure_debut'];
+				$res[$i][2] = $donne['heure_fin'];
+				$res[$i][3] = $donne['nb_place'];
 				$i ++;
 			}
 
@@ -306,11 +343,11 @@ include_once("./FonctionsUtiles.php");
 			$i=0;
 			while ($donne = $reqSession->fetch()) {
 
+				$res[$i][3] = $donne['prenom'];
+				$res[$i][4] = $donne['nom'];
+				$res[$i][2] = $donne['id_circuit'];
 				$res[$i][0] = $donne['note'];
 				$res[$i][1] = $donne['commentaire'];
-				$res[$i][2] = $donne['id_circuit'];
-				$res[$i][3] = $donne['nom'];
-				$res[$i][4] = $donne['prenom'];
 				$i ++;
 			}
 

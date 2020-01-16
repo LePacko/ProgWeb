@@ -3,11 +3,35 @@
 	background-color: #1c4587ff;
 }
 
+.LogoTitre {
+	width: 17%;
+	margin-top: 2%;
+	margin-left: 3%;
+	margin-right: 0;
+}
+
+.Nav {
+	width: 80%;
+	float: right;
+}
+
+textarea, #note{
+	border: solid thin white ;
+	background: transparent;
+}
+
+textarea {
+	min-width: 100%;
+	max-width: 0%;
+	min-height: 30%;
+	max-height: 30%;
+}
+
 section {
-	margin-top: 10%;
-	margin-left: 30%;
-	width: 40%;
-	color: #e06666;
+	margin-top: 8%;
+	
+	width: 100%;
+	color: white;	
 	
 }
 
@@ -20,7 +44,7 @@ section a {
 	margin-bottom: 1500px;
 }
 
-section a:hover {
+section a:hover{
 
 	border: solid 1px #e06666;
 	color: #e06666;
@@ -31,16 +55,107 @@ section a:hover {
 	display: inline-block;
 }
 
+.floatRight {
+	float: right;
+}
+
 .circuit {
 	margin-bottom: 3em;
 	text-align: center;
+	width: 50%;
 	/* animation: fondu 2s linear forwards; */
+}
+
+#lienreserver {
+	margin-top: 3%;
+}
+
+.avis {
+	width: 100%;
+	border-bottom: solid;
+	border-bottom-width: thin;
+	margin-bottom: 0,5%;
+}
+
+.avisbox {
+	float: right;
+	width: 50%;
+
+}
+
+.avisliste {
+	width: 80%;
+	height: 50%;
+	
+}
+
+#avisinput {
+	margin-top: 3%;
+	width: 80%;
+}
+
+#envoyerAvis {
+	margin-top: 3%;
+	color:#e06666;
+	border: solid 1px white;
+	background: transparent;
+	padding: 2%;
+	border-radius: 4px;
+} 
+
+#envoyerAvis:hover {
+	border-color: #e06666;
+}
+
+.bouttonretour {
+	padding: 1em;
+}
+
+#pasSession{
+	margin-top: 12%;
+	margin-bottom: 2%;
+}
+
+.ReserverSessionBoutton {
+	float: right;
+}
+
+.infosession {
+	width: 50%;
+}
+
+.scroller {
+
+	height: 100px;
+	overflow-y: scroll;
+	scrollbar-color: white #3661c7;
+	scrollbar-width: thin;
+	
+}
+
+#note {
+	width: 5%;
+	margin-right: 10%;
 }
 
 .circuitcourant {
 	margin-left: 2em;
 	margin-right: 2em;
 
+}
+
+#TitreSessionReserver,  #TitreSessionEffectuer{
+	text-align: center;
+	margin-bottom: 5%;
+}
+
+.SessionreserverListe, .SessionEffectuerListe {
+	width: 60%;
+	margin-left: 20%;
+}
+
+.SessionEffectuerListe{
+	height: 9em;
 }
 
 
@@ -60,9 +175,7 @@ img {
 	margin-top: 4%;
 }
 
-.LogoTitre {
-	margin-top: 2%;
-}
+
 
 
 .TitreSite, .NavTitre{

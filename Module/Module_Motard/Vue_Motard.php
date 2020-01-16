@@ -135,13 +135,10 @@
 			else{
 			$nbcircuit = 1 + count($tableauCircuit) - count($tableauCircuit[0]);
 			}
-			
-			
-			
 
 			?>
 
-			<div class="circuit">
+			<div class="circuit inlineblock">
 
 				<div class="inlineblock">
 					<button id="bouttonprecedent"><</button>
@@ -157,7 +154,7 @@
 					<button id="bouttonsuivant">></button>
 				</div>
 
-				<div>
+				<div id="lienreserver">
 					<a href="index.php?module=Motard&action=Circuit&IdCircuit=<?php echo $tableauCircuit[$_GET['tour']][6] ?>">Voir les sessions pour ce circuit</a>
 				</div>
 			</div>
@@ -178,7 +175,6 @@
 						else toursuivant = tour+1;
 						
 						document.location.href="index.php?module=Motard&action=trouverSession&tour="+toursuivant;
-						elem.style.color = 'black';
 					});
 			
 					$('#bouttonprecedent').on('click', function() {
@@ -202,54 +198,92 @@
 		
 		function SessionReserver($sessionReserver) {
 
-			if(count($sessionReserver)==2){
-				echo'Vous n avez pas Reserver de session <br>';
+			
+			if(count($sessionReserver)==3){
+				echo'<h2 id="AucuneSessionreserver">Vous n\'avez pas encore rezserver de session</h2> ';
 			}
 			else {
-				
-			$nbsession = count($sessionReserver) - count($sessionReserver[0]) . '<br>';
-			
-			for ($j = 0; $j<$nbsession; $j++) {
-				echo '<div class = sessionReserver>';
-				$tab = $sessionReserver[$j];
-				foreach($tab as $i => $value) {	
-					echo '<p>';
-					echo $value ;
-					echo '</p>';					
-				}
+
+
+			echo '<h1 id="TitreSessionReserver">Voici vos sessions reserver</h1>';
+			$nbavis = count($sessionReserver) - count($sessionReserver[0]);
+			echo '<div class="SessionreserverListe scroller">';
+			for ($j = 0; $j<$nbavis; $j++) {
+				echo '<div class = "avis">';
+
+				echo '<h5>';
+				echo $sessionReserver[$j][0].'<i> '.$sessionReserver[$j][1];
+				echo '</i></h5>';
+
 				echo '</div>';
 			}
+			echo '</div>';
+			}
+		}
 
+		function SessionEffectuer($sessionEffectuer) {
+
+			if(count($sessionEffectuer)==3){
+				echo'<h2 id="AucuneSessionEffectuer">Vous n\'avez pas encore effectuer de session</h2> ';
+			}
+			else {
+
+
+			echo '<h1 id="TitreSessionEffectuer">Voici vos sessions effectuer</h1>';
+			$nbavis = count($sessionEffectuer) - count($sessionEffectuer[0]);
+			echo '<div class="SessionEffectuerListe scroller">';
+			for ($j = 0; $j<$nbavis; $j++) {
+				echo '<div class = "avis">';
+
+				echo '<h5>';
+				echo $sessionEffectuer[$j][0].'<i> '.$sessionEffectuer[$j][1];
+				echo '</i></h5>';
+
+				echo '<h5>Temps au tour: '.$sessionEffectuer[$j][2].' min</h5>';
+
+				echo '</div>';
+			}
+			echo '</div>';
 			}
 		}
 
 		function Circuit($sessions) {
 
 			if (count($sessions)==2) {
-				echo'Il n\' y\'a pas de session disponible sur ce circuit <br>';
+				echo'<h2 id="pasSession">Il n\' y\'a pas de session disponible sur ce circuit</h2> <br>';
+				FonctionsUtiles::RetourPagePrecedente();
 			}
 			else {
-			$nbsession = count($sessions) - count($sessions[0]) . '<br>';
-			
-				for ($j = 0; $j<$nbsession; $j++) {
-					echo '<div>';
-					$tab = $sessions[$j];
-					foreach($tab as $i => $value) {	
-						echo '<p>';
-						echo $value ;
-						echo '</p>';
-					}	
-				$IdSession = $tab[0];
-				echo $IdSession;
-				?>
-				<a href="index.php?module=Motard&action=ReserverSession&IdSession=<?php echo $IdSession ?>">Reserver cette session</a>
-				<?php	
-				echo '</div>';			
-				}
-				
-				
 
+
+				echo '<h1 id="TitreSessionsCircuit">Voici vos sessions reserver</h1>';
+				$nbsession = count($sessions) - count($sessions[0]);
+				echo '<div class="SessionCircuitListe scroller">';
+				for ($j = 0; $j<$nbsession; $j++) {
+					echo '<div class = "avis">';
+					echo '<div class ="infosession"';
+					echo '<h5> Le: ';
+					echo $sessions[$j][0];
+					echo '</h5>';
+
+					echo '<h5> De: ';
+					echo $sessions[$j][1].' à: '.$sessions[$j][2];
+					echo '</h5>';
+					echo '</div>';
+
+					?>
+					<div  class='ReserverSessionBoutton'>
+					<a href="index.php?module=Motard&action=ReserverSession&IdSession=">Reserver cette session</a>
+					</div>
+					<?php
+	
+					echo '</div>';
+				}
+				echo '</div>';
+				
 			}
+
+			
 
 			
 		}
@@ -274,7 +308,9 @@
 
 		function Avis($avis) {
 
-			echo '<div class= avis>';
+			echo '<div class="avisbox inlineblock">';
+
+			echo '<h1>Faites vous un avis ...</h1>';
 
 			if(count($avis)==5){
 				echo' Il n\'ya aucun avis pour ce circuit ajouter en un ';
@@ -282,32 +318,38 @@
 			else {
 				
 			$nbavis = count($avis) - count($avis[0]);
-			
+			echo '<div class="avisliste scroller">';
 			for ($j = 0; $j<$nbavis; $j++) {
-				echo '<div class = avis>';
-				$tab = $avis[$j];
-				foreach($tab as $i => $value) {	
-					
-					if($i!=2) {
-					echo '<p>';
-					echo $value ;
-					echo '</p>';}					
-				}
+				echo '<div class = "avis">';
+
+				echo '<h5><i>';
+				echo $avis[$j][3].' '.$avis[$j][4];
+				echo '</i></h5>';
+
+				echo '<p>';
+				echo 'Note: '.$avis[$j][0].'/5 Commentaire: '.$avis[$j][1];
+				echo '</p>';
+
+				// echo '<p>';
+				// echo $avis[$j][0];
+				// echo '</p>';
+
+
 				echo '</div>';
 			}
-
+			echo '</div>';
 			
 			
 
 			}
 
-			echo '	<div>
+			echo '	<div id="avisinput">
 						<form action="index.php?module=Motard&action=EnvoyerAvis&tour='.$_GET['tour'].'" method="post">
 							<label>Note/5: </label>
 							<input type="texte" id="note" name="note"/>
-							<label>Commentaire: </label>
-							<input type="texte" id="commentaire" name="commentaire"/>
-							<button type="submit">Envoyer mon avis</button>
+							<label>Commentaire: (<i> limit 30 caracteres </i>) </label><br>
+							<textarea autofocus rows"5" cols="60" id="commentaire" name="commentaire"></textarea><br>
+							<button type="submit" id="envoyerAvis">Envoyer mon avis   &#x2709</button>
 					</div>
 				</div>
 			
