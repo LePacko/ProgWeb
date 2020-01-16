@@ -9,9 +9,21 @@ include_once("./FonctionsUtiles.php");
 			parent::init();
 			
 		}
+		//fonction qui recupere les donnes permettant l'affichage de l'accueil.
 		function acceuil(){
-			
+
+			$query =  parent::$connexion->query("select * from reserver natural join session natural join motard"); 
+			$outils = array(); 
+			while ($outil = $query->fetch()) 
+			  array_push($outils, array("id_session" => $outil["id_session"], 
+										  "nom" => $outil["nom"], 
+										  "date" => $outil["date"], 
+										"id_motard" => $outil["id_motard"], 
+										)); 
+			echo(json_encode($outils)); 
 		}
+				//fonction qui recupere les donnes permettant l'affichage du profil.
+
 		function profil(){
 			$req = parent::$connexion->query('select * from entreprise where entreprise.siret='.$_SESSION['session_gerant']);
 			$res = array (
@@ -39,6 +51,7 @@ include_once("./FonctionsUtiles.php");
 			return $res;
 
 		}
+//fonction qui permet d'ajouter un circuit a la base
 		function AjoutCircuit() {
 
 			//Récupération des vaiables entrée dans le formulaire 
@@ -49,7 +62,6 @@ include_once("./FonctionsUtiles.php");
 			$nom = $_POST['nom'];
 			$image_circuit =null;
 			$siret=$_SESSION['session_gerant'];
-			//Ajout du nouvelle utilisateur dans le abase de donées
 			$req = parent::$connexion->prepare('INSERT INTO circuit (adresse,code_postale,longueur,nom,Siret) values (:adresse,:code_postale,:longueur,:nom,:SIRET)');
 			$req->execute(array(
 				'adresse' => $adresse,
@@ -61,7 +73,7 @@ include_once("./FonctionsUtiles.php");
 
 			
 		}
-
+//fonction qui permet de verifier si les heure rentre pour la sessions sont valide, ne chevauche pas une autre session ou heure de debut et de fin non inverse
 		function sessionValide($date,$heure_debut,$heure_fin,$id_circuit){
 			//test si deux sessions ne se chevauche pas avant de continuer
 			$req = parent::$connexion->query('select * from session inner join circuit where  circuit.siret='.$_SESSION['session_gerant'].' and session.id_circuit=circuit.id_circuit and '.$id_circuit.'=session.id_circuit');
@@ -77,6 +89,11 @@ include_once("./FonctionsUtiles.php");
 				$heurefinbase=strtotime($donne["heure_fin"]);
 
 				if($donne["date"]==$date){
+					if($heuredeb>$heurefin){
+						FonctionsUtiles::redirectionPageDelai("index.php?module=Gerant&action=messessions");
+						FonctionsUtiles::msgBox("heure de debut non valide, superieur a heure de fin");
+						return 0 ;
+					}
 
 					if($heuredeb>=$heuredebbase &&$heuredeb<$heurefinbase){
 						FonctionsUtiles::redirectionPageDelai("index.php?module=Gerant&action=messessions");
@@ -101,6 +118,8 @@ include_once("./FonctionsUtiles.php");
 			return 1 ;
 
 		}
+//fonction qui permet de verifier si les heure rentre pour la sessions a modifie sont valide, ne chevauche pas une autre session ou heure de debut et de fin non inverse
+
 		function sessionValideModifie($date,$heure_debut,$heure_fin,$id_circuit,$id_session){
 			//test si deux sessions ne se chevauche pas avant de continuer
 			$req = parent::$connexion->query('select * from session inner join circuit where  circuit.siret='.$_SESSION['session_gerant'].' and session.id_circuit=circuit.id_circuit and '.$id_circuit.'=session.id_circuit and id_session!='.$id_session);
@@ -140,7 +159,7 @@ include_once("./FonctionsUtiles.php");
 			return 1 ;
 
 		}
-
+//function qui ajoute une session a la base de donnee
 		function AjoutSession() {
 			
 
@@ -167,7 +186,7 @@ include_once("./FonctionsUtiles.php");
 		}
 
 		}
-
+//fonction qui permet de recuperer toute les information des circuit
 		function Circuit() {
 
 			$req = parent::$connexion->query('select * from circuit where circuit.siret='.$_SESSION['session_gerant']);
@@ -197,7 +216,7 @@ include_once("./FonctionsUtiles.php");
 
 			return $res;			
 		}
-
+//fonction qui permet de recuperer toute les informations des sessions
 		function Session(){
 
 			$req = parent::$connexion->query('select * from session inner join circuit where  circuit.siret='.$_SESSION['session_gerant'].' and session.id_circuit=circuit.id_circuit ');
@@ -229,7 +248,7 @@ include_once("./FonctionsUtiles.php");
 			return $res;
 
 		}
-		
+		//fonction qui permet de recupere toute les info des sessions ajouter au info des circuit lui correspondant
 		function recupereSession(){
 			$req = parent::$connexion->query('select * from session inner join circuit where  id_session='.$_GET['idSession'].' and session.id_circuit=circuit.id_circuit ');
 			$i =0;
@@ -255,7 +274,27 @@ include_once("./FonctionsUtiles.php");
 
 			return $res;
 		}
-		
+		function recupereInfoMotard(){
+			$req = parent::$connexion->query('select * from reserver natural join motard where  id_session='.$_GET['idSession'].' ');
+			$i =0;
+			
+			while ($donne = $req->fetch()) {
+
+				$res[$i][0] = $donne['nom'];
+				$res[$i][1] = $donne['Prenom'];
+				$res[$i][2] = $donne['adresse'];
+				
+				$res[$i][3] = $donne['code_postal'];
+				$res[$i][4] = $donne['mail'];
+				$res[$i][5] = $donne['numero_de_tel'];
+				$res[$i][6] = $donne['permis'];
+			}
+			if(isset($res)){
+				return $res;
+			}
+
+		}
+		//fonction qui recupere les informations necessaire du circuit pour l'affichage
 		function recupereCircuit(){
 			$req = parent::$connexion->query('select * from circuit where id_circuit='.$_GET['idCircuit']);
 			$i =0;
@@ -271,6 +310,7 @@ include_once("./FonctionsUtiles.php");
 
 			return $res;
 		}
+		//fonction qui permet de modifie un le profil
 		function modifieValide(){
 			$Denomination = $_POST['Denomination'];		
 			$CodePostal = $_POST['CodePostal'];
@@ -287,7 +327,7 @@ include_once("./FonctionsUtiles.php");
 			));
 			FonctionsUtiles::redirectionPage("index.php?module=Gerant&action=profil");
 		}
-
+//function qui permet de modifie un circuit dans la base
 		function modifieValideCircuit(){
 			$nom = $_POST['nom'];		
 			$adresse = $_POST['adresse'];
@@ -302,7 +342,7 @@ include_once("./FonctionsUtiles.php");
 			));
 			FonctionsUtiles::redirectionPage("index.php?module=Gerant&action=mescircuits");
 		}
-
+//function qui permet de modifie une sessions dans la base
 		function modifieValideSession(){
 			$date = $_POST['date'];		
 			$nb_place = $_POST['nb_place'];

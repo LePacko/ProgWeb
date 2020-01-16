@@ -48,7 +48,8 @@
 		}
 		function PageSession () {
 			$info=$this->Modele->recupereSession();
-			$this->Vue->InfoSession($info);
+			$infoMotard=$this->Modele->recupereInfoMotard();
+			$this->Vue->InfoSession($info,$infoMotard);
 		}
 		function PageCircuit () {
 			$info=$this->Modele->recupereCircuit();
