@@ -22,7 +22,7 @@
         <div class="row">
             <div class="col- modife deco eet module gerantmd-offset-2 col-md-4">
                 <?php
-                     // si personne n'est connecté
+                     // si personne n'est pas connectée
                         echo'
                             <div id="connection" class="bulle">
                                 <h2>Je me connecte</h2>

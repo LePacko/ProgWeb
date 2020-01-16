@@ -16,6 +16,9 @@
 			}
 
 			switch($action) {
+				case 'acceuil':
+					$this->Controleur->acceuil();
+				break;
 				case 'profil':
                 	$this->Controleur->profil();
 				 break;

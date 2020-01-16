@@ -11,6 +11,7 @@
 		function formulaireGerant () {
 			echo '';
 		}	
+		//function qui permet d'afficher les circuit
 		function Circuit($tableauCircuit) {
 
 
@@ -29,7 +30,7 @@
 					$tab = $tableauCircuit[$j];
 					if($tab[5]==$_SESSION['session_gerant']){
 						$valeurValide=false;
-						echo'<a href="./index.php?module=Gerant&action=PageCircuit&idCircuit='.$tab[6].'">';
+						echo'<a id=session href="./index.php?module=Gerant&action=PageCircuit&idCircuit='.$tab[6].'">';
 						foreach($tab as $i => $value) {
 								if($i!=5)
 									echo $value . ' ';
@@ -45,7 +46,7 @@
 		}
 			echo'<a href="./index.php?module=Gerant&action=formulaireAjoutCircuit"> ajout un circuit</a>';
 		}	
-
+//function qui permet d'afficher les sessions
 		function Session($tableauSession){
 			if(count($tableauSession)==8){
 				echo'Vous n avez pas de session <br>';
@@ -59,7 +60,7 @@
 				for ($j = 0; $j<$nbsession; $j++) {
 					$tab = $tableauSession[$j];
 						$valeurValide=false;
-						echo'<a href="./index.php?module=Gerant&action=PageSession&idSession='.$tab[8].'">';
+						echo'<a id="session" href="./index.php?module=Gerant&action=PageSession&idSession='.$tab[8].'">';
 						foreach($tab as $i => $value) {
 							
 									echo $value . ' ';
@@ -74,9 +75,12 @@
 		}
 		echo'<a href="./index.php?module=Gerant&action=formajoutSession"> ajout un session</a>';
 		}
-		
-		function InfoSession($info){
+		//function qui permet d'afficher les informations d'une session en details
+		function InfoSession($info,$infoMotard){
 			$tab = $info[0];
+			if(isset($infoMotard)){
+				$tabInfo=$infoMotard[0];
+			}
 			echo'date de la session: '.$tab[0].'<br>';
 			echo 'nombre de place: '.$tab[1].'<br>';
 			echo 'tarif: '.$tab[2].'<br>';
@@ -84,14 +88,26 @@
 			echo 'nombre de participant: '.$tab[4].'<br>';
 			echo 'heure de debut: '.$tab[5].'<br>';
 			echo 'heure de fin: '.$tab[6].'<br>';
-			echo 'nom du circuit: '.$tab[7].'<br>';
+			echo 'nom du circuit: '.$tab[7].'<br><br>';
 			if($tab[0]>date('Y-m-d')){
 			echo'<a href="./index.php?module=Gerant&action=modifieSession&idSession='.$_GET['idSession'].'"> modifier </a>';
 			}
+
+			echo '<br><br> <span>MOTARD qui as reserver la session</span><br>';
+			if(isset($tabInfo)){
+				foreach($infoMotard as $i => $value) {
+					echo ' motard: '.$value[0];
+					echo ' '.$value[1].'<br>';
+				}
+			}
+			else{
+				echo '<span> aucun motard ne l\'as encore reserve</span><br><br>';
+			}
+
 			FonctionsUtiles::RetourPagePrecedente();
 
 		}
-
+//function qui permet d'afficher les information d'un circuit en detail
 		function InfoCircuit($info){
 			$tab = $info[0];
 			echo'nom du circuit : '.$tab[0].'<br>';
@@ -101,6 +117,7 @@
 			echo'<a href="./index.php?module=Gerant&action=modifieCircuit&idCircuit='.$_GET['idCircuit'].'"> modifier </a>';
 			FonctionsUtiles::RetourPagePrecedente();
 		}
+		//function qui affiche le profil de la personne connecte
 		function afficheProfil($info){
 			$info=$info[0];
 
@@ -113,6 +130,7 @@
 			echo'date_d_affiliation :'.$info[5].'<br>';
 			echo'<a href="./index.php?module=Gerant&action=modifieProfil"> modifier </a>';
 		}
+		//function qui gere le formulaire de modification pour le profil
 		function modifieProfil($info){
 			$info=$info[0];
 			echo'
@@ -134,6 +152,8 @@
 		</form>
 			';
 		}
+				//function qui gere le formulaire de modification pour le circuit
+
 		function modifieCircuit($info){
 			$info=$info[0];
 			echo'
@@ -153,6 +173,7 @@
 			</form>
 			';
 		}
+		//function qui gere le formulaire de modification pour la session
 
 		function modifieSession($info){
 			$info=$info[0];

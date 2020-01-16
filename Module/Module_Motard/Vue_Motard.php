@@ -30,29 +30,59 @@
 				echo'<select name="Marque" id="marque">';
 
 				
-				while ($donnees = $marqueMoto->fetch()) {
-				
-				echo '<option id="marqueSelectionee" value="'.$donnees[0].'">'.$donnees[0].'</option>';		
+				while ($donnees = $marqueMoto->fetch()) {				
+					echo '<option class="marqueSelectionee" value="'.$donnees[0].'">'.$donnees[0].'</option>';		
 				}
+
 				echo '</select><br>';
-				
-				echo'<script>
+				?>
 
-				function afficher() {
-				var saisie =document.getElementById("marqueSelectionee").value;
-				return saisie ;
-				}
 				
-				</script>';
 
-				echo '<script>afficher();</script>';
+				<?php
+				echo '<label>Modele</label><select name="Modele" id="modele"></select>';
+				?>
 				
-				echo'
-				<label>Modele</label>
-				<input type="text" name="Modele"required><br>				
-				<input type="submit" value="Ajouter cette moto">
+				
 
-			</form>';
+				<script>
+				$("#marque").on("change", function() {
+					var donnee = $(this).val();
+					
+					$.ajax({ 
+						dataType: "json", 
+						url: "ajax_recup_ModeleMoto.php?marque="+donnee, 
+						data: {
+                        marque: donnee},
+						method: 'GET',
+						success: function(data){ 
+					
+							console.log(data);
+							//alert(data[0]);
+							var select = '<label>Modele</label> <select name="Modele" id="modele">';
+							for (var i = 0; i < data.length; i++) {
+  
+								select += '<option class="modeleSelectionee" value="'+data[i]+'">'+data[i]+'</option>';
+
+							}
+							select += '</select><br>';
+							document.getElementById("modele").innerHTML = select;
+						}
+					});
+				});
+				</script>
+
+				<script>
+			
+					$("#marque").change(); // permet de forcer le onChanhe code au dessus pour remplir le select modeleMoto des le premiere affichage du formulaire
+    
+				
+				</script>
+				<?php
+		
+				echo'<br>';
+				echo'<input type="submit" value="Ajouter cette moto"> </form>';
+	
 		}
 
 		function afficherProfil() {
@@ -346,10 +376,10 @@
 			echo '	<div id="avisinput">
 						<form action="index.php?module=Motard&action=EnvoyerAvis&tour='.$_GET['tour'].'" method="post">
 							<label>Note/5: </label>
-							<input type="texte" id="note" name="note"/>
-							<label>Commentaire: (<i> limit 30 caracteres </i>) </label><br>
-							<textarea autofocus rows"5" cols="60" id="commentaire" name="commentaire"></textarea><br>
-							<button type="submit" id="envoyerAvis">Envoyer mon avis   &#x2709</button>
+							<input type="number" min="1" max="5" id="note" name="note"/>
+							<label>Commentaire: </label>
+							<input type="texte" maxlength="30" id="commentaire" name="commentaire"/>
+							<button type="submit">Envoyer mon avis</button>
 					</div>
 				</div>
 			
@@ -360,6 +390,7 @@
 		function EnvoyerAvis($estenvoyer) {
 
 			echo '<h2>Merci pour votre Avis</h2>';
+			FonctionsUtiles::RetourPagePrecedente();
 		}
 	}
 	

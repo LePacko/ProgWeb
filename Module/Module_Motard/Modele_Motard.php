@@ -12,11 +12,18 @@ include_once("./FonctionsUtiles.php");
 
 		public function recupererMarqueMoto() {
 			$requete = "SELECT DISTINCT marque from modele_moto";
-			$resultat = parent::$connexion->query($requete);
-			
-
+			$resultat = parent::$connexion->prepare($requete);
+			$resultat -> execute();
 
 			return $resultat;
+		}
+
+		function recupererModeleMoto ($marque) {
+		$requete = 'SELECT modele from modele_moto where marque ="'. $marque.'"';
+		$resultat = parent::$connexion->prepare($requete);
+		$resultat -> execute();
+
+		return $resultat;
 		}
 
 		function ListeCircuit() {
@@ -115,8 +122,9 @@ include_once("./FonctionsUtiles.php");
 		function recupererMoto() {
 			$id_motard=$_SESSION['session_motard'];
 			$requete = "SELECT * from moto where id_motard ='$id_motard'";
-			$resultat = parent::$connexion->query($requete);
-			
+			$resultat = parent::$connexion->prepare($requete);
+			$resultat -> execute();
+
 			return $resultat;
 		}
 
@@ -126,8 +134,8 @@ include_once("./FonctionsUtiles.php");
 				$immatriculation = $_POST['id'];  
 				echo $immatriculation;
 				$requete = "delete from moto where immatriculation ='$immatriculation'";
-				$resultat = parent::$connexion->query($requete);
-				
+				$resultat = parent::$connexion->prepare($requete);
+				$resultat -> execute();
 
 			}
 		
