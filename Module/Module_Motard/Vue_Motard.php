@@ -378,8 +378,8 @@
 							<label>Note/5: </label>
 							<input type="number" min="1" max="5" id="note" name="note"/>
 							<label>Commentaire: </label>
-							<input type="texte" maxlength="30" id="commentaire" name="commentaire"/>
-							<button type="submit">Envoyer mon avis</button>
+							<textarea maxlength="30" id="commentaire" name="commentaire"></textarea>
+							<button id="envoyerAvis" type="submit">Envoyer mon avis</button>
 					</div>
 				</div>
 			
