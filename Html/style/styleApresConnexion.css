@@ -116,12 +116,21 @@ section a:hover{
 	margin-bottom: 2%;
 }
 
+.bouttonretourApresReserver {
+	width: 10%;
+	margin-left: 45%;
+	text-align: center;
+}
+
 .ReserverSessionBoutton {
 	float: right;
+	width: 50%;
+	margin-top: 2.2%;
 }
 
 .infosession {
 	width: 50%;
+	display: inline-block;
 }
 
 .scroller {
@@ -144,12 +153,21 @@ section a:hover{
 
 }
 
-#TitreSessionReserver,  #TitreSessionEffectuer{
+#TitreSessionReserver,  #TitreSessionEffectuer, #pasSession, .messageReservation, #merciAvis{
 	text-align: center;
 	margin-bottom: 5%;
 }
 
-.SessionreserverListe, .SessionEffectuerListe {
+#merciAvis {
+	margin-top: 3%;
+}
+
+#RetourAvis{
+	margin-top: 3%;
+	text-align: center;
+}
+
+.SessionreserverListe, .SessionEffectuerListe, #SessionGenerale {
 	width: 60%;
 	margin-left: 20%;
 }
@@ -158,6 +176,9 @@ section a:hover{
 	height: 9em;
 }
 
+#bouttonRetourSession {
+	margin-left: 40%;
+}
 
 #bouttonsuivant, #bouttonprecedent {
 	background-color: transparent;
@@ -239,7 +260,7 @@ form {
 	border: 1px solid #000;
 	text-align: center;
 	margin: auto;
-	color white;
+	color: white;
 	background-color: cornflowerblue;
 }
 
@@ -277,9 +298,15 @@ form {
 }
 #session{
 	border:hidden;
+	
 }
 #session:hover{
 	color:white;
 }
+
+.session {
+	border-bottom: 1px solid white;
+}
+
 
 

@@ -59,7 +59,6 @@
 
 		function Circuit () {   
 			$sessions = $this->Modele->Circuit();
-			
 			$this->Vue->Circuit($sessions);
 			
 		}

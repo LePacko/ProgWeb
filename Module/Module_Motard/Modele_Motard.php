@@ -10,7 +10,7 @@ include_once("./FonctionsUtiles.php");
 			
 		}
 
-		public function recupererMarqueMoto() {
+		function recupererMarqueMoto() {
 			$requete = "SELECT DISTINCT marque from modele_moto";
 			$resultat = parent::$connexion->prepare($requete);
 			$resultat -> execute();
@@ -19,11 +19,13 @@ include_once("./FonctionsUtiles.php");
 		}
 
 		function recupererModeleMoto ($marque) {
+
 		$requete = 'SELECT modele from modele_moto where marque ="'. $marque.'"';
 		$resultat = parent::$connexion->prepare($requete);
 		$resultat -> execute();
 
 		return $resultat;
+
 		}
 
 		function ListeCircuit() {
@@ -228,11 +230,12 @@ include_once("./FonctionsUtiles.php");
 				"date" => array(),
 				"heure_debut" => array(),
 				"heure_fin" => array(),
-				"nb_place" => array()
+				"nb_place" => array(),
+				"id_session"=>array()
 			);
 
 			//Recuperation des sessions a venir et insertion dans le tableau res sur ce circuit pas le meme jour 
-			$req1 = 'select date, heure_debut, heure_fin, nb_place from session where date > '.'"'.$date_actuel.'"
+			$req1 = 'select id_session, date, heure_debut, heure_fin, nb_place from session where date >= '.'"'.$date_actuel.'"
 			and id_circuit= '.$IdCircuit;
 			$reqSession = parent::$connexion->prepare($req1);
 			$reqSession->execute();
@@ -243,12 +246,13 @@ include_once("./FonctionsUtiles.php");
 				$res[$i][0] = $donne['date'];
 				$res[$i][1] = $donne['heure_debut'];
 				$res[$i][2] = $donne['heure_fin'];
-				$res[$i][3] = $donne['nb_place'];		
+				$res[$i][3] = $donne['nb_place'];	
+				$res[$i][4] = $donne['id_session'];	
 				$i ++;
 			}
 
 			//Recuperation des sessions a venir et insertion dans le tableau res sur ce circuit le meme jopur mais plus tard 
-			$req2 = 'select  date, heure_debut, heure_fin, nb_place from session where date = '.'"'.$date_actuel.'"
+			$req2 = 'select  id_session, date, heure_debut, heure_fin, nb_place from session where date = '.'"'.$date_actuel.'"
 			and id_circuit = '.$IdCircuit.' and heure_debut >'.$heure;
 			$reqSession = parent::$connexion->prepare($req2);
 			$reqSession->execute();
@@ -260,6 +264,7 @@ include_once("./FonctionsUtiles.php");
 				$res[$i][1] = $donne['heure_debut'];
 				$res[$i][2] = $donne['heure_fin'];
 				$res[$i][3] = $donne['nb_place'];
+				$res[$i][4] = $donne['id_session'];																															
 				$i ++;
 			}
 
@@ -278,8 +283,11 @@ include_once("./FonctionsUtiles.php");
 				"nb_place" => array(),
 				"date" => array(),
                 "heure_debut" => array(),
-                "heure_fin" => array()
+				"heure_fin" => array(),
+				"id_session" => array()
 			);
+
+		
 
 			$i=0;
 			while ($donne = $reqSession->fetch()) {
@@ -288,15 +296,20 @@ include_once("./FonctionsUtiles.php");
 				$res[$i][1] = $donne['nb_place'];
 				$res[$i][2] = $donne['date'];
                 $res[$i][3] = $donne['heure_debut'];
-                $res[$i][4] = $donne['heure_fin']; 
+				$res[$i][4] = $donne['heure_fin'];
+				$res[$i][5] = $donne['id_session'];
 						
 				$i ++;
 			}
 
-			$reqSessionMotard = parent::$connexion->prepare('select date,heure_debut,heure_fin from session natural join reserver where id_motard =' .$_SESSION['session_motard']);
+			
+
+			$reqSessionMotard = parent::$connexion->prepare('select nb_participant, nb_place, date,heure_debut,heure_fin from session natural join reserver where id_motard =' .$_SESSION['session_motard']);
             $reqSessionMotard->execute();
 
-            $resSessionMotard = array( 
+            $resSessionMotard = array(
+				"nb_participant" => array(),
+				"nb_place" => array(), 
                 "date" => array(),
                 "heure_debut" => array(),
                 "heure_fin" => array()
@@ -305,14 +318,16 @@ include_once("./FonctionsUtiles.php");
             $i=0;
             while ($donne = $reqSessionMotard->fetch()) {
 
-                $resSessionMotard[$i][0] = $donne['date'];
-                $resSessionMotard[$i][1] = $donne['heure_debut'];
-                $resSessionMotard[$i][2] = $donne['heure_fin']; 
+				$resSessionMotard[$i][0] = $donne['nb_participant'];
+				$resSessionMotard[$i][1] = $donne['nb_place'];
+                $resSessionMotard[$i][2] = $donne['date'];
+                $resSessionMotard[$i][3] = $donne['heure_debut'];
+                $resSessionMotard[$i][4] = $donne['heure_fin']; 
                 
-                // echo $resSessionMotard[$i][0].'<br>';
-                
+                //echo $resSessionMotard[$i][0].'<br>';
+				
 
-                if (strcmp($resSessionMotard[$i][0],$res[0][2])==0) {
+                if (strcmp($resSessionMotard[$i][2],$res[0][2])==0) {
                     return 2;
                 }
                 
@@ -325,7 +340,6 @@ include_once("./FonctionsUtiles.php");
 			if($res[0][0]>=$res[0][1]) {
 				return 0;
 			}else {
-				echo $IdSession;
 				$reqIcremente = parent::$connexion->query('update session set nb_participant = '.$res[0][0].' + 1 where id_session = '.$IdSession); 
 				$reqReserve = parent::$connexion->query('insert into reserver (id_session,id_motard) values ('.$IdSession.','.$_SESSION['session_motard'].')');
 				return 1;

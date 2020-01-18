@@ -278,19 +278,25 @@
 		}
 
 		function Circuit($sessions) {
+			
+			echo '<div id="SessionGenerale">';
 
-			if (count($sessions)==2) {
-				echo'<h2 id="pasSession">Il n\' y\'a pas de session disponible sur ce circuit</h2> <br>';
+			if (count($sessions)==5) {
+				echo '<h2 id="pasSession">Il n\' y\'a pas de session disponible sur ce circuit</h2> <br>';
+				
+				echo '<div id="bouttonRetourSession">';		
 				FonctionsUtiles::RetourPagePrecedente();
+				echo '</div>';
 			}
+
 			else {
 
-
-				echo '<h1 id="TitreSessionsCircuit">Voici vos sessions reserver</h1>';
+				
+				echo '<h1 id="TitreSessionCircuit">Choissisez votre session</h1>';
 				$nbsession = count($sessions) - count($sessions[0]);
 				echo '<div class="SessionCircuitListe scroller">';
 				for ($j = 0; $j<$nbsession; $j++) {
-					echo '<div class = "avis">';
+					echo '<div class = "session">';
 					echo '<div class ="infosession"';
 					echo '<h5> Le: ';
 					echo $sessions[$j][0];
@@ -301,38 +307,44 @@
 					echo '</h5>';
 					echo '</div>';
 
-					?>
-					<div  class='ReserverSessionBoutton'>
-					<a href="index.php?module=Motard&action=ReserverSession&IdSession=">Reserver cette session</a>
+					
+
+					echo'
+					<div class="ReserverSessionBoutton">
+					<a href="index.php?module=Motard&action=ReserverSession&IdSession='.$sessions[$j][4].'">Reserver cette session</a>
 					</div>
-					<?php
+					';
+					
 	
 					echo '</div>';
 				}
 				echo '</div>';
 				
+				
 			}
 
 			
 
-			
+			echo '</div>';
 		}
 
 		function ReserverSession($placedisponible) {
 			
 			if ($placedisponible==1){
-				echo 'Votre réservation a bien été effectué';
+				echo '<h4 class=messageReservation>Votre réservation a bien été effectué</h4>';
 			}
 
 			else if ($placedisponible==2) {
-				echo 'Vous avez deja réserver une session pour le même jour';
+				echo '<h4 class=messageReservation>Vous avez deja réserver une session pour le même jour</h4>';
 			}
 
 			else {
-				echo 'Il est impossible de réserver cette session car elle est complète';
+				echo '<h4 class=messageReservation>Il est impossible de réserver cette session car elle est complète</h4>';
 			}
 
+			echo '<div class="bouttonretourApresReserver">';
 			FonctionsUtiles::RetourPagePrecedente();
+			echo '</div>';
 
 		}
 
@@ -389,8 +401,10 @@
 
 		function EnvoyerAvis($estenvoyer) {
 
-			echo '<h2>Merci pour votre Avis</h2>';
+			echo '<div id="merciAvis"><h2>Merci pour votre Avis</h2></div>';
+			echo '<div id="RetourAvis">';
 			FonctionsUtiles::RetourPagePrecedente();
+			echo'<div>';
 		}
 	}
 	
