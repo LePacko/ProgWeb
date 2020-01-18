@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css?family=Permanent+Marker&display=swap');
 
-body{
-    background-color: #cccccc;
+*{
+    
     background-position: center center;
     background-repeat: no-repeat;
     background-attachment: fixed;
@@ -9,44 +9,93 @@ body{
     max-width: 1920px;
     max-height: 1080px;
 }
-.header{
-    margin-bottom: 100px;
-    margin-top: 15px;
-}
-.header img{
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    background-size: cover;
-    max-width: 100px;
-    max-height: 100px;
-    margin-top: 20px;
-}
-.titre{
-    font-family: 'Permanent Marker';
-    color: white;
-    font-size: 4em;
-    text-align: center;
-}
-h2{
-   text-align: center;
-}
-.bulle{
-    border-radius: 5%;
-    background-color: white;
-    opacity: 0,2;
-    text-align: center;
-}
-.enterResponses{
-    color: black;
-    text-decoration: none;
-    margin: 2px;
-    padding: 2px;
-    background-color: grey;
-    border:solid 1px black;
-    border-radius: 5%;
-}
-.enterResponsesDiv{
-    margin: 2px;
-    padding: 2px;
+
+#corpPage {
+    margin-bottom: 5%;
 }
 
+/***************************************************** Nav ***********************************************/
+
+#tetePage{
+    color: white;
+    font-family: 'Permanent Marker';
+    margin-left: 30%;
+    width: 40%;
+    margin-top: 1.2%;
+    margin-bottom: 5%;
+}
+
+#logodiv {
+    display: inline-block;
+    width: 20%;
+}
+
+#logo {
+    max-height: 100%;
+    max-width: 100%;
+}
+
+#titre {
+    width: 50%;
+    float: right;
+    font-size: 3em;
+    margin-right: 20%;
+    margin-top: 4%;
+}
+
+/***************************************************** Section ***********************************************/
+
+#Connexion, #CreationCompte {
+    background-color: white;
+    color: black;
+    text-align: center;
+    opacity: 0.8;
+    border-radius: 10px;
+}
+
+#Connexion {
+    width: 30%;
+    margin-left: 15%;
+    display: inline-block;
+}
+
+#CreationCompte {
+    width: 30%;
+    margin-right: 15%;
+    float: right;
+}
+
+.enterResponsesDiv {
+    width: 50%;
+}
+
+#InscriptionGerant {
+    float: right;
+}
+
+#InscriptionMotard {
+    display: inline-block;
+}
+
+/***#************************************************** CONNEXION ***********************************************/
+
+section {
+    width: 30%;
+    margin-left: 35%;
+    background-color: white;
+    color: black;
+    text-align: center;
+    opacity: 0.8;
+    border-radius: 10px;
+    padding: 1%;
+}
+
+.enterResponses {
+    width: 100%;
+    margin-bottom: 1%;
+    margin-top: 1%;
+}
+
+label {
+    text-align: left;
+}

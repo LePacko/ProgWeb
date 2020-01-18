@@ -69,7 +69,7 @@
 
     <!-- Animation -->
 
-	<script type="text/javascript" src="./Html/AnimationJs/FonduAnimation.js"></script>
+
 	<script type="text/javascript" src="./Html/AnimationJS/TitreAnimation.js"></script>
 	
 	

@@ -12,45 +12,30 @@
 </head>
 
 <body style="background-image: url('./Html/img/background_acceuil.jpg');" >
-    <header class="container">
-        <div class="row">
-            <img class="logo col-md-offset-4 col-md-1" src="./Html/img/logo.png"/>
-            <h1 class="col-md-1 titre">MotoSession</h1>
-        </div>
-    </header>
-    <div class="container">
-        <div class="row">
-            <div class="col- modife deco eet module gerantmd-offset-2 col-md-4">
-                <?php
-                     // si personne n'est pas connectée
-                        echo'
-                            <div id="connection" class="bulle">
-                                <h2>Je me connecte</h2>
-                                <a href="index.php?module=Connexion&action=formConnexion" class="enterResponses">Je me connecte</a>
-                            </div>
-                
-                    </div>
-
-                    <div class=" col-md-offset-1 col-md-4">
-
-
-
-                        <div id="creation compte" class="bulle">
-                            <h2>je crée mon compte</h2>
-                            <div class="enterResponsesDiv">
-                                <a href="index.php?module=CreationCompte&action=inscriptionMotard" class="enterResponses">Je suis motard</a>
-                            </div>
-                            <div class="enterResponsesDiv">
-                                <a href="index.php?module=CreationCompte&action=inscriptionGerant" class="enterResponses">Je suis gerant</a>
-                            </div>
-                        </div>';
-
-                    
-                    
-    
-                ?>
+    <div id="tetePage">
+        <div id="logodiv"><img src="./Html/img/logo.png" id="logo" /></div>
+        <div id="titre">MotoSession</div>
+    </div>
+    <div id="corpPage">
+            <div id="Connexion" class="bulle">
+                <div id="TitreConnexion"><h2>Je me connecte</h2></div>
+                <div id="LienConnexion"><a href="index.php?module=Connexion&action=formConnexion">Je me connecte</a></div>
             </div>
-        </div>
+
+            <div id="CreationCompte">
+                <div id="TitreCreerMoncompte" class="bulle">
+                    <h2>Je crée mon compte</h2>
+                </div>
+                <div id="LienCreationCompte">
+                    <div id="InscriptionMotard" class="enterResponsesDiv">
+                        <a href="index.php?module=CreationCompte&action=inscriptionMotard" class="enterResponses">Je suis motard</a>
+                    </div>
+                    <div id="InscriptionGerant" class="enterResponsesDiv">
+                        <a href="index.php?module=CreationCompte&action=inscriptionGerant" class="enterResponses">Je suis gerant</a>
+                    </div>
+                </div>
+            </div>
+                    
     </div>
     <section>
         <article> 
@@ -63,7 +48,7 @@
 
     <!-- Animation -->
 
-	<script type="text/javascript" src="./Html/AnimationJs/FonduAnimation.js"></script>
+	
     <script type="text/javascript" src="./Html/AnimationJS/TitreAnimation.js"></script>
 
 </body>
