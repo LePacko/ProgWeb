@@ -216,7 +216,7 @@
 				<div class="inlineblock circuitcourant"> 
 					<h1 id="nomCourant"><?php echo $tableauCircuit[$_GET['tour']][0] ?></h1>
 					<p id="adresseCourant"><?php echo "Adresse: ".$tableauCircuit[$_GET['tour']][1] ?></p>
-					<p id="tourkmCourant"><?php echo "Km au tour: ".$tableauCircuit[$_GET['tour']][3] ?></p>
+					<p id="tourkmCourant"><?php echo "Longueur du circuit : ".$tableauCircuit[$_GET['tour']][3] ?></p>
 				</div>
 
 				<div class="inlineblock">
@@ -269,7 +269,7 @@
 
 			
 			if(count($sessionReserver)==3){
-				echo'<h2 id="AucuneSessionreserver">Vous n\'avez pas encore rezservé de session</h2> ';
+				echo'<h2 id="AucuneSessionreserver">Vous n\'avez pas encore réservé de session</h2> ';
 			}
 			else {
 

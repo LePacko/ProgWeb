@@ -89,7 +89,7 @@
 			echo'<a href="./index.php?module=Gerant&action=modifieSession&idSession='.$_GET['idSession'].'"> modifier </a>';
 			}
 
-			echo '<br><br> <span>MOTARD qui a reservé la session</span><br>';
+			echo '<br><br> <span>MOTARD ayant reservé la session : </span><br>';
 			if(isset($tabInfo)){
 				foreach($infoMotard as $i => $value) {
 					echo ' motard: '.$value[0];
