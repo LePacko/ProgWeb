@@ -7,7 +7,10 @@
 		private $Controleur;
 
 		function __construct() {
+			if (!defined('CONST_INCLUDE'))
+				die('Accès direct interdit');
 			$this->Controleur = new Controleur_Gerant();
+			
 
 			$action = 'null';
 			

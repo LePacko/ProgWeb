@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le :  lun. 06 jan. 2020 à 15:24
+-- Généré le :  Dim 19 jan. 2020 à 00:00
 -- Version du serveur :  10.4.10-MariaDB
 -- Version de PHP :  7.3.12
 
@@ -38,7 +38,20 @@ CREATE TABLE IF NOT EXISTS `avis` (
   PRIMARY KEY (`id_avis`),
   KEY `avis_circuit_FK` (`id_circuit`),
   KEY `avis_motard0_FK` (`id_motard`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
+
+--
+-- Déchargement des données de la table `avis`
+--
+
+INSERT INTO `avis` (`id_avis`, `note`, `commentaire`, `id_circuit`, `id_motard`) VALUES
+(1, 4, 'pas mal', 3, 1),
+(2, 5, 'eee', 1, 1),
+(3, 2, 'ok', 1, 1),
+(4, 4, 'BOF', 1, 1),
+(5, 5, '', 3, 1),
+(6, 3, 'j\'ai kiffé', 3, 1),
+(7, 1, '', 3, 1);
 
 -- --------------------------------------------------------
 
@@ -57,7 +70,7 @@ CREATE TABLE IF NOT EXISTS `circuit` (
   `SIRET` bigint(20) NOT NULL,
   PRIMARY KEY (`id_circuit`),
   KEY `circuit_entreprise_FK` (`SIRET`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 
 --
 -- Déchargement des données de la table `circuit`
@@ -65,7 +78,8 @@ CREATE TABLE IF NOT EXISTS `circuit` (
 
 INSERT INTO `circuit` (`id_circuit`, `adresse`, `code_postal`, `longueur`, `nom`, `image_circuit`, `SIRET`) VALUES
 (1, '1 rue des truc', 93250, 5, 'test', NULL, 11111000000000),
-(2, '1 rue des truceee', 95678, 5, 'okkok', NULL, 11111000000000);
+(2, '1 rue des truceee', 95678, 5, 'okkok', NULL, 11111000000000),
+(3, 'rue des choux', 93276, 28, 'yu', NULL, 11111111111111);
 
 -- --------------------------------------------------------
 
@@ -93,7 +107,7 @@ CREATE TABLE IF NOT EXISTS `entreprise` (
 
 INSERT INTO `entreprise` (`SIRET`, `denomination`, `adresse`, `code_postal`, `numero_tel`, `date_d_affiliation`, `mdp`, `mail_entreprise`, `image_gerant`) VALUES
 (11111000000000, 'ZEBRA', '67 rue de noisy le sec', 93260, 664379946, '2020-01-04', '07123e1f482356c415f684407a3b8723e10b2cbbc0b8fcd6282c49d37c9c1abc', 'nael93260@gmail.fr', NULL),
-(11111111111111, 'ZEBRA', '69 rue de noisy le sec', 93260, 664379946, '2020-01-03', '07123e1f482356c415f684407a3b8723e10b2cbbc0b8fcd6282c49d37c9c1abc', 'test@gmail.com', NULL),
+(11111111111111, 'ZEBRA', '70 rue de noisy le sec', 93260, 664379946, '2020-01-03', '07123e1f482356c415f684407a3b8723e10b2cbbc0b8fcd6282c49d37c9c1abc', 'test@gmail.com', NULL),
 (11111111114444, 'testlol', '67 rue de noisy le sec', 93260, 664379946, '2020-01-04', '07123e1f482356c415f684407a3b8723e10b2cbbc0b8fcd6282c49d37c9c1abc', 'nael93260@gmail.fr', NULL),
 (22222222222222, 'test', '67 rue de noisy le sec', 93260, 664379946, '2020-01-03', '07123e1f482356c415f684407a3b8723e10b2cbbc0b8fcd6282c49d37c9c1abc', 'test@gmail.com', NULL),
 (22222222222244, 'ZEBRA', '67 rue de noisy le sec', 93260, 664379946, '2020-01-04', '07123e1f482356c415f684407a3b8723e10b2cbbc0b8fcd6282c49d37c9c1abc', 'nael93260@gmail.fr', NULL),
@@ -114,9 +128,9 @@ DROP TABLE IF EXISTS `modele_moto`;
 CREATE TABLE IF NOT EXISTS `modele_moto` (
   `marque` varchar(64) NOT NULL,
   `modele` varchar(64) NOT NULL,
-  `cylindree` int(11) NOT NULL,
-  `type` varchar(64) NOT NULL,
-  `puissance` int(11) NOT NULL,
+  `cylindree` int(11) DEFAULT NULL,
+  `type` varchar(64) DEFAULT NULL,
+  `puissance` int(11) DEFAULT NULL,
   PRIMARY KEY (`marque`,`modele`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -125,13 +139,24 @@ CREATE TABLE IF NOT EXISTS `modele_moto` (
 --
 
 INSERT INTO `modele_moto` (`marque`, `modele`, `cylindree`, `type`, `puissance`) VALUES
+('ducati', 'diavel', NULL, NULL, NULL),
 ('ducati', 'monster', 696, 'roadster', 70),
-('honda', 'cb', 500, 'sportive', 45),
-('honda', 'cbr', 600, 'sportive', 106),
-('suzuki', 'gsxr', 1000, 'sportive', 185),
+('ducati', 'multistrada1260', NULL, NULL, NULL),
+('honda', 'africa twin', NULL, NULL, NULL),
+('honda', 'cb500', 500, 'sportive', 45),
+('honda', 'cbr600', 600, 'sportive', 106),
+('honda', 'hornet', NULL, NULL, NULL),
+('suzuki', 'gsx-s1000', NULL, NULL, NULL),
+('suzuki', 'gsx-s650', NULL, NULL, NULL),
+('suzuki', 'gsxr1000', 1000, 'sportive', 185),
+('suzuki', 'katana', NULL, NULL, NULL),
+('suzuki', 'v-storm650', NULL, NULL, NULL),
 ('triumph', 'tiger', 700, 'trail', 80),
 ('yamaha', 'mt07', 700, 'roadster', 75),
-('yamaha', 'r1', 1000, 'sportive', 200);
+('yamaha', 'mt09', 900, 'roadster', 900),
+('yamaha', 'r1', 1000, 'sportive', 200),
+('yamaha', 'r6', NULL, NULL, NULL),
+('yamaha', 'xj6', NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -143,11 +168,11 @@ DROP TABLE IF EXISTS `motard`;
 CREATE TABLE IF NOT EXISTS `motard` (
   `id_motard` int(11) NOT NULL AUTO_INCREMENT,
   `nom` varchar(64) NOT NULL,
-  `Prenom` varchar(64) NOT NULL,
+  `prenom` varchar(64) NOT NULL,
   `adresse` varchar(128) DEFAULT NULL,
   `code_postal` int(11) DEFAULT NULL,
   `mail` varchar(128) NOT NULL,
-  `numero_de_tel` int(11) NOT NULL,
+  `numero_tel` int(11) NOT NULL,
   `permis` varchar(3) NOT NULL,
   `mdp` varchar(268) NOT NULL,
   `imageProfile` varchar(450) DEFAULT NULL,
@@ -158,8 +183,8 @@ CREATE TABLE IF NOT EXISTS `motard` (
 -- Déchargement des données de la table `motard`
 --
 
-INSERT INTO `motard` (`id_motard`, `nom`, `Prenom`, `adresse`, `code_postal`, `mail`, `numero_de_tel`, `permis`, `mdp`, `imageProfile`) VALUES
-(1, 'talbi', 'nael', '67 rue de noisy le sec ', 93260, 'nael@gmail.fr', 664379946, 'A', '07123e1f482356c415f684407a3b8723e10b2cbbc0b8fcd6282c49d37c9c1abc', NULL);
+INSERT INTO `motard` (`id_motard`, `nom`, `prenom`, `adresse`, `code_postal`, `mail`, `numero_tel`, `permis`, `mdp`, `imageProfile`) VALUES
+(1, 'TALBI', 'test', '67 rue de noisy le sec ', 93260, 'nael@gmail.fr', 664379946, 'A', '07123e1f482356c415f684407a3b8723e10b2cbbc0b8fcd6282c49d37c9c1abc', NULL);
 
 -- --------------------------------------------------------
 
@@ -190,10 +215,17 @@ DROP TABLE IF EXISTS `reserver`;
 CREATE TABLE IF NOT EXISTS `reserver` (
   `id_session` int(11) NOT NULL,
   `id_motard` int(11) NOT NULL,
-  `temps_tour` int(11) NOT NULL,
+  `temps_tour` int(11) DEFAULT 0,
   PRIMARY KEY (`id_session`,`id_motard`),
   KEY `Effectuer_motard0_FK` (`id_motard`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Déchargement des données de la table `reserver`
+--
+
+INSERT INTO `reserver` (`id_session`, `id_motard`, `temps_tour`) VALUES
+(3, 1, 0);
 
 -- --------------------------------------------------------
 
@@ -214,14 +246,17 @@ CREATE TABLE IF NOT EXISTS `session` (
   `id_circuit` int(11) NOT NULL,
   PRIMARY KEY (`id_session`),
   KEY `session_circuit_FK` (`id_circuit`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 
 --
 -- Déchargement des données de la table `session`
 --
 
 INSERT INTO `session` (`id_session`, `date`, `nb_place`, `tarif`, `nb_participant`, `heure_debut`, `heure_fin`, `image`, `id_circuit`) VALUES
-(1, '2020-01-06', 2, 10, 1, '13:56:00', '16:57:00', NULL, 1);
+(1, '2020-01-06', 2, 10, 2, '13:56:00', '16:57:00', NULL, 1),
+(2, '2020-01-15', 10, 1, 10, '14:31:00', '14:28:00', NULL, 3),
+(3, '2020-02-20', 103, 10, 7, '14:36:00', '16:36:00', NULL, 3),
+(4, '2020-01-15', 5, 199, 5, '16:42:00', '20:42:00', NULL, 3);
 
 --
 -- Contraintes pour les tables déchargées

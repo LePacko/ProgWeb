@@ -18,6 +18,22 @@
         function voirProfil () {
 			$this->Vue->afficherProfil();
 		}
+
+		function mesInformations () {
+			$info=$this->Modele->mesInformations();
+			$this->Vue->afficheMesInformations($info);
+		}
+
+		function formulaireModifierMesInformations(){
+		$info=$this->Modele->mesInformations();
+		$this->Vue->formulaireModifierMesInformations($info);
+		}
+
+		function modifierMesInformations () {
+			
+			$this->Modele->modifierMesInformations();
+		}
+
 				 
 		function trouverSession () {
 			$tableauCircuit = $this->Modele->ListeCircuit();

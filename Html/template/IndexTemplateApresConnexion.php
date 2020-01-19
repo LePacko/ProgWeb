@@ -35,7 +35,7 @@
 						<div class="Nav">
 						
 						<?php
-
+						header('Content-type: text/html; charset=UTF-8');
 	                        if(isset($_SESSION['session_motard'])){       // si il s'agit d'un motard qui est connecté 
 	                            include ("./Html/NavMotard.html");
 	                        }
@@ -60,7 +60,7 @@
  
     <section>
         <article> 
-            <?= $menu ?>
+           <?= $compMenu ?> 
         </article>
         <article>
             <?= $module ?>

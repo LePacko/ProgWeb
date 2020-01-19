@@ -25,4 +25,5 @@ Class FonctionsUtiles {
 		?><a class='bouttonretour' href="<?php echo $_SERVER['HTTP_REFERER']; ?>">Retour</a><?php
 	}
 
+
 }

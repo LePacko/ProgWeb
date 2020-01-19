@@ -7,7 +7,11 @@
 		private $Controleur;
 
 		function __construct() {
+			if (!defined('CONST_INCLUDE'))
+				die('Accès direct interdit');
+
 			$this->Controleur = new Controleur_Motard();
+			
 
 			$action = 'null';
 			
@@ -63,6 +67,18 @@
 
 				case 'EnvoyerAvis' : 
 					$this->Controleur->EnvoyerAvis();
+				break;
+				
+				case 'mesInformations' :
+					$this->Controleur->mesInformations();
+				break;
+
+				case 'modifierMesInformations' :
+					$this->Controleur->modifierMesInformations();
+				break;
+
+				case 'formulaireModifierMesInformations' :
+					$this->Controleur->formulaireModifierMesInformations();
 				break;
 
 			}

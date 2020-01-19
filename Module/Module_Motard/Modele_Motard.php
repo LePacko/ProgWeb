@@ -47,7 +47,7 @@ include_once("./FonctionsUtiles.php");
 
 				$res[$i][0] = $donne['nom'];
 				$res[$i][1] = $donne['adresse'];
-				$res[$i][2] = $donne['code_postale'];
+				$res[$i][2] = $donne['code_postal'];
 				$res[$i][3] = $donne['longueur'];
 				$res[$i][4] = $donne['image_circuit'];
 				$res[$i][5] = $donne['SIRET'];
@@ -120,6 +120,49 @@ include_once("./FonctionsUtiles.php");
 			return $res;
 			
 		}
+		
+		function mesInformations(){
+			$req = parent::$connexion->query('select * from motard where id_motard='.$_SESSION['session_motard']);
+			$res = array (
+				"nom"  => array(),
+				"prenom" => array(),
+				"adresse" => array(),
+				"code_postal" => array(),
+				"mail" => array(),
+				"numero_tel" => array()
+			);
+			
+			$donne = $req->fetch();
+
+				$res[0][0] = $donne['nom'];
+				$res[0][1] = $donne['prenom'];
+				$res[0][2] = $donne['adresse'];
+				$res[0][3] = $donne['code_postal'];
+				$res[0][4] = $donne['mail'];
+				$res[0][5] = $donne['numero_tel'];
+
+			return $res;
+
+		}
+
+		//fonction qui permet de modifie un le profil
+		function modifierMesInformations(){
+			$Nom = htmlspecialchars($_POST['Nom']);
+			$Prenom = htmlspecialchars($_POST['Prenom']);
+			$CodePostal = htmlspecialchars($_POST['CodePostal']);
+			$Mail = htmlspecialchars($_POST['Email']);
+			$Adresse = htmlspecialchars($_POST['Adresse']);
+
+			$req = parent::$connexion->prepare('UPDATE motard set nom=:Nom,adresse=:Adresse,code_postal=:CodePostal,prenom=:Prenom,mail=:Mail  where id_motard='.$_SESSION['session_motard']);
+			$req->execute(array(
+				'Adresse' => $Adresse,
+				'CodePostal' => $CodePostal,
+				'Nom' => $Nom,
+				'Mail' =>$Mail,
+				'Prenom' => $Prenom
+			));
+			FonctionsUtiles::redirectionPage("index.php?module=Motard&action=mesInformations");
+		}
 
 		function recupererMoto() {
 			$id_motard=$_SESSION['session_motard'];
@@ -133,7 +176,7 @@ include_once("./FonctionsUtiles.php");
 		function supprimerMoto () {
 		
 			if(isset($_POST['id']) && $_POST['id']!='') {
-				$immatriculation = $_POST['id'];  
+				$immatriculation = htmlspecialchars($_POST['id']);  
 				echo $immatriculation;
 				$requete = "delete from moto where immatriculation ='$immatriculation'";
 				$resultat = parent::$connexion->prepare($requete);
@@ -152,11 +195,11 @@ include_once("./FonctionsUtiles.php");
 			if(count($tab)<3) { // le nombre maximum de moto a �t� fix� a 3 mais peut evoluer.
 
 				//R�cup�ration des vaiables entr�e dans le formulaire 
-				$immatriculation = $_POST['Immat'];
-				$annee = (int)$_POST['Annee'];	
-				$marque = $_POST['Marque'];
-				$modele= $_POST['Modele'];
-				$id_motard=(int)$_SESSION['session_motard'];
+				$immatriculation = htmlspecialchars($_POST['Immat']);
+				$annee = htmlspecialchars($_POST['Annee']);	
+				$marque = htmlspecialchars($_POST['Marque']);
+				$modele= htmlspecialchars($_POST['Modele']);
+				$id_motard=$_SESSION['session_motard'];
 			
 				// on teste si l'immatriculation de la moto que l'utilisateur souhaite ajouter est disponible
 				$sql = 'SELECT * from moto where immatriculation like :immat';
@@ -379,8 +422,8 @@ include_once("./FonctionsUtiles.php");
 		
 		function EnvoyerAvis() {
 
-			$note = $_POST['note'];
-			$commentaire = $_POST['commentaire'];
+			$note = htmlspecialchars($_POST['note']);
+			$commentaire = htmlspecialchars($_POST['commentaire']);
 			$id_motard = $_SESSION['session_motard'];
 			$tour = $_GET['tour'];
 			

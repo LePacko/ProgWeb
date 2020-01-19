@@ -30,7 +30,7 @@ include_once("./FonctionsUtiles.php");
 				"SIRET"  => array(),
 				"denomination" => array(),
 				"adresse" => array(),
-				"code_postale" => array(),
+				"code_postal" => array(),
 				"numero_tel" => array(),
 				"date_d_affiliation" => array(),
 				"mail_entreprise" => array()
@@ -42,7 +42,7 @@ include_once("./FonctionsUtiles.php");
 				$res[$i][0] = $donne['SIRET'];
 				$res[$i][1] = $donne['denomination'];
 				$res[$i][2] = $donne['adresse'];
-				$res[$i][3] = $donne['code_postale'];
+				$res[$i][3] = $donne['code_postal'];
 				$res[$i][4] = $donne['numero_tel'];
 				$res[$i][5] = $donne['date_d_affiliation'];
 				$res[$i][6] = $donne['mail_entreprise'];
@@ -56,16 +56,16 @@ include_once("./FonctionsUtiles.php");
 
 			//Récupération des vaiables entrée dans le formulaire 
 			
-			$adresse = $_POST['adresse'];		
-			$code_postale = $_POST['code_postale'];
-			$longueur = $_POST['longueur'];
-			$nom = $_POST['nom'];
+			$adresse = htmlspecialchars($_POST['adresse']);		
+			$code_postal = htmlspecialchars($_POST['code_postal']);
+			$longueur = htmlspecialchars($_POST['longueur']);
+			$nom = htmlspecialchars($_POST['nom']);
 			$image_circuit =null;
 			$siret=$_SESSION['session_gerant'];
-			$req = parent::$connexion->prepare('INSERT INTO circuit (adresse,code_postale,longueur,nom,Siret) values (:adresse,:code_postale,:longueur,:nom,:SIRET)');
+			$req = parent::$connexion->prepare('INSERT INTO circuit (adresse,code_postal,longueur,nom,Siret) values (:adresse,:code_postal,:longueur,:nom,:SIRET)');
 			$req->execute(array(
 				'adresse' => $adresse,
-				'code_postale' => $code_postale,
+				'code_postal' => $code_postal,
 				'longueur' => $longueur,
 				'nom' =>$nom,
 				'SIRET' => $siret
@@ -165,12 +165,12 @@ include_once("./FonctionsUtiles.php");
 
 			//Récupération des vaiables entrée dans le formulaire 
 			
-			$date = $_POST['date'];		
-			$nb_place = $_POST['nb_place'];
-			$tarif = $_POST['tarif'];
-			$heure_debut =$_POST['heure_debut'];
-			$heure_fin=$_POST['heure_fin'];
-			$id_circuit=$_POST['id_circuit'];
+			$date = htmlspecialchars($_POST['date']);		
+			$nb_place = htmlspecialchars($_POST['nb_place']);
+			$tarif = htmlspecialchars($_POST['tarif']);
+			$heure_debut =htmlspecialchars($_POST['heure_debut']);
+			$heure_fin=htmlspecialchars($_POST['heure_fin']);
+			$id_circuit=htmlspecialchars($_POST['id_circuit']);
 			$valide=$this->sessionValide($date,$heure_debut,$heure_fin,$id_circuit);
 			//Ajout du nouvelle utilisateur dans le abase de donées
 			if($valide==1){
@@ -205,7 +205,7 @@ include_once("./FonctionsUtiles.php");
 
 				$res[$i][0] = $donne['nom'];
 				$res[$i][1] = $donne['adresse'];
-				$res[$i][2] = $donne['code_postale'];
+				$res[$i][2] = $donne['code_postal'];
 				$res[$i][3] = $donne['longueur'];
 				$res[$i][4] = $donne['image_circuit'];
 				$res[$i][5] = $donne['SIRET'];
@@ -302,7 +302,7 @@ include_once("./FonctionsUtiles.php");
 
 				$res[$i][0] = $donne['nom'];
 				$res[$i][1] = $donne['adresse'];
-				$res[$i][2] = $donne['code_postale'];
+				$res[$i][2] = $donne['code_postal'];
 				$res[$i][3] = $donne['longueur'];
 				$res[$i][4] = $donne['id_circuit'];
 				$i ++;
@@ -312,12 +312,12 @@ include_once("./FonctionsUtiles.php");
 		}
 		//fonction qui permet de modifie un le profil
 		function modifieValide(){
-			$Denomination = $_POST['Denomination'];		
-			$CodePostal = $_POST['CodePostal'];
-			$Mail = $_POST['Mail'];
-			$NumeroTel = $_POST['NumeroTel'];
-			$Adresse = $_POST['Adresse'];
-			$req = parent::$connexion->prepare('UPDATE entreprise set denomination=:Denomination,adresse=:Adresse,code_postale=:CodePostal,numero_tel=:NumeroTel,mail_entreprise=:Mail  where entreprise.siret='.$_SESSION['session_gerant']);
+			$Denomination = htmlspecialchars($_POST['Denomination']);		
+			$CodePostal = htmlspecialchars($_POST['CodePostal']);
+			$Mail = htmlspecialchars($_POST['Mail']);
+			$NumeroTel = htmlspecialchars($_POST['NumeroTel']);
+			$Adresse = htmlspecialchars($_POST['Adresse']);
+			$req = parent::$connexion->prepare('UPDATE entreprise set denomination=:Denomination,adresse=:Adresse,code_postal=:CodePostal,numero_tel=:NumeroTel,mail_entreprise=:Mail  where entreprise.siret='.$_SESSION['session_gerant']);
 			$req->execute(array(
 				'Adresse' => $Adresse,
 				'CodePostal' => $CodePostal,
@@ -329,26 +329,26 @@ include_once("./FonctionsUtiles.php");
 		}
 //function qui permet de modifie un circuit dans la base
 		function modifieValideCircuit(){
-			$nom = $_POST['nom'];		
-			$adresse = $_POST['adresse'];
-			$code_postale = $_POST['code_postale'];
-			$longueur = $_POST['longueur'];
-			$req = parent::$connexion->prepare('UPDATE circuit set nom=:nom,adresse=:adresse,code_postale=:code_postale,longueur=:longueur where id_circuit='.$_GET['idCircuit']);
+			$nom = htmlspecialchars($_POST['nom']);		
+			$adresse = htmlspecialchars($_POST['adresse']);
+			$code_postal = htmlspecialchars($_POST['code_postal']);
+			$longueur = htmlspecialchars($_POST['longueur']);
+			$req = parent::$connexion->prepare('UPDATE circuit set nom=:nom,adresse=:adresse,code_postal=:code_postal,longueur=:longueur where id_circuit='.$_GET['idCircuit']);
 			$req->execute(array(
 				'nom' => $nom,
 				'adresse' => $adresse,
-				'code_postale' => $code_postale,
+				'code_postal' => $code_postal,
 				'longueur' => $longueur
 			));
 			FonctionsUtiles::redirectionPage("index.php?module=Gerant&action=mescircuits");
 		}
 //function qui permet de modifie une sessions dans la base
 		function modifieValideSession(){
-			$date = $_POST['date'];		
-			$nb_place = $_POST['nb_place'];
-			$tarif = $_POST['tarif'];
-			$heure_debut = $_POST['heure_debut'];
-			$heure_fin = $_POST['heure_fin'];
+			$date = htmlspecialchars($_POST['date']);		
+			$nb_place = htmlspecialchars($_POST['nb_place']);
+			$tarif = htmlspecialchars($_POST['tarif']);
+			$heure_debut = htmlspecialchars($_POST['heure_debut']);
+			$heure_fin = htmlspecialchars($_POST['heure_fin']);
 			$id_circuit = parent::$connexion->query('select id_circuit from session where id_session='.$_GET['idSession']);
 			$id_circuit=$id_circuit->fetch();
 			

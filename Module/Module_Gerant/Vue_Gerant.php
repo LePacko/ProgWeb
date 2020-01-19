@@ -7,10 +7,6 @@
 			
 		}
 
-
-		function formulaireGerant () {
-			echo '';
-		}	
 		//function qui permet d'afficher les circuit
 		function Circuit($tableauCircuit) {
 
@@ -73,7 +69,7 @@
 					echo'Vous n avez pas de Session <br>';
 				}
 		}
-		echo'<a href="./index.php?module=Gerant&action=formajoutSession"> ajout un session</a>';
+		echo'<br><br><a href="./index.php?module=Gerant&action=formajoutSession"> ajouter une session</a>';
 		}
 		//function qui permet d'afficher les informations d'une session en details
 		function InfoSession($info,$infoMotard){
@@ -93,7 +89,7 @@
 			echo'<a href="./index.php?module=Gerant&action=modifieSession&idSession='.$_GET['idSession'].'"> modifier </a>';
 			}
 
-			echo '<br><br> <span>MOTARD qui as reserver la session</span><br>';
+			echo '<br><br> <span>MOTARD qui a reservé la session</span><br>';
 			if(isset($tabInfo)){
 				foreach($infoMotard as $i => $value) {
 					echo ' motard: '.$value[0];
@@ -101,7 +97,7 @@
 				}
 			}
 			else{
-				echo '<span> aucun motard ne l\'as encore reserve</span><br><br>';
+				echo '<span> aucun motard ne l\'a encore reservée</span><br><br>';
 			}
 
 			FonctionsUtiles::RetourPagePrecedente();
@@ -120,37 +116,41 @@
 		//function qui affiche le profil de la personne connecte
 		function afficheProfil($info){
 			$info=$info[0];
-
+			echo'<div id = "infoProfil">';
 			echo'siret :'.$info[0].'<br>';
 			echo'denomination de l entreprise :'.$info[1].'<br>';
 			echo'email :'.$info[6].'<br>';
 			echo'adresse :'.$info[2].'<br>';
-			echo'code_postale :'.$info[3].'<br>';
+			echo'code_postal :'.$info[3].'<br>';
 			echo'numero_tel :'.$info[4].'<br>';
 			echo'date_d_affiliation :'.$info[5].'<br>';
-			echo'<a href="./index.php?module=Gerant&action=modifieProfil"> modifier </a>';
+			echo'<div class=lienModifier>';
+			echo'<a href="./index.php?module=Gerant&action=modifieProfil"> modifier </a>
+			</div>
+			</div>';
 		}
 		//function qui gere le formulaire de modification pour le profil
 		function modifieProfil($info){
 			$info=$info[0];
 			echo'
-			<form method="post" action="./index.php?module=Gerant&action=modifieValide">
+			<div id = "infoProfil">
+				<form class = infoProfil method="post" action="./index.php?module=Gerant&action=modifieValide">
 			
-			<label>Denomination</label>
-			<input type="text" name="Denomination"required value="'.$info[1].'"><br>
-			<label>Mail</label>
-			<input type="email" name="Mail"required value="'.$info[6].'"><br>
-			<label>Numero de téléphone</label>
-			<input type="text" name="NumeroTel"  maxlength="10" minlength="10" required value="'.$info[4].'"><br>
-			<label>Adresse</label>
-			<input type="text" name="Adresse" required value="'.$info[2].'"><br>
-			<label>Code Postal</label>
-			<input type="text" name="CodePostal"  maxlength="5" minlength="5" required value="'.$info[3].'"><br>
-			
-			<input type="submit" value="modifier">
-
-		</form>
-			';
+					<label>Denomination</label>
+					<input type="text" name="Denomination"required value="'.$info[1].'"><br>
+					<label>Mail</label>
+					<input type="email" name="Mail"required value="'.$info[6].'"><br>
+					<label>Numero de téléphone</label>
+					<input type="text" name="NumeroTel"  maxlength="10" minlength="10" required value="'.$info[4].'"><br>
+					<label>Adresse</label>
+					<input type="text" name="Adresse" required value="'.$info[2].'"><br>
+					<label>Code Postal</label>
+					<input type="text" name="CodePostal"  maxlength="5" minlength="5" required value="'.$info[3].'"><br>
+					<div class=boutonModifier>
+						<input type="submit" value="modifier">
+					<div>
+				</form>
+		</div>	';
 		}
 				//function qui gere le formulaire de modification pour le circuit
 
@@ -164,7 +164,7 @@
 				<label>adresse</label>
 				<input type="text" name="adresse"required  value="'.$info[1].'"><br>
 				<label>code postale</label>
-                <input type="number" maxlength="5" name="code_postale"required  value="'.$info[2].'"><br>
+                <input type="number" maxlength="5" name="code_postal"required  value="'.$info[2].'"><br>
                 <label>longueur</label>
                 <input type="number" name="longueur"  value="'.$info[3].'"><label>KM</label><br> 
 

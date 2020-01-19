@@ -1,19 +1,30 @@
 
 	<?php
+	header('Content-type: text/html; charset=UTF-8');
+	
+
 	require_once("./Module/Module_Connexion/Module_Connexion.php");
 	require_once("./Module/Module_CreationCompte/Module_CreationCompte.php");
 	require_once("./Module/Module_Motard/Module_Motard.php");
 	require_once("./Module/Module_Gerant/Module_Gerant.php");
+	require_once("./FonctionsUtiles.php");
 
-	
-		if(!defined('CONST_INCLUDE')){
-   	 	session_start();
-    	define('CONST_INCLUDE',NULL);/*on definit une constante pour dire que l'on passe par l'index 
-    auquel cas une alert se declenchera pour specifier que l'acces est interdit*/
+	ob_start();
+
+		if(!isset($_SESSION['session_gerant']) && !isset($_SESSION['session_motard']) &&!defined('CONST_INCLUDE')){
+   	 		session_start();
+    		define('CONST_INCLUDE',NULL);/*on definit une constante pour dire que l'on passe par l'index 
+			auquel cas une alert se declenchera pour specifier que l'acces est interdit*/
+
+			include('./Securite/creationCookie.php');
 		}
+		
 
-
-		ob_start();
+		if (isset($_COOKIE['ticket'])) { // c'est donc que le naviguateur prend en charge les cookie on verifie donc que personne n'essaye de voler la session.
+		include('./Securite/securiteVoldeSession.php');
+		}
+		
+		include('./Securite/securiteDelaisDeconnexion.php'); 
 
 		if (isset($_GET['module'])) {
 			switch ($_GET['module']) {
@@ -36,7 +47,7 @@
 		
 		$module = ob_get_clean();//on recupere l'affichage des modules
 		ob_start();    
-		$menu = ob_get_clean();
+		$compMenu = ob_get_clean();
 
 		if(!isset($_SESSION['session_motard'])&&!isset($_SESSION['session_gerant'])){
 			REQUIRE('Html/template/indexTemplateAvantConnexion.php');
@@ -46,5 +57,3 @@
 			include('./Html/template/IndexTemplateApresConnexion.php');
 		}
 	?>
-</body>
-</html>	

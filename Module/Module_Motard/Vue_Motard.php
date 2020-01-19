@@ -10,12 +10,14 @@
 		function __construct() {			
 		}
 
-		function formulaireMotard () {
-			echo '';
+		function afficherProfil() {
+			echo '<a class=menuProfil href="index.php?module=Motard&action=formulaireAjoutMoto">Ajouter une moto</a>';
+			echo '<a class=menuProfil href="index.php?module=Motard&action=mesMotos">Mes Motos</a>';
+			echo '<a class=menuProfil href="index.php?module=Motard&action=mesInformations">Mes informations</a>';
 		}	
 
 		function formulaireAjoutMoto($marqueMoto){
-			//include("./Html/FormulaireAjoutMotoMotard.php");
+			
 			echo '<form id ="formulaireAjoutMoto" method="post" action="./index.php?module=Motard&action=ajoutMoto">
 			
 				<label>Immatriculation</label>
@@ -82,13 +84,11 @@
 		
 				echo'<br>';
 				echo'<input type="submit" value="Ajouter cette moto"> </form>';
+				echo'<a class="boutonretour" href="index.php?module=Motard&action=mesMotos" > <input type="button" onclick="window.location.href=this.parentNode.href.value" value="Voir mes motos" /></a>';
 	
 		}
 
-		function afficherProfil() {
-			echo '<a href="index.php?module=Motard&action=formulaireAjoutMoto">Ajouter une moto</a>';
-			echo '<a href="index.php?module=Motard&action=mesMotos">Mes Motos</a>';
-		}
+		
 
 		function afficherMesMotos($tableauMotos) {
 		
@@ -155,6 +155,45 @@
 				</form>
 				';
 			}
+		}
+
+		//function qui affiche le profil de la personne connecte
+		function afficheMesInformations($info){
+			$info=$info[0];
+			echo'<div id = "infoProfil">';
+			echo'nom : '.$info[0].'<br>';
+			echo'prenom : '.$info[1].'<br>';
+			echo'adresse : '.$info[2].'<br>';
+			echo'code_postal : '.$info[3].'<br>';
+			echo'email : '.$info[4].'<br>';		
+			echo'numero_tel : '.$info[5].'<br>';
+			echo'<div class=lienModifier>';
+			echo'<a  href="./index.php?module=Motard&action=formulaireModifierMesInformations"> modifier </a>
+			</div>
+			</div>';
+		}
+		//function qui gere le formulaire de modification pour le profil
+		function formulaireModifierMesInformations($info){
+			$info=$info[0];
+			
+			echo'<div id = "infoProfil">
+			<form method="post" action="./index.php?module=Motard&action=modifierMesInformations">
+			
+			<label>Nom</label>
+			<input type="text" name="Nom"required value="'.$info[0].'"><br>
+			<label>Prénom</label>
+			<input type="text" name="Prenom"required value="'.$info[1].'"><br>
+			<label>Adresse</label>
+			<input type="text" name="Adresse"  maxlength="10" minlength="10" required value="'.$info[2].'"><br>
+			<label>Code postal</label>
+			<input type="text" name="CodePostal" required value="'.$info[3].'"><br>
+			<label>Email</label>
+			<input type="email" name="Email"  maxlength="5" minlength="5" required value="'.$info[4].'"><br>
+			<div class=boutonModifier>
+			<input type="submit" value="modifier">
+			<div>
+		</form>
+		</div>	';
 		}
 				
 		function ListeCircuit($tableauCircuit) {
@@ -388,7 +427,7 @@
 			echo '	<div id="avisinput">
 						<form action="index.php?module=Motard&action=EnvoyerAvis&tour='.$_GET['tour'].'" method="post">
 							<label>Note/5: </label>
-							<input type="number" min="1" max="5" id="note" name="note"/>
+							<input type="number" min="1" max="5" id="note" name="note" required/>
 							<label>Commentaire: </label>
 							<textarea maxlength="30" id="commentaire" name="commentaire"></textarea>
 							<button id="envoyerAvis" type="submit">Envoyer mon avis</button>

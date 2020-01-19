@@ -2,11 +2,15 @@
 
 	require_once("./Module/Module_Connexion/Controleur_Connexion.php");
 	
+
 	class Module_Connexion {
 		
 		private $Controleur;
 
 		function __construct() {
+			if (!defined('CONST_INCLUDE'))
+				die('Accès direct interdit');
+
 			$this->Controleur = new Controleur_Connexion();
 
 			$action = 'null';

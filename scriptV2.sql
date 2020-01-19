@@ -50,7 +50,7 @@ DROP TABLE IF EXISTS `circuit`;
 CREATE TABLE IF NOT EXISTS `circuit` (
   `id_circuit` int(11) NOT NULL AUTO_INCREMENT,
   `adresse` varchar(128) NOT NULL,
-  `code_postale` int(11) NOT NULL,
+  `code_postal` int(11) NOT NULL,
   `longueur` int(11) DEFAULT NULL,
   `nom` varchar(128) NOT NULL,
   `image_circuit` varchar(500) NOT NULL,
@@ -85,7 +85,7 @@ CREATE TABLE IF NOT EXISTS `entreprise` (
   `SIRET` bigint(20) NOT NULL,
   `denomination` varchar(128) NOT NULL,
   `adresse` varchar(128) NOT NULL,
-  `code_postale` int(11) NOT NULL,
+  `code_postal` int(11) NOT NULL,
   `numero_tel` int(11) DEFAULT NULL,
   `date_d_affiliation` date NOT NULL,
   `mdp` varchar(268) NOT NULL,

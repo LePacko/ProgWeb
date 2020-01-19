@@ -30,7 +30,7 @@ CREATE TABLE entreprise(
         SIRET              BigInt NOT NULL ,
         denomination       Varchar (128) NOT NULL ,
         adresse            Varchar (128) NOT NULL ,
-        code_postale       Int NOT NULL ,
+        code_postal       Int NOT NULL ,
         numero_tel         Int ,
         date_d_affiliation Date NOT NULL ,
         mdp                Varchar (268) NOT NULL ,
@@ -47,7 +47,7 @@ CREATE TABLE entreprise(
 CREATE TABLE circuit(
         id_circuit    Int  Auto_increment  NOT NULL ,
         adresse       Varchar (128) NOT NULL ,
-        code_postale  Int NOT NULL ,
+        code_postal  Int NOT NULL ,
         longueur      Int ,
         nom           Varchar (128) NOT NULL ,
         image_circuit Varchar (500) NOT NULL ,

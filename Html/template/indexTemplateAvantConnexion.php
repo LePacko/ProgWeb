@@ -54,7 +54,7 @@
     </div>
     <section>
         <article> 
-            <?= $menu ?>
+            <?= $compMenu ?>
         </article>
         <article>
             <?= $module ?>

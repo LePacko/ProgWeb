@@ -13,15 +13,15 @@
 		function AjoutUtilisateurBaseDeDonnées() {
 
 			//Récupération des vaiables entrée dans le formulaire 
-			$prenom = $_POST['Prenom'];
-			$nom = $_POST['Nom'];
-			$mail = $_POST['Mail'];
-			$mdp = hash('sha256', $_POST['MotDePasse']);			
+			$prenom = htmlspecialchars($_POST['Prenom']);
+			$nom = htmlspecialchars($_POST['Nom']);
+			$mail = htmlspecialchars($_POST['Mail']);
+			$mdp = hash('sha256', htmlspecialchars($_POST['MotDePasse']));			
 			
-			$adresse = $_POST['Adresse'];
-			$codepostal = $_POST['CodePostal'];
-			$numerotel = $_POST['NumeroTel'];
-			$permis = $_POST['Permis'];
+			$adresse = htmlspecialchars($_POST['Adresse']);
+			$codepostal = htmlspecialchars($_POST['CodePostal']);
+			$numerotel = htmlspecialchars($_POST['NumeroTel']);
+			$permis = htmlspecialchars($_POST['Permis']);
 				
 			//Ajout du nouvelle utilisateur dans le abase de donées
 			$req = parent::$connexion->prepare('INSERT INTO motard (nom,Prenom,adresse,code_postal,mail,numero_de_tel,permis,mdp) values (:nom,:prenom,:adresse,:code_postal,:mail,:numero_de_tel,:permis,:mdp)');
@@ -39,13 +39,13 @@
 
 		function AjoutGerantBaseDeDonnées() {
 			//Récupération des vaiables entrée dans le formulaire 
-			$denomination = $_POST['Denomination'];
-			$mail = $_POST['Mail'];		
-			$mdp = hash('sha256', $_POST['MotDePasse']);
-			$siret = $_POST['Siret'];
-			$adresse = $_POST['Adresse'];
-			$codepostal = $_POST['CodePostal'];
-			$numerotel = $_POST['NumeroTel'];
+			$denomination = htmlspecialchars($_POST['Denomination']);
+			$mail = htmlspecialchars($_POST['Mail']);		
+			$mdp = hash('sha256', htmlspecialchars($_POST['MotDePasse']));
+			$siret = htmlspecialchars($_POST['Siret']);
+			$adresse = htmlspecialchars($_POST['Adresse']);
+			$codepostal = htmlspecialchars($_POST['CodePostal']);
+			$numerotel = htmlspecialchars($_POST['NumeroTel']);
 			$date_d_affiliation= date('Y-m-d');
 
 			// on teste si le numero siret est disponible
@@ -62,7 +62,7 @@
 
 				else {
 					//Ajout du nouvelle utilisateur dans le abase de donées
-					$req = parent::$connexion->prepare('INSERT INTO entreprise (SIRET,denomination,adresse,code_postale,numero_tel,date_d_affiliation,mdp,mail_entreprise) values (:siret,:denomination,:adresse,:codepostale,:numerotel,:date_d_affiliation,:mdp,:mail)');
+					$req = parent::$connexion->prepare('INSERT INTO entreprise (SIRET,denomination,adresse,code_postal,numero_tel,date_d_affiliation,mdp,mail_entreprise) values (:siret,:denomination,:adresse,:codepostale,:numerotel,:date_d_affiliation,:mdp,:mail)');
 					$result=$req->execute(array(
 						'siret'=> $siret,
 						'denomination'=> $denomination,

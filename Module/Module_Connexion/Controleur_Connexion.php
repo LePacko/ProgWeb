@@ -20,8 +20,8 @@
 		}
 
 		function connexion () {
-			$login = htmlspecialchars($_POST['id']);
-			$mdp = hash('sha256', $_POST['mdp']);
+			$login = htmlspecialchars($_POST['id']); // contre les failles XXS
+			$mdp = hash('sha256', htmlspecialchars($_POST['mdp']));
 			$resultatMotard = $this->Modele->testerConnexionMotard($login,$mdp); // contenant l'id du motard qui souhaite se connecter si le login et le mdp sont correct
 			/*on teste d'abord si la personne souhaitant se connecter est un motard en recherchant dans la table
 			motard si une adresse mail correspond au login de l'utilisateur qui essaye de se connecter, si ce n'est pas le cas
@@ -37,6 +37,7 @@
 				// sinon il s'agit d'un gerant de circuit est on affecte à une variable de session le numero siret du gerant qui est une cle unique
 					echo "je suis co";
 					$_SESSION['session_gerant'] = $resultatGerant[0];
+					$_SESSION['derniere_action'] = time();
 				}
 			}
 
@@ -44,16 +45,14 @@
 				// si on entre dans ce else c'est que le resultat de la premiere requete a retourne quelquechose donc il s'agit d'un motard bien present dans la bd
 				echo "je suis co";
 				$_SESSION['session_motard'] = $resultatMotard[0];
+				$_SESSION['derniere_action'] = time();
 			}
 		}
 					
 		function deconnexion() {
-			if(isset($_SESSION['session_motard'])){
-				unset($_SESSION['session_motard']);
-			}
-			if(isset($_SESSION['session_gerant'])){
-				unset($_SESSION['session_gerant']);
-			}
+		// On détruit la session  en vidant toute les varriables de session
+			$_SESSION = array();
+			session_destroy();
 		}
 
 		function profil() {

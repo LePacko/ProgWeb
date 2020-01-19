@@ -7,7 +7,11 @@
 		private $Controleur;
 
 		function __construct() {
+			if (!defined('CONST_INCLUDE'))
+				die('Accès direct interdit');
+
 			$this->Controleur = new Controleur_CreationCompte();
+			
 			
 			$action = 'null';
 			
