@@ -50,10 +50,10 @@
 		$compMenu = ob_get_clean();
 
 		if(!isset($_SESSION['session_motard'])&&!isset($_SESSION['session_gerant'])){
-			REQUIRE('Html/template/indexTemplateAvantConnexion.php');
+			REQUIRE('./template/indexTemplateAvantConnexion.php');
 		}
 
 		else {
-			include('./Html/template/IndexTemplateApresConnexion.php');
+			include('./template/IndexTemplateApresConnexion.php');
 		}
 	?>
