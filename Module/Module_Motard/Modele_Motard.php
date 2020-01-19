@@ -64,9 +64,9 @@ include_once("./FonctionsUtiles.php");
 		function SessionReserver() {
 
 			$id = $_SESSION['session_motard'];
-			
+			$date = date("Y-m-d");
 
-			$req = parent::$connexion->prepare('select temps_tour, nom, date from reserver natural join session natural join circuit WHERE id_motard = '.$id.' and temps_tour = 0');
+			$req = parent::$connexion->prepare('select temps_tour, nom, date from reserver natural join session natural join circuit WHERE id_motard = '.$id.' and date > "'.$date.'"');
 			$req->execute();
 
 			$res = array(
@@ -95,8 +95,9 @@ include_once("./FonctionsUtiles.php");
 		function SessionEffectuer() {
 
 			$id = $_SESSION['session_motard'];
+			$date = date("Y-m-d");
 			
-			$req = parent::$connexion->prepare('select temps_tour, nom, date from reserver natural join session natural join circuit WHERE id_motard = '.$id.' and temps_tour != 0');
+			$req = parent::$connexion->prepare('select temps_tour, nom, date from reserver natural join session natural join circuit WHERE id_motard = '.$id.' and date < "'.$date.'"');
 			$req->execute();
 
 			$res = array(
