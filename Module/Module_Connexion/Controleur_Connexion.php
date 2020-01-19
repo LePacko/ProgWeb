@@ -34,8 +34,8 @@
 					FonctionsUtiles::msgBox("identifiant ou mot de passe incorrect");
 				}
 				else { 
-				// sinon il s'agit d'un gerant de circuit est on affecte à une variable de session le numero siret du gerant qui est une cle unique
-					echo "je suis co";
+				// sinon il s'agit d'un gerant de circuit est on affecte ï¿½ une variable de session le numero siret du gerant qui est une cle unique
+					
 					$_SESSION['session_gerant'] = $resultatGerant[0];
 					$_SESSION['derniere_action'] = time();
 				}
@@ -43,7 +43,7 @@
 
 			else {
 				// si on entre dans ce else c'est que le resultat de la premiere requete a retourne quelquechose donc il s'agit d'un motard bien present dans la bd
-				echo "je suis co";
+				
 				$_SESSION['session_motard'] = $resultatMotard[0];
 				$_SESSION['derniere_action'] = time();
 			}

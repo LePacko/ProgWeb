@@ -53,6 +53,13 @@
 			REQUIRE('Html/template/indexTemplateAvantConnexion.php');
 		}
 
+		elseif ($_GET['module']=='Connexion' && $_GET['action']='connexion') {
+
+			include('./Html/template/IndexTemplateApresConnexion.php');
+			?><script type="text/javascript" src="./Html/AnimationJs/FonduAnimation.js"></script><?php
+			
+		}
+
 		else {
 			include('./Html/template/IndexTemplateApresConnexion.php');
 		}

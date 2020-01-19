@@ -269,12 +269,12 @@
 
 			
 			if(count($sessionReserver)==3){
-				echo'<h2 id="AucuneSessionreserver">Vous n\'avez pas encore rezserver de session</h2> ';
+				echo'<h2 id="AucuneSessionreserver">Vous n\'avez pas encore rezservé de session</h2> ';
 			}
 			else {
 
 
-			echo '<h1 id="TitreSessionReserver">Voici vos sessions reserver</h1>';
+			echo '<h1 id="TitreSessionReserver">Voici vos sessions reservées</h1>';
 			$nbavis = count($sessionReserver) - count($sessionReserver[0]);
 			echo '<div class="SessionreserverListe scroller">';
 			for ($j = 0; $j<$nbavis; $j++) {
@@ -293,12 +293,12 @@
 		function SessionEffectuer($sessionEffectuer) {
 
 			if(count($sessionEffectuer)==3){
-				echo'<h2 id="AucuneSessionEffectuer">Vous n\'avez pas encore effectuer de session</h2> ';
+				echo'<h2 id="AucuneSessionEffectuer">Vous n\'avez pas encore effectué de session</h2> ';
 			}
 			else {
 
 
-			echo '<h1 id="TitreSessionEffectuer">Voici vos sessions effectuer</h1>';
+			echo '<h1 id="TitreSessionEffectuer">Voici vos sessions effectuées</h1>';
 			$nbavis = count($sessionEffectuer) - count($sessionEffectuer[0]);
 			echo '<div class="SessionEffectuerListe scroller">';
 			for ($j = 0; $j<$nbavis; $j++) {
@@ -391,7 +391,7 @@
 
 			echo '<div class="avisbox inlineblock">';
 
-			echo '<h1>Faites vous un avis ...</h1>';
+			echo '<h1>Donnez nous votre avis ...</h1>';
 
 			if(count($avis)==5){
 				echo' Il n\'ya aucun avis pour ce circuit ajouter en un ';

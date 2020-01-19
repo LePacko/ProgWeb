@@ -1,7 +1,7 @@
-
 .body {
 	background-color: #1c4587ff;
 }
+
 
 .LogoTitre {
 	width: 17%;
@@ -36,9 +36,9 @@ textarea {
 
 section {
 	margin-top: 8%;
-	
 	width: 100%;
-	color: white;	
+	color: white;
+	animation: fondu 2s forwards;	
 	
 }
 

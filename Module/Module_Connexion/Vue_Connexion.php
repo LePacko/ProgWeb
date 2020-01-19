@@ -8,7 +8,7 @@
 		}
 
 		function formulaireConnexion () {
-			echo '<div  id="connection" class="bulle col-md-offset-4 col-md-4">
+			echo '<div  id="connection" class="bulle">
 			<form action="index.php?module=Connexion&action=connexion" method="post">
 				<div>
 					<input type="text" name="id" class="enterResponses" placeholder="email">
