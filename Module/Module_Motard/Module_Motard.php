@@ -8,7 +8,7 @@
 
 		function __construct() {
 			if (!defined('CONST_INCLUDE'))
-				die('Accès direct interdit');
+				die('Accï¿½s direct interdit');
 
 			$this->Controleur = new Controleur_Motard();
 			
@@ -20,6 +20,10 @@
 			}
 
 			switch($action) {
+
+				case 'acceuil': 
+					$this->Controleur->Acceuil();
+				break;
 
                 case 'voirProfil':
 					$this->Controleur->voirProfil();

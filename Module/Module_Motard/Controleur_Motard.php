@@ -14,6 +14,9 @@
 			$this->Modele = new Modele_Motard();
 		}
 
+		function Acceuil() {
+			$this->Vue->Acceuil();
+		}
 
         function voirProfil () {
 			$this->Vue->afficherProfil();

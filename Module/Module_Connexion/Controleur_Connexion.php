@@ -39,6 +39,7 @@
 					
 					$_SESSION['session_gerant'] = $resultatGerant[0];
 					$_SESSION['derniere_action'] = time();
+					FonctionsUtiles::redirectionPage("index.php?module=Gerant&action=acceuil");
 				}
 			}
 
@@ -47,11 +48,12 @@
 				
 				$_SESSION['session_motard'] = $resultatMotard[0];
 				$_SESSION['derniere_action'] = time();
+				FonctionsUtiles::redirectionPage("index.php?module=Motard&action=acceuil");
 			}
 		}
 					
 		function deconnexion() {
-		// On détruit la session  en vidant toute les varriables de session
+		// On dï¿½truit la session  en vidant toute les varriables de session
 			$_SESSION = array();
 			session_destroy();
 		}

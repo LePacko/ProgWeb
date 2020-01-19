@@ -7,6 +7,18 @@
 			
 		}
 
+		function acceuil() {
+			
+
+				echo '<div id=sessionacceuil>';
+				echo '<h1 id="MessageBienvenue">Bienvenue sur MotoSession</h1>';
+				echo '<a href="index.php?module=Gerant&action=profil" id="monprofil" class=acceuillien>Mon Profil</a>';
+				echo '<a href="index.php?module=Gerant&action=mescircuits" class=acceuillien>Mes Circuits</a>';
+				echo '<a href="index.php?module=Gerant&action=messessions" class=acceuillien>Mes Sessions</a>';
+				echo '</div';
+		
+		}
+
 		//function qui permet d'afficher les circuit
 		function Circuit($tableauCircuit) {
 

@@ -14,7 +14,7 @@
 			$this->Modele = new Modele_Gerant();
 		}
 		function acceuil(){
-			//$info=$this->Model->acceuil();
+			$this->Vue->acceuil();
 		}
 		function profil () {
 			$info=$this->Modele->profil();
