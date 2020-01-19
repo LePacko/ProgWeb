@@ -14,10 +14,6 @@
 
 			echo '<div id=sessionacceuil>';
 			echo '<h1 id="MessageBienvenue">Bienvenue sur MotoSession</h1>';
-			echo '<a href="index.php?module=Motard&action=voirProfil" class=acceuillien>Mon Profil</a>';
-			echo '<a href="index.php?module=Motard&action=trouverSession&tour=0" class=acceuillien>Reserver une session</a>';
-			echo '<a href="index.php?module=Motard&action=SessionReserver" class=acceuillien>Mes réservation</a>';
-			echo '<a href="index.php?module=Motard&action=SessionEffectuer" class=acceuillien>Mes session efectuées</a>';
 			echo '</div';
 		}
 
