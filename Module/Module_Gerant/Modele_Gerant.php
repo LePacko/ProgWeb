@@ -281,12 +281,12 @@ include_once("./FonctionsUtiles.php");
 			while ($donne = $req->fetch()) {
 
 				$res[$i][0] = $donne['nom'];
-				$res[$i][1] = $donne['Prenom'];
+				$res[$i][1] = $donne['prenom'];
 				$res[$i][2] = $donne['adresse'];
 				
 				$res[$i][3] = $donne['code_postal'];
 				$res[$i][4] = $donne['mail'];
-				$res[$i][5] = $donne['numero_de_tel'];
+				$res[$i][5] = $donne['numero_tel'];
 				$res[$i][6] = $donne['permis'];
 			}
 			if(isset($res)){

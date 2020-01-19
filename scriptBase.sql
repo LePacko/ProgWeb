@@ -14,7 +14,7 @@ CREATE TABLE motard(
         adresse       Varchar (128) ,
         code_postal   Int ,
         mail          Varchar (128) NOT NULL ,
-        numero_de_tel Int NOT NULL ,
+        numero_tel Int NOT NULL ,
         permis        Varchar (3) NOT NULL ,
         mdp           Varchar (268) NOT NULL ,
         imageProfile  Varchar (450)

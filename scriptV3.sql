@@ -147,7 +147,7 @@ CREATE TABLE IF NOT EXISTS `motard` (
   `adresse` varchar(128) DEFAULT NULL,
   `code_postal` int(11) DEFAULT NULL,
   `mail` varchar(128) NOT NULL,
-  `numero_de_tel` int(11) NOT NULL,
+  `numero_tel` int(11) NOT NULL,
   `permis` varchar(3) NOT NULL,
   `mdp` varchar(268) NOT NULL,
   `imageProfile` varchar(450) DEFAULT NULL,
@@ -158,7 +158,7 @@ CREATE TABLE IF NOT EXISTS `motard` (
 -- Déchargement des données de la table `motard`
 --
 
-INSERT INTO `motard` (`id_motard`, `nom`, `Prenom`, `adresse`, `code_postal`, `mail`, `numero_de_tel`, `permis`, `mdp`, `imageProfile`) VALUES
+INSERT INTO `motard` (`id_motard`, `nom`, `Prenom`, `adresse`, `code_postal`, `mail`, `numero_tel`, `permis`, `mdp`, `imageProfile`) VALUES
 (1, 'talbi', 'nael', '67 rue de noisy le sec ', 93260, 'nael@gmail.fr', 664379946, 'A', '07123e1f482356c415f684407a3b8723e10b2cbbc0b8fcd6282c49d37c9c1abc', NULL);
 
 -- --------------------------------------------------------

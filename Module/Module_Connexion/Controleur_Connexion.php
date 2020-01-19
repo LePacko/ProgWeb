@@ -16,7 +16,8 @@
 
 
 		function formConnexion () {
-			$this->Vue->formulaireConnexion();
+			if(!isset($_SESSION['session_motard'])&&!isset($_SESSION['session_gerant'])) // impossibile d'afficher le formulaire de connexion si un utilisateur est deja connecter
+				$this->Vue->formulaireConnexion();
 		}
 
 		function connexion () {
