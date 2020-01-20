@@ -434,9 +434,9 @@
 			echo '	<div id="avisinput">
 						<form action="index.php?module=Motard&action=EnvoyerAvis&tour='.$_GET['tour'].'" method="post">
 							<label>Note/5: </label>
-							<input type="number" min="1" max="5" id="note" name="note" required/>
+							<input class="inputwhite" type="number" min="1" max="5" id="note" name="note" required/>
 							<label>Commentaire: </label>
-							<textarea maxlength="30" id="commentaire" name="commentaire"></textarea>
+							<textarea class="inputwhite" maxlength="30" id="commentaire" name="commentaire"></textarea>
 							<button id="envoyerAvis" type="submit">Envoyer mon avis</button>
 					</div>
 				</div>

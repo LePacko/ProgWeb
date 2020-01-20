@@ -28,14 +28,13 @@
 				$valeurValide=true;
 				$nbcircuit = count($tableauCircuit) - count($tableauCircuit[0]) . '<br>';
 				
-				// for($i = 0; $i<	count($tableauCircuit); $i++) {
-				// 	echo $tableauCircuit[0][0];
-				// }
+				echo '<div id="lescircuits">';
 				for ($j = 0; $j<$nbcircuit; $j++) {
+					echo'<div id=session>';
 					$tab = $tableauCircuit[$j];
 					if($tab[5]==$_SESSION['session_gerant']){
 						$valeurValide=false;
-						echo'<a id=session href="./index.php?module=Gerant&action=PageCircuit&idCircuit='.$tab[6].'">';
+						echo'<a id=session class"liencircuit" href="./index.php?module=Gerant&action=PageCircuit&idCircuit='.$tab[6].'">';
 						foreach($tab as $i => $value) {
 								if($i!=5)
 									echo $value . ' ';
@@ -43,13 +42,18 @@
 						}
 						echo'</a>';
 					echo '<br>';
-					}
+					}echo '</div>';
 				}
 				if($valeurValide){
 					echo'Vous n avez pas de circuit <br>';
 				}
+				echo '</div>';
 		}
-			echo'<a href="./index.php?module=Gerant&action=formulaireAjoutCircuit"> ajout un circuit</a>';
+				echo '<div id="AjoutCircuit">';
+				echo '<a href="./index.php?module=Gerant&action=formulaireAjoutCircuit"> Ajouter un circuit</a>';
+				echo '</div>';
+
+			echo '</div>';
 		}	
 //function qui permet d'afficher les sessions
 		function Session($tableauSession){
@@ -62,7 +66,9 @@
 				// for($i = 0; $i<	count($tableauCircuit); $i++) {
 				// 	echo $tableauCircuit[0][0];
 				// }
+				echo '<div id="lescircuits" class="scroller">';
 				for ($j = 0; $j<$nbsession; $j++) {
+					echo'<div id=session>';
 					$tab = $tableauSession[$j];
 						$valeurValide=false;
 						echo'<a id="session" href="./index.php?module=Gerant&action=PageSession&idSession='.$tab[8].'">';
@@ -73,12 +79,15 @@
 						}
 						echo'</a>';
 					echo '<br>';
-					}
+					echo '</div>';
+				}echo '</div>';
 				if($valeurValide){
 					echo'Vous n avez pas de Session <br>';
 				}
 		}
-		echo'<br><br><a href="./index.php?module=Gerant&action=formajoutSession"> ajouter une session</a>';
+		echo '<div id="AjoutCircuit">';
+		echo'<a href="./index.php?module=Gerant&action=formajoutSession"> ajouter une session</a>';
+		echo '</div>';
 		}
 		//function qui permet d'afficher les informations d'une session en details
 		function InfoSession($info,$infoMotard){
